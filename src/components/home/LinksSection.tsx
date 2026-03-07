@@ -6,7 +6,7 @@ type ExternalLinkItem = {
 };
 
 const externalLinks: ExternalLinkItem[] = [
-    { label: "GitHub", href: "https://github.com/" },
+    { label: "GitHub", href: "https://github.com/skeptre" },
     { label: "LinkedIn", href: "https://www.linkedin.com/" },
     { label: "Instagram", href: "https://www.instagram.com/" },
     { label: "CV", href: "/cv" },
