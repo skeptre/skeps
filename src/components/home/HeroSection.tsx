@@ -15,11 +15,11 @@ export default function HeroSection() {
                     className="hidden gap-6 text-sm text-zinc-600 md:flex"
                     aria-label="Primary navigation"
                 >
-                    <a href="#projects" className="transition hover:text-zinc-900">
-                        Projects
-                    </a>
                     <a href="#about" className="transition hover:text-zinc-900">
                         About
+                    </a>
+                    <a href="#project" className="transition hover:text-zinc-900">
+                        Projects
                     </a>
                     <a href="#links" className="transition hover:text-zinc-900">
                         Links

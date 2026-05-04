@@ -25,11 +25,6 @@ export default function LinksSection() {
                         Elsewhere
                     </h2>
                 </div>
-
-                <p className="max-w-xl text-sm leading-6 text-zinc-600">
-                    Replace placeholders with your live destinations for GitHub, LinkedIn,
-                    Instagram, CV, and contact.
-                </p>
             </div>
 
             <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
