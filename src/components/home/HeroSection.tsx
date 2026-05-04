@@ -6,9 +6,9 @@ export default function HeroSection() {
             <header className="flex items-center justify-between border-b border-zinc-200 pb-5">
                 <Link
                     href="/"
-                    className="text-sm font-medium uppercase tracking-[0.24em] text-zinc-900"
+                    className="text-sm font-medium tracking-[0.24em] text-zinc-900"
                 >
-                    aliskeps
+                    skeps
                 </Link>
 
                 <nav
