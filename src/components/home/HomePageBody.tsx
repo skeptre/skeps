@@ -260,11 +260,7 @@ export default function HomePageBody() {
               className="mt-10 text-pretty text-left text-[0.9375rem] leading-[1.7] text-zinc-600 sm:text-base sm:leading-[1.75] dark:text-zinc-400"
             >
               <p>
-                I build backend systems, API integrations, and structured
-                software with a focus on reliability, clarity, and real-world
-                usefulness. My work centres on Python, REST APIs, automation, and
-                data handling, with a growing interest in secure system design,
-                infrastructure, and backend fundamentals.
+                I&apos;m currently focused on building complete backend systems in Python.
               </p>
             </LandingReveal>
 
