@@ -33,7 +33,7 @@ const projects: ProjectItem[] = [
 
 export default function ProjectsSection() {
     return (
-        <section id="projects" className="border-t border-zinc-200 py-16">
+        <section id="projects" className="border-t-2 border-zinc-400 py-16 dark:border-zinc-600">
             <div className="max-w-2xl">
                 <p className="text-xs font-medium uppercase tracking-[0.28em] text-zinc-500">
                     Featured work

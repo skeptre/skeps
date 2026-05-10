@@ -29,15 +29,15 @@ const featuredItems: FeaturedItem[] = [
 
 export default function FeaturedGrid() {
     return (
-        <section className="grid gap-5 border-t border-zinc-200 py-14 md:grid-cols-3">
+        <section className="grid gap-5 border-t-2 border-zinc-400 py-14 dark:border-zinc-600 md:grid-cols-3">
             {featuredItems.map((item) => (
                 <Link
                     key={item.title}
                     href={item.href}
-                    className="group rounded-3xl border border-zinc-200 p-6 transition hover:-translate-y-0.5 hover:border-zinc-400 hover:shadow-sm"
+                    className="group rounded-3xl border border-zinc-200 p-6 transition hover:-translate-y-0.5 hover:border-zinc-400 hover:shadow-sm dark:border-zinc-600 dark:hover:border-zinc-500"
                 >
-                    <h2 className="text-lg font-semibold text-zinc-900">{item.title}</h2>
-                    <p className="mt-3 text-sm leading-6 text-zinc-600">
+                    <h2 className="text-lg font-semibold text-zinc-900 dark:text-zinc-50">{item.title}</h2>
+                    <p className="mt-3 text-sm leading-6 text-zinc-600 dark:text-zinc-400">
                         {item.description}
                     </p>
                     <p className="mt-6 text-sm font-medium text-zinc-900">

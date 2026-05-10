@@ -3,10 +3,10 @@ import Link from "next/link";
 export default function HeroSection() {
     return (
         <>
-            <header className="flex items-center justify-between border-b border-zinc-200 pb-5">
+            <header className="flex items-center justify-between border-b-2 border-zinc-400 pb-5 dark:border-zinc-600">
                 <Link
                     href="/"
-                    className="text-sm font-medium tracking-[0.24em] text-zinc-900"
+                    className="text-sm font-medium tracking-[0.24em] text-zinc-900 dark:text-zinc-50"
                 >
                     skeps
                 </Link>
