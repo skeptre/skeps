@@ -24,7 +24,7 @@ const links: LinkItem[] = [
   },
   {
     label: "CV",
-    href: "/cv.pdf",
+    href: "/M_Ali_2.pdf",
     ariaLabel: "Open CV as PDF",
   },
   {
