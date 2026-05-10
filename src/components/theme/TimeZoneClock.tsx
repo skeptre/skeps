@@ -35,6 +35,8 @@ function localTimeZoneLabel() {
 
 export default function TimeZoneClock() {
   const [now, setNow] = useState(() => new Date());
+  /** Avoid SSR/client mismatch: Node and the browser often disagree on short TZ names (e.g. GMT+1 vs BST). */
+  const [tzShort, setTzShort] = useState("");
 
   const localTz = useMemo(
     () => Intl.DateTimeFormat().resolvedOptions().timeZone,
@@ -46,13 +48,15 @@ export default function TimeZoneClock() {
     return () => window.clearInterval(id);
   }, []);
 
-  const tzShort = localTimeZoneLabel();
+  useEffect(() => {
+    setTzShort(localTimeZoneLabel() ?? "");
+  }, []);
 
   return (
     <div className="min-w-0 text-left sm:text-center">
       <div className="font-mono text-lg font-semibold tracking-tight text-zinc-950 tabular-nums dark:text-zinc-50 sm:text-xl">
         {format24Local(now, localTz)}
-        <span className="ml-2 text-xs font-sans font-medium text-zinc-500 dark:text-zinc-400">
+        <span className="ml-2 inline-block min-w-[2.75rem] text-left text-xs font-sans font-medium text-zinc-500 tabular-nums dark:text-zinc-400">
           {tzShort}
         </span>
       </div>
