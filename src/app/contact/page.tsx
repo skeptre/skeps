@@ -27,9 +27,6 @@ export default function ContactPage() {
 
         <section className="mx-auto mt-12 max-w-xl border-t-2 border-zinc-400 pt-16 sm:mt-14 sm:pt-20 dark:border-zinc-600">
           <header className="text-center">
-            <p className="text-[0.65rem] font-semibold uppercase tracking-[0.35em] text-zinc-400 dark:text-zinc-500">
-              Contact
-            </p>
             <h1 className="mt-3 text-2xl font-semibold tracking-[-0.02em] text-zinc-950 sm:text-[1.75rem] sm:leading-snug dark:text-zinc-50">
               Get in touch
             </h1>

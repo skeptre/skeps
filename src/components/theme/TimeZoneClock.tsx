@@ -2,7 +2,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 
-function format24(d: Date, timeZone: string) {
+function format24Local(d: Date, timeZone: string) {
   return new Intl.DateTimeFormat("en-GB", {
     timeZone,
     hour: "2-digit",
@@ -51,7 +51,7 @@ export default function TimeZoneClock() {
   return (
     <div className="min-w-0 text-left sm:text-center">
       <div className="font-mono text-lg font-semibold tracking-tight text-zinc-950 tabular-nums dark:text-zinc-50 sm:text-xl">
-        {format24(now, localTz)}
+        {format24Local(now, localTz)}
         <span className="ml-2 text-xs font-sans font-medium text-zinc-500 dark:text-zinc-400">
           {tzShort}
         </span>
@@ -59,20 +59,6 @@ export default function TimeZoneClock() {
       <p className="mt-1 text-sm text-zinc-600 dark:text-zinc-400">
         {formatDateLocal(now)}
       </p>
-      <div className="mt-2 flex flex-wrap gap-x-4 gap-y-1 text-[0.75rem] text-zinc-500 tabular-nums dark:text-zinc-400">
-        <span>
-          <span className="font-medium text-zinc-600 dark:text-zinc-300">
-            UTC
-          </span>{" "}
-          {format24(now, "UTC")}
-        </span>
-        <span>
-          <span className="font-medium text-zinc-600 dark:text-zinc-300">
-            Pacific
-          </span>{" "}
-          {format24(now, "America/Los_Angeles")}
-        </span>
-      </div>
     </div>
   );
 }
