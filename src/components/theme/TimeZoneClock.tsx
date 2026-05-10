@@ -56,7 +56,7 @@ export default function TimeZoneClock() {
   const dateStr = formatDateLocal(now);
 
   return (
-    <div className="mx-auto w-full min-w-0 max-w-[20rem] text-center">
+    <div className="w-full min-w-0 max-w-[20rem] text-left">
       <div
         className="font-mono text-lg font-semibold tabular-nums tracking-tight text-zinc-950 dark:text-zinc-50 sm:text-xl"
         aria-label={`Local time ${timeStr}${tzShort ? ` ${tzShort}` : ""}`}
