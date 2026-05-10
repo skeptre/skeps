@@ -247,8 +247,7 @@ export default function HomePageBody() {
                 animate="visible"
                 variants={subV}
               >
-                Graduate Software Engineer
-                <span className="text-zinc-300 dark:text-zinc-600"> · </span>
+                Graduate Software Engineer <br></br>
                 Manchester, United Kingdom
               </motion.p>
             </header>
@@ -318,8 +317,7 @@ function StaticAbout() {
             Hi, I&apos;m Ali
           </h1>
           <p className="mt-3 text-sm font-medium leading-relaxed text-zinc-500 sm:text-[0.9375rem] dark:text-zinc-400">
-            Graduate Software Engineer
-            <span className="text-zinc-300 dark:text-zinc-600"> · </span>
+            Graduate Software Engineer <br></br>
             Manchester, United Kingdom
           </p>
         </header>
