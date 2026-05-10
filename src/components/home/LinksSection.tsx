@@ -30,7 +30,7 @@ const links: LinkItem[] = [
 ];
 
 const linkClassName =
-  "inline-flex min-w-[7.5rem] justify-center rounded-2xl border border-zinc-200 px-5 py-4 text-sm font-medium text-zinc-900 transition hover:border-zinc-900 hover:bg-zinc-50 focus:outline-none focus:ring-2 focus:ring-zinc-900 focus:ring-offset-2";
+  "inline-flex min-w-[7.5rem] justify-center rounded-2xl border border-zinc-200 px-5 py-[0.9rem] text-[0.8125rem] font-medium tracking-wide text-zinc-900 shadow-sm shadow-zinc-900/5 transition hover:border-zinc-900 hover:bg-zinc-50 hover:shadow-zinc-900/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-zinc-900 focus-visible:ring-offset-2";
 
 function isExternalLink(href: string) {
   return href.startsWith("http://") || href.startsWith("https://");
@@ -44,7 +44,7 @@ export default function LinksSection() {
   return (
     <section
       id="links"
-      className="border-t border-zinc-200 py-16 text-center"
+      className="border-t border-zinc-200 py-16 sm:py-20 text-center"
     >
       <nav
         className="mx-auto flex w-fit max-w-full flex-wrap justify-center gap-4"
