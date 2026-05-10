@@ -18,11 +18,6 @@ const links: LinkItem[] = [
     ariaLabel: "Open LinkedIn profile",
   },
   {
-    label: "Instagram",
-    href: "https://www.instagram.com/",
-    ariaLabel: "Open Instagram profile",
-  },
-  {
     label: "CV",
     href: "/M_Ali_2.pdf",
     ariaLabel: "Open CV as PDF",
@@ -35,7 +30,7 @@ const links: LinkItem[] = [
 ];
 
 const linkClassName =
-  "rounded-2xl border border-zinc-200 px-5 py-4 text-sm font-medium text-zinc-900 transition hover:border-zinc-900 hover:bg-zinc-50 focus:outline-none focus:ring-2 focus:ring-zinc-900 focus:ring-offset-2";
+  "inline-flex min-w-[7.5rem] justify-center rounded-2xl border border-zinc-200 px-5 py-4 text-sm font-medium text-zinc-900 transition hover:border-zinc-900 hover:bg-zinc-50 focus:outline-none focus:ring-2 focus:ring-zinc-900 focus:ring-offset-2";
 
 function isExternalLink(href: string) {
   return href.startsWith("http://") || href.startsWith("https://");
@@ -47,18 +42,14 @@ function isFileLink(href: string) {
 
 export default function LinksSection() {
   return (
-    <section id="links" className="border-t border-zinc-200 py-16">
-      <div>
-        <p className="text-xs font-medium uppercase tracking-[0.28em] text-zinc-500">
-          Links
-        </p>
-
-        <h2 className="mt-3 text-2xl font-semibold tracking-tight text-zinc-950">
-          Elsewhere
-        </h2>
-      </div>
-
-      <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
+    <section
+      id="links"
+      className="border-t border-zinc-200 py-16 text-center"
+    >
+      <nav
+        className="mx-auto flex w-fit max-w-full flex-wrap justify-center gap-4"
+        aria-label="Social and contact links"
+      >
         {links.map((link) => {
           const shouldUseAnchor =
             isExternalLink(link.href) || isFileLink(link.href);
@@ -89,7 +80,7 @@ export default function LinksSection() {
             </Link>
           );
         })}
-      </div>
+      </nav>
     </section>
   );
 }
