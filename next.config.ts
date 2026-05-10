@@ -1,7 +1,28 @@
+import path from "node:path";
+import { fileURLToPath } from "node:url";
+
 import type { NextConfig } from "next";
 
+const projectRoot = path.dirname(fileURLToPath(import.meta.url));
+const tailwindcssResolved = path.join(projectRoot, "node_modules", "tailwindcss");
+
 const nextConfig: NextConfig = {
-  /* config options here */
+  /**
+   * Some Windows setups resolve `@import "tailwindcss"` from the drive root (`F:\`)
+   * instead of the app folder, which breaks `@tailwindcss/postcss`. Pin the package.
+   */
+  turbopack: {
+    resolveAlias: {
+      tailwindcss: tailwindcssResolved,
+    },
+  },
+  webpack: (config) => {
+    config.resolve.alias = {
+      ...config.resolve.alias,
+      tailwindcss: tailwindcssResolved,
+    };
+    return config;
+  },
 };
 
 export default nextConfig;

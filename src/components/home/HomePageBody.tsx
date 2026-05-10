@@ -220,11 +220,11 @@ export default function HomePageBody() {
     <main className="min-h-screen bg-white text-zinc-900 dark:bg-zinc-950 dark:text-zinc-50">
       <div className="mx-auto max-w-6xl px-6 py-10 text-center sm:px-8 sm:py-12 lg:px-10">
         <section id="about" className="py-16 sm:py-20">
-          <div className="mx-auto max-w-xl">
+          <div className="mx-auto max-w-lg">
             <div className="mx-auto mb-6 flex w-full max-w-[15rem] justify-center sm:mb-7 sm:max-w-[17rem]">
               <motion.div
-                className="h-[1px] w-full max-w-full origin-left rounded-full bg-zinc-400 dark:bg-zinc-500"
-                style={{ transformOrigin: "left center" }}
+                className="h-[1px] w-full max-w-full origin-center rounded-full bg-zinc-400 dark:bg-zinc-500"
+                style={{ transformOrigin: "center center" }}
                 initial="hidden"
                 animate="visible"
                 variants={lineV}
@@ -234,7 +234,7 @@ export default function HomePageBody() {
 
             <header className="text-center">
               <motion.h1
-                className="text-2xl font-semibold text-zinc-950 sm:text-[1.75rem] sm:leading-snug dark:text-zinc-50"
+                className="text-2xl font-semibold tracking-[-0.02em] text-zinc-950 sm:text-[1.75rem] sm:leading-snug dark:text-zinc-50"
                 initial="hidden"
                 animate="visible"
                 variants={headV}
@@ -257,7 +257,7 @@ export default function HomePageBody() {
               full={bodyFirstVariants}
               reduced={reducedBodyFirstVariants}
               reduceMotion={reduceMotion}
-              className="mt-10 text-pretty text-left text-[0.9375rem] leading-[1.7] text-zinc-600 sm:text-base sm:leading-[1.75] dark:text-zinc-400"
+              className="mx-auto mt-10 max-w-lg text-pretty text-center text-[0.9375rem] leading-[1.7] text-zinc-600 sm:text-base sm:leading-[1.75] dark:text-zinc-400"
             >
               <p>
                 I&apos;m currently focused on building complete backend systems in Python.
@@ -268,7 +268,7 @@ export default function HomePageBody() {
               full={bodySecondVariants}
               reduced={reducedBodySecondVariants}
               reduceMotion={reduceMotion}
-              className="mt-5 text-pretty text-left text-[0.9375rem] leading-[1.7] text-zinc-600 sm:text-base sm:leading-[1.75] dark:text-zinc-400"
+              className="mx-auto mt-5 max-w-lg text-pretty text-center text-[0.9375rem] leading-[1.7] text-zinc-600 sm:text-base sm:leading-[1.75] dark:text-zinc-400"
             >
               <p>
                 I enjoy debugging complex behaviour, thinking through edge
@@ -283,7 +283,7 @@ export default function HomePageBody() {
               animate="visible"
               variants={footV}
             >
-              <p className="mx-auto max-w-md text-pretty text-[0.9375rem] leading-relaxed text-zinc-600 sm:text-base dark:text-zinc-400">
+              <p className="mx-auto max-w-lg text-pretty text-center text-[0.9375rem] leading-relaxed text-zinc-600 sm:text-base dark:text-zinc-400">
                 If you&apos;re hiring for graduate or junior backend roles, feel
                 free to reach out at{" "}
                 <a href={`mailto:${ABOUT_EMAIL}`} className={linkMailtoClassName}>
@@ -312,7 +312,7 @@ export default function HomePageBody() {
 function StaticAbout() {
   return (
     <section id="about" className="py-16 sm:py-20">
-      <div className="mx-auto max-w-xl">
+      <div className="mx-auto max-w-lg">
         <header className="text-center">
           <h1 className="text-2xl font-semibold tracking-[-0.02em] text-zinc-950 sm:text-[1.75rem] sm:leading-snug dark:text-zinc-50">
             Hi, I&apos;m Ali
@@ -324,13 +324,10 @@ function StaticAbout() {
           </p>
         </header>
 
-        <div className="mt-10 space-y-5 text-pretty text-left text-[0.9375rem] leading-[1.7] text-zinc-600 sm:text-base sm:leading-[1.75] dark:text-zinc-400">
+        <div className="mt-10 space-y-5 text-pretty text-center text-[0.9375rem] leading-[1.7] text-zinc-600 sm:text-base sm:leading-[1.75] dark:text-zinc-400">
           <p>
-            I build backend systems, API integrations, and structured software
-            with a focus on reliability, clarity, and real-world usefulness. My
-            work centres on Python, REST APIs, automation, and data handling,
-            with a growing interest in secure system design, infrastructure,
-            and backend fundamentals.
+            I&apos;m currently focused on building complete backend systems in
+            Python.
           </p>
           <p>
             I enjoy debugging complex behaviour, thinking through edge cases,
@@ -339,7 +336,7 @@ function StaticAbout() {
         </div>
 
         <footer className="mt-12 border-t-2 border-zinc-300 pt-10 text-center dark:border-zinc-700">
-          <p className="mx-auto max-w-md text-pretty text-[0.9375rem] leading-relaxed text-zinc-600 sm:text-base dark:text-zinc-400">
+          <p className="mx-auto max-w-lg text-pretty text-center text-[0.9375rem] leading-relaxed text-zinc-600 sm:text-base dark:text-zinc-400">
             If you&apos;re hiring for graduate or junior backend roles, feel free
             to reach out at{" "}
             <a href={`mailto:${ABOUT_EMAIL}`} className={linkMailtoClassName}>

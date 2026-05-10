@@ -35,7 +35,7 @@ function localTimeZoneLabel() {
 
 export default function TimeZoneClock() {
   const [now, setNow] = useState(() => new Date());
-  /** Avoid SSR/client mismatch: Node and the browser often disagree on short TZ names (e.g. GMT+1 vs BST). */
+  /** Avoid SSR/client mismatch on short TZ labels (e.g. GMT+1 vs BST). */
   const [tzShort, setTzShort] = useState("");
 
   const localTz = useMemo(
@@ -52,16 +52,27 @@ export default function TimeZoneClock() {
     setTzShort(localTimeZoneLabel() ?? "");
   }, []);
 
+  const timeStr = format24Local(now, localTz);
+  const dateStr = formatDateLocal(now);
+
   return (
-    <div className="min-w-0 text-left sm:text-center">
-      <div className="font-mono text-lg font-semibold tracking-tight text-zinc-950 tabular-nums dark:text-zinc-50 sm:text-xl">
-        {format24Local(now, localTz)}
-        <span className="ml-2 inline-block min-w-[2.75rem] text-left text-xs font-sans font-medium text-zinc-500 tabular-nums dark:text-zinc-400">
-          {tzShort}
-        </span>
+    <div className="mx-auto w-full min-w-0 max-w-[20rem] text-center">
+      <div
+        className="font-mono text-lg font-semibold tabular-nums tracking-tight text-zinc-950 dark:text-zinc-50 sm:text-xl"
+        aria-label={`Local time ${timeStr}${tzShort ? ` ${tzShort}` : ""}`}
+      >
+        <span>{timeStr}</span>
+        {tzShort ? (
+          <>
+            {" "}
+            <span className="whitespace-nowrap align-baseline font-sans text-xs font-medium tabular-nums text-zinc-500 dark:text-zinc-400">
+              {tzShort}
+            </span>
+          </>
+        ) : null}
       </div>
-      <p className="mt-1 text-sm text-zinc-600 dark:text-zinc-400">
-        {formatDateLocal(now)}
+      <p className="mt-1.5 text-sm leading-snug text-zinc-600 dark:text-zinc-400">
+        {dateStr}
       </p>
     </div>
   );

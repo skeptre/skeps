@@ -25,14 +25,14 @@ export default function ContactPage() {
           </Link>
         </p>
 
-        <section className="mx-auto mt-12 max-w-xl border-t-2 border-zinc-400 pt-16 sm:mt-14 sm:pt-20 dark:border-zinc-600">
+        <section className="mx-auto mt-12 max-w-lg border-t-2 border-zinc-400 pt-16 text-center sm:mt-14 sm:pt-20 dark:border-zinc-600">
           <header className="text-center">
             <h1 className="mt-3 text-2xl font-semibold tracking-[-0.02em] text-zinc-950 sm:text-[1.75rem] sm:leading-snug dark:text-zinc-50">
               Get in touch
             </h1>
           </header>
 
-          <p className="mx-auto mt-8 max-w-md text-pretty text-left text-[0.9375rem] leading-[1.7] text-zinc-600 sm:mt-10 sm:text-base sm:leading-[1.75] dark:text-zinc-400">
+          <p className="mx-auto mt-8 max-w-lg text-pretty text-center text-[0.9375rem] leading-[1.7] text-zinc-600 sm:mt-10 sm:text-base sm:leading-[1.75] dark:text-zinc-400">
             For opportunities, collaborations, or questions, email is the best
             way to reach me. I read everything and respond when I can.
           </p>
