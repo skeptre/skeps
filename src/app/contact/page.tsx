@@ -34,7 +34,7 @@ export default function ContactPage() {
 
           <p className="mx-auto mt-8 max-w-lg text-pretty text-center text-[0.9375rem] leading-[1.7] text-zinc-600 sm:mt-10 sm:text-base sm:leading-[1.75] dark:text-zinc-400">
             For opportunities, collaborations, or questions, email is the best
-            way to reach me. I read everything and respond when I can.
+            way to reach me.
           </p>
 
           <div className="mt-10 flex justify-center sm:mt-12">
