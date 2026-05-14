@@ -33,7 +33,7 @@ function localTimeZoneLabel() {
   }
 }
 
-export default function TimeZoneClock() {
+export default function LocalClock() {
   const [now, setNow] = useState(() => new Date());
   /** Avoid SSR/client mismatch on short TZ labels (e.g. GMT+1 vs BST). */
   const [tzShort, setTzShort] = useState("");

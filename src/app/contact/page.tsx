@@ -1,14 +1,14 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 
-const EMAIL = "aliskepss@gmail.com";
-const MAILTO = `mailto:${EMAIL}`;
+const CONTACT_EMAIL = "aliskepss@gmail.com";
+const CONTACT_EMAIL_HREF = `mailto:${CONTACT_EMAIL}`;
 
-const linkBackClassName =
-  "text-zinc-500 transition hover:text-zinc-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-zinc-900 focus-visible:ring-offset-2 dark:text-zinc-400 dark:hover:text-zinc-100 rounded-sm dark:focus-visible:ring-offset-zinc-950";
+const backLinkClassName =
+  "text-zinc-500 hover:text-zinc-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-zinc-900 focus-visible:ring-offset-2 dark:text-zinc-400 dark:hover:text-zinc-100 rounded-sm dark:focus-visible:ring-offset-zinc-950";
 
-const linkMailtoClassName =
-  "inline-flex rounded-2xl border border-zinc-200 px-5 py-[0.9rem] text-[0.8125rem] font-medium tracking-wide text-zinc-900 shadow-sm shadow-zinc-900/5 transition hover:border-zinc-900 hover:bg-zinc-50 hover:shadow-zinc-900/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-zinc-900 focus-visible:ring-offset-2 dark:border-zinc-600 dark:bg-zinc-900 dark:text-zinc-50 dark:shadow-none dark:hover:border-zinc-500 dark:hover:bg-zinc-800 dark:focus-visible:ring-offset-zinc-950";
+const emailLinkClassName =
+  "inline-flex rounded-2xl border border-zinc-200 px-5 py-[0.9rem] text-[0.8125rem] font-medium tracking-wide text-zinc-900 shadow-sm shadow-zinc-900/5 hover:border-zinc-900 hover:bg-zinc-50 hover:shadow-zinc-900/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-zinc-900 focus-visible:ring-offset-2 dark:border-zinc-600 dark:bg-zinc-900 dark:text-zinc-50 dark:shadow-none dark:hover:border-zinc-500 dark:hover:bg-zinc-800 dark:focus-visible:ring-offset-zinc-950";
 
 export const metadata: Metadata = {
   title: "Contact",
@@ -20,7 +20,7 @@ export default function ContactPage() {
     <main className="min-h-screen bg-white text-zinc-900 dark:bg-zinc-950 dark:text-zinc-50">
       <div className="mx-auto max-w-6xl px-6 py-10 sm:px-8 sm:py-12 lg:px-10">
         <p className="text-center text-[0.65rem] font-semibold uppercase tracking-[0.35em] text-zinc-400 dark:text-zinc-500">
-          <Link href="/" className={linkBackClassName}>
+          <Link href="/" className={backLinkClassName}>
             ← Home
           </Link>
         </p>
@@ -38,8 +38,8 @@ export default function ContactPage() {
           </p>
 
           <div className="mt-10 flex justify-center sm:mt-12">
-            <a href={MAILTO} className={linkMailtoClassName}>
-              {EMAIL}
+            <a href={CONTACT_EMAIL_HREF} className={emailLinkClassName}>
+              {CONTACT_EMAIL}
             </a>
           </div>
         </section>

@@ -35,11 +35,8 @@ export function useThemeMode() {
 }
 
 export function ThemeProvider({ children }: { children: ReactNode }) {
-  const [preference, setPreferenceState] = useState<ThemePreference>("auto");
-
-  useEffect(() => {
-    setPreferenceState(loadStoredPreference());
-  }, []);
+  const [preference, setPreferenceState] =
+    useState<ThemePreference>(loadStoredPreference);
 
   const setPreference = useCallback((next: ThemePreference) => {
     setPreferenceState(next);
