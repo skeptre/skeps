@@ -6,7 +6,7 @@ import Script from "next/script";
 
 import { THEME_BOOTSTRAP_SCRIPT } from "@/lib/theme";
 import { ThemeProvider } from "@/components/theme/ThemeProvider";
-import SiteToolbar from "@/components/theme/SiteToolbar";
+import SiteToolbar from "@/components/site/SiteToolbar";
 
 import "./globals.css";
 

@@ -70,7 +70,7 @@ export default function ThemeToggle() {
   }, [open]);
 
   const triggerClass =
-    "inline-flex items-center gap-2 rounded-xl border-2 border-zinc-400 bg-white px-3 py-2 text-xs font-semibold text-zinc-900 shadow-sm transition hover:bg-zinc-50 dark:border-zinc-600 dark:bg-zinc-900 dark:text-zinc-50 dark:hover:bg-zinc-800";
+    "inline-flex items-center gap-2 rounded-xl border-2 border-zinc-400 bg-white px-3 py-2 text-xs font-semibold text-zinc-900 shadow-sm hover:bg-zinc-50 dark:border-zinc-600 dark:bg-zinc-900 dark:text-zinc-50 dark:hover:bg-zinc-800";
 
   const panelClass =
     "absolute right-0 top-[calc(100%+0.5rem)] z-[60] w-[min(100vw-2rem,18rem)] origin-top-right rounded-xl border-2 border-zinc-400 bg-white p-1.5 shadow-lg shadow-zinc-900/10 dark:border-zinc-600 dark:bg-zinc-900 dark:shadow-black/40";
@@ -84,12 +84,12 @@ export default function ThemeToggle() {
         aria-controls={open ? menuId : undefined}
         onClick={() => setOpen((o) => !o)}
         className={triggerClass}
-      >
-        <span className="text-zinc-500 dark:text-zinc-400">Theme</span>
-        <span className="tabular-nums">{triggerSummary(preference)}</span>
-        <svg
-          aria-hidden
-          className={`h-4 w-4 text-zinc-500 transition-transform dark:text-zinc-400 ${open ? "rotate-180" : ""}`}
+        >
+          <span className="text-zinc-500 dark:text-zinc-400">Theme</span>
+          <span className="tabular-nums">{triggerSummary(preference)}</span>
+          <svg
+            aria-hidden
+          className="h-4 w-4 text-zinc-500 dark:text-zinc-400"
           fill="none"
           viewBox="0 0 24 24"
           stroke="currentColor"
@@ -114,7 +114,7 @@ export default function ThemeToggle() {
                 type="button"
                 role="option"
                 aria-selected={selected}
-                className={`flex w-full flex-col gap-0.5 rounded-lg px-3 py-2.5 text-left transition hover:bg-zinc-100 dark:hover:bg-zinc-800 ${
+                className={`flex w-full flex-col gap-0.5 rounded-lg px-3 py-2.5 text-left hover:bg-zinc-100 dark:hover:bg-zinc-800 ${
                   selected
                     ? "bg-zinc-100 ring-1 ring-zinc-300 dark:bg-zinc-800 dark:ring-zinc-600"
                     : ""
