@@ -62,8 +62,7 @@ export default function HomePage() {
 
             <p className="fade-in-up stagger-3 mt-2 flex items-center text-4xl font-bold leading-tight tracking-tight text-muted-foreground md:text-5xl lg:text-6xl">
               I build reliable backend systems
-              <span className="typing-cursor ml-3" aria-hidden />
-            </p>
+</p>
 
             <div className="fade-in-up stagger-4 mt-8 max-w-lg space-y-4 text-base leading-relaxed text-muted-foreground">
               <p>

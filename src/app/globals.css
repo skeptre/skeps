@@ -53,27 +53,9 @@ body {
 .stagger-3 { animation-delay: 0.3s; }
 .stagger-4 { animation-delay: 0.4s; }
 
-.typing-cursor {
-  display: inline-block;
-  width: 3px;
-  height: 1em;
-  background: hsl(130 100% 50%);
-  margin-left: 2px;
-  vertical-align: middle;
-  animation: blink 1s step-end infinite;
-}
-
-@keyframes blink {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0; }
-}
-
 @media (prefers-reduced-motion: reduce) {
   .fade-in-up {
     animation: none;
     opacity: 1;
-  }
-  .typing-cursor {
-    animation: none;
   }
 }
