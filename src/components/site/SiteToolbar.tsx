@@ -2,6 +2,9 @@ import Link from "next/link";
 
 import { SITE } from "@/config/site";
 
+const navLinkClass =
+  "font-mono text-sm text-muted-foreground transition-colors hover:text-primary";
+
 export default function SiteToolbar() {
   return (
     <header className="fixed inset-x-0 top-0 z-50 h-16 border-b border-border bg-background/80 backdrop-blur-md">
@@ -19,22 +22,38 @@ export default function SiteToolbar() {
             href={SITE.github}
             target="_blank"
             rel="noopener noreferrer"
-            className="font-mono text-sm text-muted-foreground transition-colors hover:text-primary"
+            className={navLinkClass}
           >
             github
+          </a>
+          <Link href="/projects" className={navLinkClass}>
+            projects
+          </Link>
+          <a
+            href={SITE.leetcode}
+            target="_blank"
+            rel="noopener noreferrer"
+            className={navLinkClass}
+          >
+            leetcode
+          </a>
+          <a
+            href={SITE.linkedin}
+            target="_blank"
+            rel="noopener noreferrer"
+            className={navLinkClass}
+          >
+            linkedin
           </a>
           <a
             href={SITE.cvPath}
             target="_blank"
             rel="noopener noreferrer"
-            className="font-mono text-sm text-muted-foreground transition-colors hover:text-primary"
+            className={navLinkClass}
           >
             cv
           </a>
-          <Link
-            href="/contact"
-            className="font-mono text-sm text-muted-foreground transition-colors hover:text-primary"
-          >
+          <Link href="/contact" className={navLinkClass}>
             contact
           </Link>
         </nav>

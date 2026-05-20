@@ -19,6 +19,11 @@ export const HOME_LINKS: HomeLinkItem[] = [
     ariaLabel: "Open GitHub profile",
   },
   {
+    label: "Projects",
+    href: "/projects",
+    ariaLabel: "View projects",
+  },
+  {
     label: "LeetCode",
     href: SITE.leetcode,
     ariaLabel: "Open LeetCode profile",

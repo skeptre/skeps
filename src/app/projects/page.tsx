@@ -3,9 +3,9 @@ import Link from "next/link";
 
 import { SITE } from "@/config/site";
 import { PROJECTS, type Project } from "@/data/projects";
-import Divider from "@/components/ui/Divider";
 import PageShell from "@/components/ui/PageShell";
 import SectionLabel from "@/components/ui/SectionLabel";
+import TechBadge from "@/components/ui/TechBadge";
 
 export const metadata: Metadata = {
   title: "Projects",
@@ -13,63 +13,67 @@ export const metadata: Metadata = {
   alternates: { canonical: `${SITE.url}/projects` },
 };
 
-function ProjectCard({ project }: { project: Project }) {
+function ProjectCard({ project, index }: { project: Project; index: number }) {
+  const delay = `stagger-${Math.min(index + 2, 4) as 2 | 3 | 4}`;
   return (
-    <article className="group rounded-sm border border-border bg-card p-6 transition-all hover:border-primary/50 hover:bg-card/80">
-      <div className="flex items-start justify-between gap-4">
-        <h2 className="font-mono text-lg font-medium transition-colors group-hover:text-primary">
-          {project.title}
-        </h2>
-        {project.impact && (
-          <span className="shrink-0 font-mono text-xs text-primary">
-            {'// '}{project.impact}
-          </span>
+    <article className={`fade-in-up ${delay}`}>
+      {/* Header */}
+      <div className="flex flex-col gap-2 sm:flex-row sm:items-baseline sm:justify-between sm:gap-6">
+        <div>
+          <h2 className="text-2xl font-bold tracking-tight md:text-3xl">
+            {project.title}
+          </h2>
+          <p className="mt-1 font-mono text-xs text-primary">
+            {'//'} {project.type}
+          </p>
+        </div>
+        {project.github && (
+          <a
+            href={project.github}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="shrink-0 font-mono text-xs text-muted-foreground transition-colors hover:text-primary"
+          >
+            github →
+          </a>
         )}
       </div>
 
-      <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
-        {project.description}
-      </p>
-
-      <p className="mt-2 font-mono text-xs text-muted-foreground">
-        <span className="text-primary">{'// role'}</span> {project.role}
-      </p>
-
-      <div className="mt-4 flex flex-wrap gap-2">
-        {project.stack.map((tech) => (
-          <span
-            key={tech}
-            className="rounded-sm border border-border bg-secondary px-2 py-1 font-mono text-xs text-muted-foreground"
-          >
-            {tech}
-          </span>
+      {/* Description */}
+      <div className="mt-6 space-y-4 text-base leading-relaxed text-muted-foreground">
+        {project.paragraphs.map((p, i) => (
+          <p key={i}>{p}</p>
         ))}
       </div>
 
-      {(project.github ?? project.demo) && (
-        <div className="mt-5 flex gap-4">
-          {project.github && (
-            <a
-              href={project.github}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="font-mono text-xs text-muted-foreground transition-colors hover:text-primary"
+      {/* Bullets */}
+      {project.bullets && (
+        <ul className="mt-5 space-y-2">
+          {project.bullets.map((b, i) => (
+            <li
+              key={i}
+              className="flex gap-3 text-sm leading-relaxed text-muted-foreground"
             >
-              github →
-            </a>
-          )}
-          {project.demo && (
-            <a
-              href={project.demo}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="font-mono text-xs text-muted-foreground transition-colors hover:text-primary"
-            >
-              demo →
-            </a>
-          )}
-        </div>
+              <span className="mt-0.5 shrink-0 font-mono text-primary">→</span>
+              {b}
+            </li>
+          ))}
+        </ul>
       )}
+
+      {/* Stack */}
+      <div className="mt-8">
+        <div className="mb-4 flex items-center gap-3">
+          <span className="font-mono text-xs text-primary">{'//'}</span>
+          <span className="font-mono text-xs text-muted-foreground">stack</span>
+          <div className="h-px flex-1 bg-border" />
+        </div>
+        <div className="flex flex-wrap gap-2">
+          {project.stack.map((tech) => (
+            <TechBadge key={tech} name={tech} />
+          ))}
+        </div>
+      </div>
     </article>
   );
 }
@@ -97,23 +101,18 @@ export default function ProjectsPage() {
           Backend systems, tools, and experiments. Built to solve real problems
           and understand how things break.
         </p>
-
-        <div className="fade-in-up stagger-4">
-          <Divider label="projects" />
-        </div>
-
-        {PROJECTS.length === 0 ? (
-          <p className="font-mono text-sm text-muted-foreground">
-            {'// coming soon'}
-          </p>
-        ) : (
-          <div className="grid gap-6 md:grid-cols-2">
-            {PROJECTS.map((project) => (
-              <ProjectCard key={project.title} project={project} />
-            ))}
-          </div>
-        )}
       </section>
+
+      <div className="mt-16 space-y-16">
+        {PROJECTS.map((project, index) => (
+          <div key={project.title}>
+            <ProjectCard project={project} index={index} />
+            {index < PROJECTS.length - 1 && (
+              <div className="mt-16 h-px bg-border" />
+            )}
+          </div>
+        ))}
+      </div>
     </PageShell>
   );
 }

@@ -19,6 +19,10 @@
   --color-ring: hsl(130 100% 50%);
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   background: var(--color-background);
   color: var(--color-foreground);
