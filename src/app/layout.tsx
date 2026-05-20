@@ -1,32 +1,45 @@
 import { Analytics } from "@vercel/analytics/next";
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
-import { Geist, Geist_Mono } from "next/font/google";
-import Script from "next/script";
+import { Inter, JetBrains_Mono } from "next/font/google";
 
-import { THEME_BOOTSTRAP_SCRIPT } from "@/lib/theme";
-import { ThemeProvider } from "@/components/theme/ThemeProvider";
+import { SITE } from "@/config/site";
 import SiteToolbar from "@/components/site/SiteToolbar";
 
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const inter = Inter({
+  variable: "--font-inter",
   subsets: ["latin"],
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const jetbrainsMono = JetBrains_Mono({
+  variable: "--font-jetbrains-mono",
   subsets: ["latin"],
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(
+    process.env.NEXT_PUBLIC_SITE_URL ?? SITE.url,
+  ),
   title: {
-    default: "Ali",
-    template: "%s | Ali",
+    default: SITE.name,
+    template: `%s | ${SITE.name}`,
   },
-  description:
-    "Projects, systems, experiments, and engineering work by Mansoor Ali.",
+  description: SITE.description,
+  openGraph: {
+    type: "website",
+    locale: "en_GB",
+    url: SITE.url,
+    siteName: SITE.name,
+    title: SITE.name,
+    description: SITE.description,
+  },
+  twitter: {
+    card: "summary",
+    title: SITE.name,
+    description: SITE.description,
+  },
 };
 
 export default function RootLayout({
@@ -35,17 +48,18 @@ export default function RootLayout({
   children: ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" className="dark" suppressHydrationWarning>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} font-sans antialiased`}
+        className={`${inter.variable} ${jetbrainsMono.variable} font-sans antialiased`}
       >
-        <Script id="theme-bootstrap" strategy="beforeInteractive">
-          {THEME_BOOTSTRAP_SCRIPT}
-        </Script>
-        <ThemeProvider>
-          <SiteToolbar />
-          <div className="pt-[4.75rem] sm:pt-[5.25rem]">{children}</div>
-        </ThemeProvider>
+        <a
+          href="#main"
+          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-20 focus:z-[100] focus:rounded-sm focus:bg-primary focus:px-4 focus:py-2 focus:font-mono focus:text-sm focus:text-background"
+        >
+          Skip to content
+        </a>
+        <SiteToolbar />
+        <div className="pt-16">{children}</div>
         <Analytics />
       </body>
     </html>

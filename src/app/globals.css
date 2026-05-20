@@ -3,28 +3,77 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 @theme inline {
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-inter);
+  --font-mono: var(--font-jetbrains-mono);
 }
 
-:root {
-  --background: #ffffff;
-  --foreground: #18181b;
-  --muted: #71717a;
-  --border: #a1a1aa;
-  --ring-offset: #ffffff;
-}
-
-.dark {
-  --background: #09090b;
-  --foreground: #fafafa;
-  --muted: #a1a1aa;
-  --border: #52525b;
-  --ring-offset: #09090b;
+@theme {
+  --color-background: hsl(0 0% 4%);
+  --color-foreground: hsl(0 0% 98%);
+  --color-card: hsl(0 0% 7%);
+  --color-secondary: hsl(0 0% 12%);
+  --color-muted: hsl(0 0% 15%);
+  --color-muted-foreground: hsl(0 0% 60%);
+  --color-border: hsl(0 0% 18%);
+  --color-primary: hsl(130 100% 50%);
+  --color-ring: hsl(130 100% 50%);
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
+  background: var(--color-background);
+  color: var(--color-foreground);
   font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+}
+
+.bg-grid {
+  background-image:
+    linear-gradient(hsl(0 0% 18% / 0.5) 1px, transparent 1px),
+    linear-gradient(90deg, hsl(0 0% 18% / 0.5) 1px, transparent 1px);
+  background-size: 50px 50px;
+}
+
+.fade-in-up {
+  animation: fade-in-up 0.5s ease-out forwards;
+  opacity: 0;
+}
+
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.stagger-1 { animation-delay: 0.1s; }
+.stagger-2 { animation-delay: 0.2s; }
+.stagger-3 { animation-delay: 0.3s; }
+.stagger-4 { animation-delay: 0.4s; }
+
+.typing-cursor {
+  display: inline-block;
+  width: 3px;
+  height: 1em;
+  background: hsl(130 100% 50%);
+  margin-left: 2px;
+  vertical-align: middle;
+  animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fade-in-up {
+    animation: none;
+    opacity: 1;
+  }
+  .typing-cursor {
+    animation: none;
+  }
 }

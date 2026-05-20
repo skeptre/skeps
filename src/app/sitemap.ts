@@ -1,24 +1,21 @@
 import type { MetadataRoute } from "next";
 
-export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = "https://aliskeps.com";
+import { SITE } from "@/config/site";
 
+export default function sitemap(): MetadataRoute.Sitemap {
   return [
     {
-      url: baseUrl,
-      lastModified: new Date(),
+      url: SITE.url,
       changeFrequency: "monthly",
       priority: 1,
     },
     {
-      url: `${baseUrl}/projects`,
-      lastModified: new Date(),
+      url: `${SITE.url}/projects`,
       changeFrequency: "monthly",
       priority: 0.8,
     },
     {
-      url: `${baseUrl}/contact`,
-      lastModified: new Date(),
+      url: `${SITE.url}/contact`,
       changeFrequency: "yearly",
       priority: 0.5,
     },

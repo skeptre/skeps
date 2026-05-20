@@ -1,7 +1,9 @@
 import Link from "next/link";
 
+import { SITE } from "@/config/site";
+import Divider from "@/components/ui/Divider";
+import SectionLabel from "@/components/ui/SectionLabel";
 import {
-  ABOUT_EMAIL,
   HOME_LINKS,
   isExternalHref,
   isFileHref,
@@ -11,10 +13,7 @@ import {
 
 function ProfileLinksNav() {
   return (
-    <nav
-      className="mx-auto flex w-fit max-w-full flex-wrap justify-center gap-4"
-      aria-label="Social and contact links"
-    >
+    <nav className="flex flex-wrap gap-3" aria-label="Social and contact links">
       {HOME_LINKS.map((link) => {
         const isAnchor = isExternalHref(link.href) || isFileHref(link.href);
 
@@ -50,65 +49,59 @@ function ProfileLinksNav() {
 
 export default function HomePage() {
   return (
-    <main className="min-h-screen bg-white text-zinc-900 dark:bg-zinc-950 dark:text-zinc-50">
-      <div className="mx-auto max-w-6xl px-6 py-10 text-center sm:px-8 sm:py-12 lg:px-10">
-        <section id="about" className="py-16 sm:py-20">
-          <div className="mx-auto max-w-lg">
-            <div className="mx-auto mb-6 flex w-full max-w-[15rem] justify-center sm:mb-7 sm:max-w-[17rem]">
-              <div
-                className="h-[1px] w-full max-w-full rounded-full bg-zinc-400 dark:bg-zinc-500"
-                aria-hidden
-              />
-            </div>
+    <main id="main" className="min-h-screen bg-background text-foreground">
+      {/* Hero */}
+      <section className="relative flex min-h-[80vh] items-center bg-grid">
+        <div className="mx-auto w-full max-w-[1400px] px-8 py-20">
+          <div className="max-w-2xl">
+            <SectionLabel>about</SectionLabel>
 
-            <header className="text-center">
-              <h1 className="text-2xl font-semibold tracking-[-0.02em] text-zinc-950 sm:text-[1.75rem] sm:leading-snug dark:text-zinc-50">
-                Hi, I&apos;m Ali
-              </h1>
-              <p className="mt-3 text-sm font-medium leading-relaxed text-zinc-500 sm:text-[0.9375rem] dark:text-zinc-400">
-                Graduate Software Engineer <br />
-                Manchester, United Kingdom
-              </p>
-            </header>
+            <h1 className="fade-in-up stagger-2 text-4xl font-bold leading-tight tracking-tight md:text-5xl lg:text-6xl">
+              Hi, I&apos;m Mansoor Ali.
+            </h1>
 
-            <div className="mx-auto mt-10 max-w-lg text-pretty text-center text-[0.9375rem] leading-[1.7] text-zinc-600 sm:text-base sm:leading-[1.75] dark:text-zinc-400">
+            <p className="fade-in-up stagger-3 mt-2 flex items-center text-4xl font-bold leading-tight tracking-tight text-muted-foreground md:text-5xl lg:text-6xl">
+              I build reliable backend systems
+              <span className="typing-cursor ml-3" aria-hidden />
+            </p>
+
+            <div className="fade-in-up stagger-4 mt-8 max-w-lg space-y-4 text-base leading-relaxed text-muted-foreground">
               <p>
                 I&apos;m currently focused on building complete backend systems
                 in Python.
               </p>
-            </div>
-
-            <div className="mx-auto mt-5 max-w-lg text-pretty text-center text-[0.9375rem] leading-[1.7] text-zinc-600 sm:text-base sm:leading-[1.75] dark:text-zinc-400">
               <p>
                 I enjoy debugging complex behaviour, thinking through edge
                 cases, and understanding how systems behave under real-world
                 constraints.
               </p>
             </div>
-
-            <footer className="mt-12 border-t-2 border-zinc-300 pt-10 text-center dark:border-zinc-700">
-              <p className="mx-auto max-w-lg text-pretty text-center text-[0.9375rem] leading-relaxed text-zinc-600 sm:text-base dark:text-zinc-400">
-                If you&apos;re hiring for graduate or junior backend roles, feel
-                free to reach out at{" "}
-                <a
-                  href={`mailto:${ABOUT_EMAIL}`}
-                  className={mailtoLinkClassName}
-                >
-                  {ABOUT_EMAIL}
-                </a>
-                .
-              </p>
-            </footer>
           </div>
-        </section>
+        </div>
+      </section>
 
-        <section
-          id="links"
-          className="border-t-2 border-zinc-400 py-16 text-center sm:py-20 dark:border-zinc-600"
-        >
-          <ProfileLinksNav />
-        </section>
+      {/* Links */}
+      <div className="mx-auto max-w-[1400px] px-8">
+        <Divider label="connect" />
       </div>
+
+      <section id="links" className="mx-auto max-w-[1400px] px-8 pb-20">
+        <ProfileLinksNav />
+
+        <div className="mt-16 border-t border-border pt-8">
+          <p className="max-w-lg text-sm leading-relaxed text-muted-foreground">
+            If you&apos;re hiring for graduate or junior backend roles, feel
+            free to reach out at{" "}
+            <a
+              href={`mailto:${SITE.email}`}
+              className={mailtoLinkClassName}
+            >
+              {SITE.email}
+            </a>
+            .
+          </p>
+        </div>
+      </section>
     </main>
   );
 }
