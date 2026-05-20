@@ -22,7 +22,7 @@ function ProjectCard({ project }: { project: Project }) {
         </h2>
         {project.impact && (
           <span className="shrink-0 font-mono text-xs text-primary">
-            // {project.impact}
+            {'// '}{project.impact}
           </span>
         )}
       </div>
@@ -32,7 +32,7 @@ function ProjectCard({ project }: { project: Project }) {
       </p>
 
       <p className="mt-2 font-mono text-xs text-muted-foreground">
-        <span className="text-primary">// role</span> {project.role}
+        <span className="text-primary">{'// role'}</span> {project.role}
       </p>
 
       <div className="mt-4 flex flex-wrap gap-2">
@@ -104,7 +104,7 @@ export default function ProjectsPage() {
 
         {PROJECTS.length === 0 ? (
           <p className="font-mono text-sm text-muted-foreground">
-            // coming soon
+            {'// coming soon'}
           </p>
         ) : (
           <div className="grid gap-6 md:grid-cols-2">
