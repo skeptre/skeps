@@ -1,7 +1,6 @@
 import Link from "next/link";
 
 import { SITE } from "@/config/site";
-import AnalogClock from "@/components/site/AnalogClock";
 import Divider from "@/components/ui/Divider";
 import SectionLabel from "@/components/ui/SectionLabel";
 import {
@@ -63,9 +62,6 @@ export default function HomePage() {
           </div>
         </div>
       </section>
-
-      {/* Draggable clock — fixed overlay, spawns top-right below navbar */}
-      <AnalogClock />
 
       {/* Links */}
       <div className="mx-auto max-w-[1400px] px-8">
