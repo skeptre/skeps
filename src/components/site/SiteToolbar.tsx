@@ -1,5 +1,6 @@
 import Link from "next/link";
 
+import { isFileHref } from "@/components/home/home-links";
 import { SITE } from "@/config/site";
 import MobileMenu from "@/components/site/MobileMenu";
 import NavClock from "@/components/site/NavClock";
@@ -21,27 +22,28 @@ export default function SiteToolbar() {
         {/* Desktop nav + clock */}
         <div className="hidden items-center gap-6 md:flex">
         <nav className="flex items-center gap-6" aria-label="Site navigation">
-          {SITE.nav.map((link) =>
-            link.external ? (
-              <a
-                key={link.href}
-                href={link.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className={navLinkClass}
-              >
-                {link.label.toLowerCase()}
-              </a>
-            ) : (
-              <Link
-                key={link.href}
-                href={link.href}
-                className={navLinkClass}
-              >
-                {link.label.toLowerCase()}
+          {SITE.nav.map((link) => {
+            const label = link.label.toLowerCase();
+            if (link.external || isFileHref(link.href)) {
+              return (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  {...(link.external && !isFileHref(link.href)
+                    ? { target: "_blank", rel: "noopener noreferrer" }
+                    : {})}
+                  className={navLinkClass}
+                >
+                  {label}
+                </a>
+              );
+            }
+            return (
+              <Link key={link.href} href={link.href} className={navLinkClass}>
+                {label}
               </Link>
-            )
-          )}
+            );
+          })}
         </nav>
         <NavClock />
         </div>

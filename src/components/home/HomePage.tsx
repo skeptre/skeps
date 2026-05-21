@@ -44,12 +44,14 @@ function ProfileLinksNav() {
         const isAnchor = isExternalHref(link.href) || isFileHref(link.href);
 
         if (isAnchor) {
+          const isPdf = isFileHref(link.href);
           return (
             <a
               key={link.href}
               href={link.href}
-              target="_blank"
-              rel="noopener noreferrer"
+              {...(isPdf
+                ? {}
+                : { target: "_blank", rel: "noopener noreferrer" })}
               className={profileLinkClassName}
             >
               {link.label}

@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 
+import { isFileHref } from "@/components/home/home-links";
 import { SITE } from "@/config/site";
 
 export default function MobileMenu() {
@@ -72,29 +73,31 @@ export default function MobileMenu() {
 
         {/* Links */}
         <nav className="flex flex-col px-6 py-6" aria-label="Mobile navigation">
-          {SITE.nav.filter((l) => !l.mobileHidden).map((link) =>
-            link.external ? (
-              <a
-                key={link.href}
-                href={link.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={close}
-                className="border-b border-border py-4 font-mono text-sm text-muted-foreground transition-colors last:border-0 hover:text-primary"
-              >
-                {link.label.toLowerCase()}
-              </a>
-            ) : (
-              <Link
-                key={link.href}
-                href={link.href}
-                onClick={close}
-                className="border-b border-border py-4 font-mono text-sm text-muted-foreground transition-colors last:border-0 hover:text-primary"
-              >
-                {link.label.toLowerCase()}
+          {SITE.nav.filter((l) => !l.mobileHidden).map((link) => {
+            const label = link.label.toLowerCase();
+            const className =
+              "border-b border-border py-4 font-mono text-sm text-muted-foreground transition-colors last:border-0 hover:text-primary";
+            if (link.external || isFileHref(link.href)) {
+              return (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  {...(link.external && !isFileHref(link.href)
+                    ? { target: "_blank", rel: "noopener noreferrer" }
+                    : {})}
+                  onClick={close}
+                  className={className}
+                >
+                  {label}
+                </a>
+              );
+            }
+            return (
+              <Link key={link.href} href={link.href} onClick={close} className={className}>
+                {label}
               </Link>
-            )
-          )}
+            );
+          })}
         </nav>
       </div>
     </>

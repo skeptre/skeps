@@ -11,7 +11,7 @@ const nav: NavLink[] = [
   { label: "Projects", href: "/projects",                                          ariaLabel: "View projects" },
   { label: "LeetCode", href: "https://leetcode.com/u/skeps/",     external: true, mobileHidden: true, ariaLabel: "Open LeetCode profile" },
   { label: "LinkedIn", href: "https://www.linkedin.com/in/skeps", external: true, ariaLabel: "Open LinkedIn profile" },
-  { label: "CV",       href: "/M_Ali_2.pdf",                      external: true, ariaLabel: "Open CV as PDF" },
+  { label: "CV",       href: "/M_Ali_2.pdf",                      ariaLabel: "Open CV as PDF" },
   { label: "Contact",  href: "/contact",                                           ariaLabel: "Go to contact page" },
 ];
 
