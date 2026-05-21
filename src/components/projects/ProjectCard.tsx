@@ -47,6 +47,16 @@ export default function ProjectCard({
                 github →
               </a>
             )}
+            {!project.github && project.demo && (
+              <a
+                href={project.demo}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="shrink-0 font-mono text-xs text-muted-foreground transition-colors hover:text-primary"
+              >
+                live site →
+              </a>
+            )}
           </div>
         </div>
       </header>
