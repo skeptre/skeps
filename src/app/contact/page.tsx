@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 
 import { SITE } from "@/config/site";
 import Divider from "@/components/ui/Divider";
 import PageShell from "@/components/ui/PageShell";
 import SectionLabel from "@/components/ui/SectionLabel";
+import BackLink from "@/components/ui/BackLink";
 
 export const metadata: Metadata = {
   title: "Contact",
@@ -15,16 +15,9 @@ export const metadata: Metadata = {
 export default function ContactPage() {
   return (
     <PageShell>
-      <p className="fade-in-up stagger-1">
-        <Link
-          href="/"
-          className="font-mono text-xs text-muted-foreground transition-colors hover:text-primary"
-        >
-          ← /home
-        </Link>
-      </p>
+      <BackLink />
 
-      <section className="mt-12 max-w-lg">
+      <section className="mt-12">
         <SectionLabel>contact</SectionLabel>
 
         <h1 className="fade-in-up stagger-2 text-4xl font-bold leading-tight tracking-tight md:text-5xl">

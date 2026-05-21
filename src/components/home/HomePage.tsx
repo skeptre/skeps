@@ -14,6 +14,15 @@ import {
 } from "react-icons/si";
 
 import { SITE } from "@/config/site";
+import Divider from "@/components/ui/Divider";
+import SectionLabel from "@/components/ui/SectionLabel";
+import {
+  HOME_LINKS,
+  isExternalHref,
+  isFileHref,
+  mailtoLinkClassName,
+  profileLinkClassName,
+} from "@/components/home/home-links";
 
 const STACK: { Icon: IconType; label: string; color: string; href: string }[] = [
   { Icon: SiPython,     label: "Python",       color: "#3776AB", href: "https://www.python.org/" },
@@ -27,15 +36,6 @@ const STACK: { Icon: IconType; label: string; color: string; href: string }[] = 
   { Icon: SiTypescript, label: "TypeScript",    color: "#3178C6", href: "https://www.typescriptlang.org/" },
   { Icon: SiReact,      label: "React Native",  color: "#61DAFB", href: "https://reactnative.dev/" },
 ];
-import Divider from "@/components/ui/Divider";
-import SectionLabel from "@/components/ui/SectionLabel";
-import {
-  HOME_LINKS,
-  isExternalHref,
-  isFileHref,
-  mailtoLinkClassName,
-  profileLinkClassName,
-} from "@/components/home/home-links";
 
 function ProfileLinksNav() {
   return (
