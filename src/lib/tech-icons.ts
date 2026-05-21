@@ -8,7 +8,9 @@ import {
   SiGooglegemini,
   SiJsonwebtokens,
   SiJupyter,
+  SiNumpy,
   SiPydantic,
+  SiScikitlearn,
   SiPytest,
   SiSqlalchemy,
   SiMobx,
@@ -24,6 +26,7 @@ import {
   SiSwagger,
   SiTypescript,
 } from "react-icons/si";
+import { TbChartLine } from "react-icons/tb";
 
 export const TECH_ICON_MAP: Record<string, IconType> = {
   "Python": SiPython,
@@ -37,9 +40,13 @@ export const TECH_ICON_MAP: Record<string, IconType> = {
   "pytest": SiPytest,
   "JWT": SiJsonwebtokens,
   "Pandas": SiPandas,
+  "NumPy": SiNumpy,
+  "Scikit-learn": SiScikitlearn,
+  "Matplotlib": TbChartLine,
   "OpenAI API": SiOpenai,
   "Gemini API": SiGooglegemini,
   "Jupyter": SiJupyter,
+  "Jupyter Notebook": SiJupyter,
   "React Native": SiReact,
   "React Navigation": SiReact,
   "React Hook Form": SiReact,

@@ -57,7 +57,11 @@ export default function ProjectCard({
       )}
 
       {project.media && project.media.length > 0 && (
-        <ProjectEvidenceSection media={project.media} />
+        <ProjectEvidenceSection
+          media={project.media}
+          title={project.evidenceTitle}
+          subtitle={project.evidenceSubtitle}
+        />
       )}
 
       {/* Stack */}

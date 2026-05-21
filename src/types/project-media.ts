@@ -4,7 +4,9 @@ export type ProjectMediaCategory =
   | "API Layer"
   | "Validation"
   | "Database"
-  | "Infrastructure";
+  | "Infrastructure"
+  | "Evaluation"
+  | "Performance";
 
 export type ProjectMediaItem = {
   title: string;

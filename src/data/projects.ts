@@ -10,9 +10,12 @@ export type Project = {
   github?: string;
   demo?: string;
   media?: ProjectMediaItem[];
+  evidenceTitle?: string;
+  evidenceSubtitle?: string;
 };
 
 const RETAIL_OPS_MEDIA_BASE = "/projects/retail-ops-platform";
+const LLM_MEDIA_BASE = encodeURI("/projects/LLM Benchmarking Framework");
 
 export const PROJECTS: Project[] = [
   {
@@ -94,6 +97,55 @@ export const PROJECTS: Project[] = [
     ],
   },
   {
+    title: "LLM Benchmarking Framework for Financial Sentiment Analysis",
+    description: "Final year project benchmarking GPT-4o vs Gemini 2.5 Flash on financial sentiment datasets with F1, latency, and McNemar significance testing.",
+    type: "final year project / data analysis",
+    paragraphs: [
+      "Built a financial sentiment analysis benchmarking framework comparing OpenAI GPT-4o and Google Gemini 2.5 Flash on real-world finance datasets. The project automates dataset processing, prompt standardisation, prediction validation, evaluation metrics, and result visualisation to analyse how different LLMs perform on sentiment classification tasks.",
+      "Implemented a full evaluation pipeline using Python and Jupyter across the Financial PhraseBank and FiQA datasets, covering standardised 3-class sentiment prediction (positive, negative, neutral), automated response validation, and label normalisation. Evaluation included accuracy, macro F1, per-class F1, latency, and hallucination analysis, with statistical significance testing via McNemar's Test and comparative confusion matrix visualisations.",
+      "The project demonstrated strong differences in model behaviour: GPT-4o achieved significantly higher classification performance while Gemini 2.5 Flash delivered lower latency. Focus was placed on reproducible benchmarking, clean evaluation methodology, and structured LLM comparison workflows.",
+    ],
+    bullets: [
+      "Financial PhraseBank and FiQA dataset handling",
+      "Standardised 3-class sentiment prediction across both models",
+      "Accuracy, macro F1, per-class F1, latency, and hallucination analysis",
+      "Automated response validation and label normalisation",
+      "Statistical significance testing using McNemar's Test",
+      "Confusion matrices and comparative visualisations",
+      "Optimised API usage to reduce failed calls and improve cost efficiency",
+    ],
+    stack: [
+      "Python",
+      "OpenAI API",
+      "Gemini API",
+      "Pandas",
+      "NumPy",
+      "Scikit-learn",
+      "Matplotlib",
+      "Jupyter Notebook",
+    ],
+    evidenceTitle: "Model Evaluation Evidence",
+    evidenceSubtitle:
+      "Comparative benchmark outputs, classification metrics, and latency analysis artifacts from the financial sentiment LLM evaluation framework.",
+    media: [
+      {
+        title: "GPT-4o vs Gemini Financial Sentiment Evaluation",
+        description:
+          "Comparative LLM evaluation framework measuring GPT-4o and Gemini 2.0 Flash across financial sentiment classification accuracy, macro F1, per-class F1, latency, confusion matrices, and hallucination-aware Q&A performance.",
+        image: `${LLM_MEDIA_BASE}/llm-benchmark-overview.png`,
+        featured: true,
+        category: "Evaluation",
+      },
+      {
+        title: "Per-Sample LLM Latency Analysis",
+        description:
+          "Per-sample API latency analysis comparing GPT-4o and Gemini 2.0 Flash response times across 51 financial sentiment evaluation requests, including average latency baselines and execution variance.",
+        image: `${LLM_MEDIA_BASE}/llm-latency-analysis.png`,
+        category: "Performance",
+      },
+    ],
+  },
+  {
     title: "Support Ticket Management API",
     description: "FastAPI backend with JWT auth, SQLAlchemy ORM, Alembic migrations, Pydantic validation, pytest coverage, and Docker deployment.",
     type: "backend / api",
@@ -162,31 +214,5 @@ export const PROJECTS: Project[] = [
       "CORS",
     ],
     github: "https://github.com/skeptre/activity-tracker-backend",
-  },
-  {
-    title: "LLM Benchmarking Framework for Financial Sentiment Analysis",
-    description: "Final year project benchmarking GPT-4o vs Gemini 2.5 Flash on financial sentiment datasets with F1, latency, and McNemar significance testing.",
-    type: "final year project / data analysis",
-    paragraphs: [
-      "Built a financial sentiment analysis benchmarking framework comparing OpenAI GPT-4o and Google Gemini 2.5 Flash on real-world finance datasets. The project automates dataset processing, prompt standardisation, prediction validation, evaluation metrics, and result visualisation to analyse how different LLMs perform on sentiment classification tasks.",
-      "Implemented a full evaluation pipeline using Python and Jupyter across the Financial PhraseBank and FiQA datasets, covering standardised 3-class sentiment prediction (positive, negative, neutral), automated response validation, and label normalisation. Evaluation included accuracy, macro F1, per-class F1, latency, and hallucination analysis, with statistical significance testing via McNemar's Test and comparative confusion matrix visualisations.",
-      "The project demonstrated strong differences in model behaviour: GPT-4o achieved significantly higher classification performance while Gemini 2.5 Flash delivered lower latency. Focus was placed on reproducible benchmarking, clean evaluation methodology, and structured LLM comparison workflows.",
-    ],
-    bullets: [
-      "Financial PhraseBank and FiQA dataset handling",
-      "Standardised 3-class sentiment prediction across both models",
-      "Accuracy, macro F1, per-class F1, latency, and hallucination analysis",
-      "Automated response validation and label normalisation",
-      "Statistical significance testing using McNemar's Test",
-      "Confusion matrices and comparative visualisations",
-      "Optimised API usage to reduce failed calls and improve cost efficiency",
-    ],
-    stack: [
-      "Python",
-      "OpenAI API",
-      "Gemini API",
-      "Pandas",
-      "Jupyter",
-    ],
   },
 ];
