@@ -7,7 +7,7 @@ export default function ProjectEvidenceSection({
   media,
   headingId,
   title = "Architecture & Engineering Evidence",
-  subtitle = "Real pipeline execution, orchestration, validation, and infrastructure artifacts from the Retail Ops Platform.",
+  subtitle = "Project artifacts, execution results, and technical evidence from the implementation.",
   headingLevel = "h3",
 }: {
   media: ProjectMediaItem[];

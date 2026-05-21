@@ -2,7 +2,6 @@ import { test, expect } from "@playwright/test";
 import AxeBuilder from "@axe-core/playwright";
 
 import { PROJECTS } from "../src/data/projects";
-import { slugify } from "../src/lib/slugify";
 
 const PAGES = ["/", "/projects", "/contact"] as const;
 
@@ -41,7 +40,7 @@ test.describe("route smoke", () => {
     await expect(jump).toBeVisible();
 
     await jump.click();
-    await expect(page.locator(`#${slugify(target.title)}`)).toBeInViewport();
+    await expect(page.locator(`#${target.slug}`)).toBeInViewport();
   });
 });
 

@@ -14,11 +14,36 @@ export const metadata: Metadata = {
   alternates: { canonical: `${SITE.url}/projects` },
 };
 
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  name: "Projects",
+  description: `Backend projects and systems built by ${SITE.name}.`,
+  url: `${SITE.url}/projects`,
+  mainEntity: {
+    "@type": "ItemList",
+    itemListElement: PROJECTS.map((p, i) => ({
+      "@type": "ListItem",
+      position: i + 1,
+      item: {
+        "@type": "SoftwareSourceCode",
+        name: p.title,
+        description: p.description,
+        url: `${SITE.url}/projects/${p.slug}`,
+      },
+    })),
+  },
+};
+
 export default function ProjectsPage() {
   const tocProjects = PROJECTS.map(({ slug, title }) => ({ slug, title }));
 
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <ProjectsTOC projects={tocProjects} />
       <PageShell>
         <BackLink />

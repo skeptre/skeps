@@ -1,7 +1,9 @@
 {
   "permissions": {
     "allow": [
-      "Bash(npm run *)"
+      "Bash(npm run *)",
+      "Bash(Get-ChildItem -Path \"F:\\\\skeps\" -Recurse -Name)",
+      "Bash(grep -E '^\\\\s+\"[^\"]+\",\\\\s*$' \"F:\\\\skeps/src/data/projects.ts\")"
     ]
   }
 }

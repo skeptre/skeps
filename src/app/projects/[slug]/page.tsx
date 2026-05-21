@@ -20,6 +20,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!project) return {};
 
   const url = `${SITE.url}/projects/${slug}`;
+  const featuredImage = project.media?.find((m) => m.featured)?.image;
+  const ogImages = featuredImage
+    ? [{ url: featuredImage, alt: project.title }]
+    : undefined;
 
   return {
     title: project.title,
@@ -30,11 +34,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       url,
       title: project.title,
       description: project.description,
+      ...(ogImages && { images: ogImages }),
     },
     twitter: {
-      card: "summary_large_image",
+      card: featuredImage ? "summary_large_image" : "summary",
       title: project.title,
       description: project.description,
+      ...(ogImages && { images: ogImages }),
     },
     ...(project.github
       ? { other: { "project:repository": project.github } }

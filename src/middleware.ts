@@ -7,12 +7,16 @@ function isPublicAsset(pathname: string) {
   return /\.[a-z0-9]+$/i.test(segment);
 }
 
+// 'unsafe-inline' in script-src is required for Next.js App Router hydration
+// bootstrapping and JSON-LD script tags. The proper upgrade path is nonces.
 const csp = [
   "default-src 'self'",
   "base-uri 'self'",
   "form-action 'self'",
   "frame-ancestors 'none'",
+  "frame-src 'none'",
   "object-src 'none'",
+  "media-src 'self'",
   "img-src 'self' blob: data:",
   "font-src 'self'",
   "style-src 'self' 'unsafe-inline'",

@@ -113,7 +113,7 @@ export default function ProjectMediaModal({
           <div className="relative aspect-video max-h-[min(70vh,720px)] w-full sm:aspect-[16/10]">
             <Image
               src={item.image}
-              alt={item.title}
+              alt={item.description}
               fill
               className="object-contain"
               sizes="100vw"

@@ -56,7 +56,7 @@ export default function ProjectsTOC({ projects }: { projects: TocProject[] }) {
             key={id}
             type="button"
             onClick={() => jump(id)}
-            className="group flex items-center gap-3"
+            className="group flex items-center gap-3 rounded-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
             aria-label={`Go to ${project.title}`}
           >
             {/* Label — clipped to zero width when collapsed */}

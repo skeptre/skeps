@@ -54,7 +54,7 @@ export default function ProjectMediaCard({
       <div className={`relative w-full shrink-0 bg-secondary ${styles.aspect}`}>
         <Image
           src={item.image}
-          alt={item.title}
+          alt={item.description}
           fill
           className="object-contain object-left-top p-1 sm:p-2"
           sizes={styles.imageSizes}

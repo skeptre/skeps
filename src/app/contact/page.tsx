@@ -13,27 +13,47 @@ export const metadata: Metadata = {
   alternates: { canonical: `${SITE.url}/contact` },
 };
 
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "ContactPage",
+  name: "Contact",
+  url: `${SITE.url}/contact`,
+  mainEntity: {
+    "@type": "Person",
+    name: SITE.name,
+    email: SITE.email,
+    url: SITE.url,
+  },
+};
+
 export default function ContactPage() {
   return (
-    <PageShell>
-      <BackLink />
-
-      <PageHeader
-        label="contact"
-        title="Get in touch."
-        description="For opportunities, collaborations, or questions, email is the best way to reach me."
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
+      <PageShell>
+        <BackLink />
 
-      <div className="fade-in-up stagger-4">
-        <Divider label="email" />
-      </div>
+        <PageHeader
+          label="contact"
+          title="Get in touch."
+          description="For opportunities, collaborations, or questions, email is the best way to reach me."
+        />
 
-      <a
-        href={`mailto:${SITE.email}`}
-        className={`fade-in-up stagger-4 ${cardSurfaceClassName}`}
-      >
-        {SITE.email}
-      </a>
-    </PageShell>
+        <div className="fade-in-up stagger-4">
+          <Divider label="email" />
+        </div>
+
+        <a
+          href={`mailto:${SITE.email}`}
+          aria-label={`Send email to ${SITE.email}`}
+          className={`fade-in-up stagger-4 ${cardSurfaceClassName}`}
+        >
+          {SITE.email}
+        </a>
+      </PageShell>
+    </>
   );
 }
