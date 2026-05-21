@@ -1,4 +1,5 @@
 import type { Project } from "@/data/projects";
+import ProjectEvidenceSection from "@/components/projects/ProjectEvidenceSection";
 import TechBadge from "@/components/ui/TechBadge";
 
 export default function ProjectCard({
@@ -53,6 +54,10 @@ export default function ProjectCard({
             </li>
           ))}
         </ul>
+      )}
+
+      {project.media && project.media.length > 0 && (
+        <ProjectEvidenceSection media={project.media} />
       )}
 
       {/* Stack */}

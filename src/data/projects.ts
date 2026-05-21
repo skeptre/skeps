@@ -1,3 +1,5 @@
+import type { ProjectMediaItem } from "@/types/project-media";
+
 export type Project = {
   title: string;
   description: string;
@@ -7,7 +9,10 @@ export type Project = {
   stack: string[];
   github?: string;
   demo?: string;
+  media?: ProjectMediaItem[];
 };
+
+const RETAIL_OPS_MEDIA_BASE = "/projects/retail-ops-platform";
 
 export const PROJECTS: Project[] = [
   {
@@ -40,6 +45,53 @@ export const PROJECTS: Project[] = [
       "Docker Compose",
     ],
     github: "https://github.com/skeptre/retail-ops-platform",
+    media: [
+      {
+        title: "End-to-End Medallion Pipeline Architecture",
+        description:
+          "End-to-end Retail Ops platform architecture showing CSV ingestion, Prefect orchestration, Bronze/Silver/Gold transformations, validation and quarantine handling, analytics generation, and FastAPI serving endpoints.",
+        image: `${RETAIL_OPS_MEDIA_BASE}/retail-ops-architecture.png`,
+        featured: true,
+        category: "Architecture",
+      },
+      {
+        title: "Successful Prefect-Orchestrated Pipeline Run",
+        description:
+          "Successful Prefect-orchestrated pipeline execution generating 10 stores, 2,000 inventory rows, and 50,000 transactions before completing ingestion, transformation, gold analytics generation, and validation stages.",
+        image: `${RETAIL_OPS_MEDIA_BASE}/prefect-pipeline-run.png`,
+        primary: true,
+        category: "Orchestration",
+      },
+      {
+        title: "FastAPI Analytics Layer",
+        description:
+          "FastAPI analytics layer exposing sales, inventory, health, and pipeline monitoring endpoints through OpenAPI/Swagger documentation.",
+        image: `${RETAIL_OPS_MEDIA_BASE}/swagger-api-docs.png`,
+        primary: true,
+        category: "API Layer",
+      },
+      {
+        title: "Bronze Table With Ingestion Metadata",
+        description:
+          "Bronze-layer inventory table containing ingestion metadata, source lineage, quarantine tracking fields, and raw operational inventory records.",
+        image: `${RETAIL_OPS_MEDIA_BASE}/bronze-inventory-table.png`,
+        category: "Validation",
+      },
+      {
+        title: "PostgreSQL Bronze/Silver/Gold Schemas",
+        description:
+          "PostgreSQL database organized using Bronze, Silver, and Gold schemas to separate raw ingestion data, cleaned relational models, and analytics-ready datasets.",
+        image: `${RETAIL_OPS_MEDIA_BASE}/postgres-medallion-schemas.png`,
+        category: "Database",
+      },
+      {
+        title: "Dockerized Local Infrastructure",
+        description:
+          "Dockerized local infrastructure running PostgreSQL and pgAdmin services for pipeline execution, database management, and analytics development.",
+        image: `${RETAIL_OPS_MEDIA_BASE}/docker-infrastructure.png`,
+        category: "Infrastructure",
+      },
+    ],
   },
   {
     title: "Support Ticket Management API",
