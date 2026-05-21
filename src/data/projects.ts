@@ -1,5 +1,6 @@
 export type Project = {
   title: string;
+  description: string;
   type: string;
   paragraphs: string[];
   bullets?: string[];
@@ -11,6 +12,7 @@ export type Project = {
 export const PROJECTS: Project[] = [
   {
     title: "Retail & Operations Intelligence Platform",
+    description: "Python ELT platform with PostgreSQL, Prefect orchestration, medallion architecture, and a FastAPI analytics REST API. Containerised with Docker Compose.",
     type: "data engineering / backend",
     paragraphs: [
       "A Python-based ELT data engineering platform simulating a multi-location retail business pipeline. The project processes raw transactional, inventory, and store data through a full medallion-style architecture (Bronze, Silver, Gold) using PostgreSQL.",
@@ -41,6 +43,7 @@ export const PROJECTS: Project[] = [
   },
   {
     title: "Support Ticket Management API",
+    description: "FastAPI backend with JWT auth, SQLAlchemy ORM, Alembic migrations, Pydantic validation, pytest coverage, and Docker deployment.",
     type: "backend / api",
     paragraphs: [
       "Developed a backend support ticket management API using Python and FastAPI with JWT authentication, user registration/login flows, and per-user ticket CRUD operations. Implemented SQLAlchemy models, Alembic database migrations, Pydantic validation schemas, and protected API routes with ownership-based access control. Added Docker support, automated pytest test coverage, and environment-based configuration management for local development and deployment workflows.",
@@ -58,6 +61,7 @@ export const PROJECTS: Project[] = [
   },
   {
     title: "Activity Tracker — Mobile",
+    description: "Cross-platform React Native fitness app with pedometer sensors, MobX state management, real-time step tracking, and Expo integration.",
     type: "mobile / frontend",
     paragraphs: [
       "Built a cross-platform mobile fitness tracking application using React Native and Expo focused on step monitoring, activity management, and real-time fitness analytics. The application integrates device pedometer sensors to track daily steps, estimate calories burned, distance travelled, and activity duration, while persisting user data locally using AsyncStorage.",
@@ -79,6 +83,7 @@ export const PROJECTS: Project[] = [
   },
   {
     title: "Activity Tracker — API",
+    description: "Node.js REST API for fitness and activity tracking with SQLite, Joi validation, Swagger UI documentation, and MVC-style architecture.",
     type: "backend / api",
     paragraphs: [
       "Built a RESTful fitness and activity tracking backend API using Express.js and SQLite, focused on managing workouts, weight tracking, daily goals, and user profile data.",
@@ -108,6 +113,7 @@ export const PROJECTS: Project[] = [
   },
   {
     title: "LLM Benchmarking Framework for Financial Sentiment Analysis",
+    description: "Final year project benchmarking GPT-4o vs Gemini 2.5 Flash on financial sentiment datasets with F1, latency, and McNemar significance testing.",
     type: "final year project / data analysis",
     paragraphs: [
       "Built a financial sentiment analysis benchmarking framework comparing OpenAI GPT-4o and Google Gemini 2.5 Flash on real-world finance datasets. The project automates dataset processing, prompt standardisation, prediction validation, evaluation metrics, and result visualisation to analyse how different LLMs perform on sentiment classification tasks.",

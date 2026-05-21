@@ -6,7 +6,6 @@ const jsonLd = {
   "@type": "Person",
   name: SITE.name,
   url: SITE.url,
-  email: SITE.email,
   sameAs: [SITE.github, SITE.linkedin, SITE.leetcode],
 };
 
