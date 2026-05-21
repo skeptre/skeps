@@ -12,38 +12,11 @@ export type HomeLinkItem = {
   ariaLabel?: string;
 };
 
-export const HOME_LINKS: HomeLinkItem[] = [
-  {
-    label: "GitHub",
-    href: SITE.github,
-    ariaLabel: "Open GitHub profile",
-  },
-  {
-    label: "Projects",
-    href: "/projects",
-    ariaLabel: "View projects",
-  },
-  {
-    label: "LeetCode",
-    href: SITE.leetcode,
-    ariaLabel: "Open LeetCode profile",
-  },
-  {
-    label: "LinkedIn",
-    href: SITE.linkedin,
-    ariaLabel: "Open LinkedIn profile",
-  },
-  {
-    label: "CV",
-    href: SITE.cvPath,
-    ariaLabel: "Open CV as PDF",
-  },
-  {
-    label: "Contact",
-    href: "/contact",
-    ariaLabel: "Go to contact page",
-  },
-];
+export const HOME_LINKS: HomeLinkItem[] = SITE.nav.map(({ label, href, ariaLabel }) => ({
+  label,
+  href,
+  ariaLabel,
+}));
 
 export function isExternalHref(href: string) {
   return href.startsWith("http://") || href.startsWith("https://");

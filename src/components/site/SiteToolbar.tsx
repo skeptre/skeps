@@ -22,20 +22,29 @@ export default function SiteToolbar() {
         {/* Desktop nav + clock */}
         <div className="hidden items-center gap-6 md:flex">
         <nav className="flex items-center gap-6" aria-label="Site navigation">
-          <a href={SITE.github} target="_blank" rel="noopener noreferrer" className={navLinkClass}>
-            github
-          </a>
-          <Link href="/projects" className={navLinkClass}>projects</Link>
-          <a href={SITE.leetcode} target="_blank" rel="noopener noreferrer" className={navLinkClass}>
-            leetcode
-          </a>
-          <a href={SITE.linkedin} target="_blank" rel="noopener noreferrer" className={navLinkClass}>
-            linkedin
-          </a>
-          <a href={SITE.cvPath} target="_blank" rel="noopener noreferrer" className={navLinkClass}>
-            cv
-          </a>
-          <Link href="/contact" className={navLinkClass}>contact</Link>
+          {SITE.nav.map((link) =>
+            link.external ? (
+              <a
+                key={link.href}
+                href={link.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={link.ariaLabel}
+                className={navLinkClass}
+              >
+                {link.label.toLowerCase()}
+              </a>
+            ) : (
+              <Link
+                key={link.href}
+                href={link.href}
+                aria-label={link.ariaLabel}
+                className={navLinkClass}
+              >
+                {link.label.toLowerCase()}
+              </Link>
+            )
+          )}
         </nav>
         <NavClock />
         </div>

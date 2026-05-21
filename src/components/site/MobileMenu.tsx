@@ -5,14 +5,6 @@ import Link from "next/link";
 
 import { SITE } from "@/config/site";
 
-const LINKS = [
-  { label: "github",   href: SITE.github,   external: true },
-  { label: "projects", href: "/projects",   external: false },
-  { label: "linkedin", href: SITE.linkedin, external: true },
-  { label: "cv",       href: SITE.cvPath,   external: true },
-  { label: "contact",  href: "/contact",    external: false },
-];
-
 export default function MobileMenu() {
   const [open, setOpen] = useState(false);
 
@@ -80,7 +72,7 @@ export default function MobileMenu() {
 
         {/* Links */}
         <nav className="flex flex-col px-6 py-6" aria-label="Mobile navigation">
-          {LINKS.map((link) =>
+          {SITE.nav.filter((l) => !l.mobileHidden).map((link) =>
             link.external ? (
               <a
                 key={link.href}
@@ -90,7 +82,7 @@ export default function MobileMenu() {
                 onClick={close}
                 className="border-b border-border py-4 font-mono text-sm text-muted-foreground transition-colors last:border-0 hover:text-primary"
               >
-                {link.label}
+                {link.label.toLowerCase()}
               </a>
             ) : (
               <Link
@@ -99,7 +91,7 @@ export default function MobileMenu() {
                 onClick={close}
                 className="border-b border-border py-4 font-mono text-sm text-muted-foreground transition-colors last:border-0 hover:text-primary"
               >
-                {link.label}
+                {link.label.toLowerCase()}
               </Link>
             )
           )}
