@@ -12,7 +12,6 @@ export default function ProjectMediaGallery({
 }: {
   items: ProjectMediaItem[];
 }) {
-  const scrollRef = useRef<HTMLDivElement>(null);
   const scrollRestoreRef = useRef(0);
   const ordered = useMemo(
     () =>
@@ -23,6 +22,9 @@ export default function ProjectMediaGallery({
       }),
     [items],
   );
+
+  const featured = ordered.find((i) => i.featured);
+  const gridItems = ordered.filter((i) => !i.featured);
 
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
 
@@ -38,60 +40,41 @@ export default function ProjectMediaGallery({
   }, []);
   const navigateModal = useCallback((index: number) => setActiveIndex(index), []);
 
-  const scrollBy = (direction: -1 | 1) => {
-    const el = scrollRef.current;
-    if (!el) return;
-    const amount = Math.max(160, el.clientWidth * 0.6);
-    el.scrollBy({ left: direction * amount, behavior: "smooth" });
+  const openAt = (item: ProjectMediaItem) => (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    scrollRestoreRef.current = window.scrollY;
+    const idx = ordered.findIndex((i) => i.image === item.image);
+    if (idx >= 0) setActiveIndex(idx);
   };
 
   return (
     <>
-      <div className="relative">
-        <div className="mb-2 flex items-center justify-between gap-3">
-          <p className="font-mono text-[10px] text-muted-foreground">
-            scroll → select artifact to expand
-          </p>
-          <div className="flex shrink-0 gap-1.5">
-            <button
-              type="button"
-              onClick={() => scrollBy(-1)}
-              className="rounded-sm border border-border bg-card px-2 py-1 font-mono text-[10px] text-muted-foreground ui-transition hover:border-primary/40 hover:text-foreground focus:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-              aria-label="Scroll thumbnails left"
-            >
-              ←
-            </button>
-            <button
-              type="button"
-              onClick={() => scrollBy(1)}
-              className="rounded-sm border border-border bg-card px-2 py-1 font-mono text-[10px] text-muted-foreground ui-transition hover:border-primary/40 hover:text-foreground focus:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-              aria-label="Scroll thumbnails right"
-            >
-              →
-            </button>
-          </div>
-        </div>
+      <div className="space-y-4">
+        <p className="font-mono text-[10px] text-muted-foreground">
+          select artifact to expand
+        </p>
 
-        <div
-          ref={scrollRef}
-          className="flex gap-3 overflow-x-auto overscroll-x-contain scroll-smooth pb-2 snap-x snap-mandatory [-ms-overflow-style:none] [scrollbar-width:thin] [&::-webkit-scrollbar]:h-1.5 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:bg-border [&::-webkit-scrollbar-track]:bg-transparent"
-          role="list"
-          aria-label="Engineering evidence thumbnails"
-        >
-          {ordered.map((item, index) => (
-            <div key={item.image} role="listitem">
+        {featured && (
+          <ProjectMediaCard
+            item={featured}
+            variant="hero"
+            onOpen={openAt(featured)}
+            priority
+          />
+        )}
+
+        {gridItems.length > 0 && (
+          <div className="grid gap-4 sm:grid-cols-2">
+            {gridItems.map((item) => (
               <ProjectMediaCard
+                key={item.image}
                 item={item}
-                featured={item.featured}
-                onOpen={(e) => {
-                  e.preventDefault();
-                  scrollRestoreRef.current = window.scrollY;
-                  setActiveIndex(index);
-                }}
+                variant="grid"
+                onOpen={openAt(item)}
               />
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
+        )}
       </div>
 
       {activeIndex !== null && (

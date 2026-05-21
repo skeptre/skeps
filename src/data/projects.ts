@@ -53,7 +53,7 @@ export const PROJECTS: Project[] = [
         title: "End-to-End Medallion Pipeline Architecture",
         description:
           "End-to-end Retail Ops platform architecture showing CSV ingestion, Prefect orchestration, Bronze/Silver/Gold transformations, validation and quarantine handling, analytics generation, and FastAPI serving endpoints.",
-        image: `${RETAIL_OPS_MEDIA_BASE}/retail-ops-architecture.png`,
+        image: `${RETAIL_OPS_MEDIA_BASE}/retail-ops-architecture.webp`,
         featured: true,
         category: "Architecture",
       },
