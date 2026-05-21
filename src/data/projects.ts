@@ -10,6 +10,36 @@ export type Project = {
 
 export const PROJECTS: Project[] = [
   {
+    title: "Retail & Operations Intelligence Platform",
+    type: "data engineering / backend",
+    paragraphs: [
+      "A Python-based ELT data engineering platform simulating a multi-location retail business pipeline. The project processes raw transactional, inventory, and store data through a full medallion-style architecture (Bronze, Silver, Gold) using PostgreSQL.",
+      "Built ingestion pipelines to load raw CSV datasets into PostgreSQL, followed by in-database SQL transformations for cleaning, validation, deduplication, and aggregation. Implemented retry handling, quarantine logic for failed records, idempotent upserts, and pipeline run tracking to improve reliability and observability.",
+      "Developed orchestration workflows using Prefect to automate ingestion, transformation, and validation stages. Created data quality checks to detect invalid or inconsistent records before promoting datasets through the pipeline.",
+      "Exposed analytics through a FastAPI REST API with endpoints for daily sales metrics, inventory health alerts, and pipeline monitoring. Containerised the stack with Docker Compose, including PostgreSQL and pgAdmin for local development and testing.",
+    ],
+    bullets: [
+      "End-to-end data engineering workflows",
+      "ELT pipeline design",
+      "Medallion architecture patterns (Bronze, Silver, Gold)",
+      "SQL-based data transformation and deduplication",
+      "Data quality validation and quarantine logic",
+      "API-driven analytics serving",
+      "Workflow orchestration with Prefect",
+      "Docker-based infrastructure with Docker Compose",
+      "Automated testing and CI-oriented development practices",
+    ],
+    stack: [
+      "Python",
+      "PostgreSQL",
+      "Prefect",
+      "FastAPI",
+      "Docker",
+      "Docker Compose",
+    ],
+    github: "https://github.com/skeptre/retail-ops-platform",
+  },
+  {
     title: "Activity Tracker — Mobile",
     type: "mobile / frontend",
     paragraphs: [
@@ -58,5 +88,30 @@ export const PROJECTS: Project[] = [
       "CORS",
     ],
     github: "https://github.com/skeptre/activity-tracker-backend",
+  },
+  {
+    title: "LLM Benchmarking Framework for Financial Sentiment Analysis",
+    type: "final year project / data analysis",
+    paragraphs: [
+      "Built a financial sentiment analysis benchmarking framework comparing OpenAI GPT-4o and Google Gemini 2.5 Flash on real-world finance datasets. The project automates dataset processing, prompt standardisation, prediction validation, evaluation metrics, and result visualisation to analyse how different LLMs perform on sentiment classification tasks.",
+      "Implemented a full evaluation pipeline using Python and Jupyter across the Financial PhraseBank and FiQA datasets, covering standardised 3-class sentiment prediction (positive, negative, neutral), automated response validation, and label normalisation. Evaluation included accuracy, macro F1, per-class F1, latency, and hallucination analysis, with statistical significance testing via McNemar's Test and comparative confusion matrix visualisations.",
+      "The project demonstrated strong differences in model behaviour: GPT-4o achieved significantly higher classification performance while Gemini 2.5 Flash delivered lower latency. Focus was placed on reproducible benchmarking, clean evaluation methodology, and structured LLM comparison workflows.",
+    ],
+    bullets: [
+      "Financial PhraseBank and FiQA dataset handling",
+      "Standardised 3-class sentiment prediction across both models",
+      "Accuracy, macro F1, per-class F1, latency, and hallucination analysis",
+      "Automated response validation and label normalisation",
+      "Statistical significance testing using McNemar's Test",
+      "Confusion matrices and comparative visualisations",
+      "Optimised API usage to reduce failed calls and improve cost efficiency",
+    ],
+    stack: [
+      "Python",
+      "OpenAI API",
+      "Gemini API",
+      "Pandas",
+      "Jupyter",
+    ],
   },
 ];

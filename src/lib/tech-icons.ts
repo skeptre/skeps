@@ -1,11 +1,20 @@
 import type { IconType } from "react-icons";
 import {
   SiAxios,
+  SiDocker,
   SiExpo,
   SiExpress,
+  SiFastapi,
+  SiGooglegemini,
+  SiJupyter,
   SiMobx,
   SiMocha,
   SiNodedotjs,
+  SiOpenai,
+  SiPandas,
+  SiPostgresql,
+  SiPrefect,
+  SiPython,
   SiReact,
   SiSqlite,
   SiSwagger,
@@ -13,6 +22,16 @@ import {
 } from "react-icons/si";
 
 export const TECH_ICON_MAP: Record<string, IconType> = {
+  "Python": SiPython,
+  "PostgreSQL": SiPostgresql,
+  "Prefect": SiPrefect,
+  "FastAPI": SiFastapi,
+  "Docker": SiDocker,
+  "Docker Compose": SiDocker,
+  "Pandas": SiPandas,
+  "OpenAI API": SiOpenai,
+  "Gemini API": SiGooglegemini,
+  "Jupyter": SiJupyter,
   "React Native": SiReact,
   "React Navigation": SiReact,
   "React Hook Form": SiReact,
