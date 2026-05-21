@@ -58,24 +58,8 @@ export default function HomePage() {
             <SectionLabel>about</SectionLabel>
 
             <h1 className="fade-in-up stagger-2 text-4xl font-bold leading-tight tracking-tight md:text-5xl lg:text-6xl">
-              Hi, I&apos;m Mansoor Ali.
+              Hi, I&apos;m Ali, a graduate software engineer from Manchester, UK
             </h1>
-
-            <p className="fade-in-up stagger-3 mt-2 text-4xl font-bold leading-tight tracking-tight text-muted-foreground md:text-5xl lg:text-6xl">
-              I build reliable backend systems
-            </p>
-
-            <div className="fade-in-up stagger-4 mt-8 max-w-lg space-y-4 text-base leading-relaxed text-muted-foreground">
-              <p>
-                I&apos;m currently focused on building complete backend systems
-                in Python.
-              </p>
-              <p>
-                I enjoy debugging complex behaviour, thinking through edge
-                cases, and understanding how systems behave under real-world
-                constraints.
-              </p>
-            </div>
           </div>
         </div>
       </section>

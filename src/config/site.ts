@@ -1,6 +1,6 @@
 export const SITE = {
   name: "Mansoor Ali",
-  handle: "aliskeps",
+  handle: "ali",
   url: "https://aliskeps.com",
   description:
     "Projects, systems, experiments, and engineering work by Mansoor Ali.",

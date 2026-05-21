@@ -37,7 +37,10 @@ function getTime() {
 
 function initPos() {
   if (typeof window === "undefined") return { x: 0, y: 0 };
-  return { x: Math.max(16, window.innerWidth - 260), y: 80 };
+  return {
+    x: Math.max(16, window.innerWidth - SIZE - 40),
+    y: Math.round(window.innerHeight * 0.12),
+  };
 }
 
 function initTz() {
