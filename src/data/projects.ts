@@ -15,7 +15,7 @@ export type Project = {
 };
 
 const RETAIL_OPS_MEDIA_BASE = "/projects/retail-ops-platform";
-const LLM_MEDIA_BASE = encodeURI("/projects/LLM Benchmarking Framework");
+const LLM_MEDIA_BASE = "/projects/llm-benchmarking-framework";
 
 export const PROJECTS: Project[] = [
   {
