@@ -1,31 +1,66 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import Link from "next/link";
 
 import { isFileHref } from "@/components/home/home-links";
+import { lockBodyScroll } from "@/lib/lock-body-scroll";
 import { SITE } from "@/config/site";
 
 export default function MobileMenu() {
   const [open, setOpen] = useState(false);
+  const hamburgerRef = useRef<HTMLButtonElement>(null);
+  const closeRef = useRef<HTMLButtonElement>(null);
+  const drawerRef = useRef<HTMLDivElement>(null);
+  const hasOpenedRef = useRef(false);
 
+  const close = useCallback(() => setOpen(false), []);
+
+  // Escape closes; Tab is trapped inside the drawer when open
   useEffect(() => {
-    const onKey = (e: KeyboardEvent) => { if (e.key === "Escape") setOpen(false); };
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") { setOpen(false); return; }
+      if (e.key !== "Tab" || !open) return;
+      const drawer = drawerRef.current;
+      if (!drawer) return;
+      const focusable = Array.from(
+        drawer.querySelectorAll<HTMLElement>("a[href], button:not([disabled])")
+      );
+      if (!focusable.length) return;
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      if (e.shiftKey) {
+        if (document.activeElement === first) { e.preventDefault(); last.focus(); }
+      } else {
+        if (document.activeElement === last) { e.preventDefault(); first.focus(); }
+      }
+    };
     document.addEventListener("keydown", onKey);
     return () => document.removeEventListener("keydown", onKey);
-  }, []);
-
-  useEffect(() => {
-    document.body.style.overflow = open ? "hidden" : "";
-    return () => { document.body.style.overflow = ""; };
   }, [open]);
 
-  const close = () => setOpen(false);
+  // Scroll lock
+  useEffect(() => {
+    if (!open) return;
+    const unlock = lockBodyScroll();
+    return unlock;
+  }, [open]);
+
+  // Focus management: into drawer on open, back to hamburger on close
+  useEffect(() => {
+    if (open) {
+      hasOpenedRef.current = true;
+      requestAnimationFrame(() => closeRef.current?.focus({ preventScroll: true }));
+    } else if (hasOpenedRef.current) {
+      hamburgerRef.current?.focus({ preventScroll: true });
+    }
+  }, [open]);
 
   return (
     <>
       {/* Hamburger — visible below md */}
       <button
+        ref={hamburgerRef}
         className="flex flex-col gap-[5px] p-2 -mr-2 md:hidden"
         onClick={() => setOpen(true)}
         aria-label="Open navigation menu"
@@ -47,6 +82,7 @@ export default function MobileMenu() {
 
       {/* Drawer */}
       <div
+        ref={drawerRef}
         role="dialog"
         aria-modal={open}
         aria-label="Navigation"
@@ -61,6 +97,7 @@ export default function MobileMenu() {
             &lt;{SITE.handle} /&gt;
           </span>
           <button
+            ref={closeRef}
             onClick={close}
             aria-label="Close navigation menu"
             className="-mr-2 p-2 text-muted-foreground transition-colors hover:text-foreground"
@@ -82,6 +119,7 @@ export default function MobileMenu() {
                 <a
                   key={link.href}
                   href={link.href}
+                  aria-label={link.ariaLabel}
                   {...(link.external && !isFileHref(link.href)
                     ? { target: "_blank", rel: "noopener noreferrer" }
                     : {})}
@@ -93,7 +131,7 @@ export default function MobileMenu() {
               );
             }
             return (
-              <Link key={link.href} href={link.href} onClick={close} className={className}>
+              <Link key={link.href} href={link.href} aria-label={link.ariaLabel} onClick={close} className={className}>
                 {label}
               </Link>
             );

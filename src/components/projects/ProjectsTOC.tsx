@@ -2,16 +2,15 @@
 
 import { useEffect, useRef, useState } from "react";
 
-import { PROJECTS } from "@/data/projects";
-import { slugify } from "@/lib/slugify";
+type TocProject = { slug: string; title: string };
 
-export default function ProjectsTOC() {
-  const [active, setActive] = useState(() => slugify(PROJECTS[0]?.title ?? ""));
+export default function ProjectsTOC({ projects }: { projects: TocProject[] }) {
+  const [active, setActive] = useState(() => projects[0]?.slug ?? "");
   const [expanded, setExpanded] = useState(false);
   const intersecting = useRef<Set<string>>(new Set());
 
   useEffect(() => {
-    const ids = PROJECTS.map((p) => slugify(p.title));
+    const ids = projects.map((p) => p.slug);
 
     const obs = new IntersectionObserver(
       (entries) => {
@@ -31,7 +30,7 @@ export default function ProjectsTOC() {
     });
 
     return () => obs.disconnect();
-  }, []);
+  }, [projects]);
 
   const jump = (id: string) => {
     const el = document.getElementById(id);
@@ -49,8 +48,8 @@ export default function ProjectsTOC() {
       onMouseEnter={() => setExpanded(true)}
       onMouseLeave={() => setExpanded(false)}
     >
-      {PROJECTS.map((project) => {
-        const id = slugify(project.title);
+      {projects.map((project) => {
+        const id = project.slug;
         const isActive = active === id;
         return (
           <button

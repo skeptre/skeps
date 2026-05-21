@@ -3,7 +3,6 @@ import { notFound } from "next/navigation";
 
 import { SITE } from "@/config/site";
 import { PROJECTS } from "@/data/projects";
-import { slugify } from "@/lib/slugify";
 import ProjectCard from "@/components/projects/ProjectCard";
 import BackLink from "@/components/ui/BackLink";
 import PageShell from "@/components/ui/PageShell";
@@ -12,12 +11,12 @@ import SectionLabel from "@/components/ui/SectionLabel";
 type Props = { params: Promise<{ slug: string }> };
 
 export function generateStaticParams() {
-  return PROJECTS.map((p) => ({ slug: slugify(p.title) }));
+  return PROJECTS.map((p) => ({ slug: p.slug }));
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
-  const project = PROJECTS.find((p) => slugify(p.title) === slug);
+  const project = PROJECTS.find((p) => p.slug === slug);
   if (!project) return {};
 
   const url = `${SITE.url}/projects/${slug}`;
@@ -45,7 +44,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function ProjectPage({ params }: Props) {
   const { slug } = await params;
-  const project = PROJECTS.find((p) => slugify(p.title) === slug);
+  const project = PROJECTS.find((p) => p.slug === slug);
   if (!project) notFound();
 
   const url = `${SITE.url}/projects/${slug}`;

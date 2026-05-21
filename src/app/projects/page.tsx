@@ -4,7 +4,6 @@ import { SITE } from "@/config/site";
 import { PROJECTS } from "@/data/projects";
 import ProjectsTOC from "@/components/projects/ProjectsTOC";
 import ProjectCard from "@/components/projects/ProjectCard";
-import { slugify } from "@/lib/slugify";
 import BackLink from "@/components/ui/BackLink";
 import PageHeader from "@/components/ui/PageHeader";
 import PageShell from "@/components/ui/PageShell";
@@ -16,9 +15,11 @@ export const metadata: Metadata = {
 };
 
 export default function ProjectsPage() {
+  const tocProjects = PROJECTS.map(({ slug, title }) => ({ slug, title }));
+
   return (
     <>
-      <ProjectsTOC />
+      <ProjectsTOC projects={tocProjects} />
       <PageShell>
         <BackLink />
 
@@ -32,8 +33,8 @@ export default function ProjectsPage() {
         <div className="page-block">
         {PROJECTS.map((project, index) => (
           <div
-            key={project.title}
-            id={slugify(project.title)}
+            key={project.slug}
+            id={project.slug}
             className={index > 0 ? "mt-20 pt-2" : undefined}
           >
             <ProjectCard project={project} index={index} />

@@ -49,6 +49,7 @@ function ProfileLinksNav() {
             <a
               key={link.href}
               href={link.href}
+              aria-label={link.ariaLabel}
               {...(isPdf
                 ? {}
                 : { target: "_blank", rel: "noopener noreferrer" })}
@@ -63,6 +64,7 @@ function ProfileLinksNav() {
           <Link
             key={link.href}
             href={link.href}
+            aria-label={link.ariaLabel}
             className={profileLinkClassName}
           >
             {link.label}
@@ -88,34 +90,28 @@ export default function HomePage() {
             />
 
             <div className="fade-in-up stagger-3 mt-10">
-              {[STACK.slice(0, 8), STACK.slice(8)].map((row, rowIdx) => (
-                <div
-                  key={rowIdx}
-                  className="flex gap-x-10"
-                  style={{ marginTop: rowIdx > 0 ? "1.5rem" : 0, paddingLeft: rowIdx > 0 ? "52px" : 0 }}
-                >
-                  {row.map(({ Icon, label, color, href }) => (
-                    <a
-                      key={label}
-                      href={href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      aria-label={`${label} documentation`}
-                      style={{ "--brand": color } as React.CSSProperties}
-                      className="group flex w-16 shrink-0 flex-col items-center gap-2 rounded-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
-                    >
-                      <Icon
-                        size={24}
-                        className="text-muted-foreground ui-transition group-hover:text-[var(--brand)]"
-                        aria-hidden
-                      />
-                      <span className="whitespace-nowrap font-mono text-xs text-muted-foreground ui-transition group-hover:text-[var(--brand)]">
-                        {label}
-                      </span>
-                    </a>
-                  ))}
-                </div>
-              ))}
+              <div className="flex flex-wrap gap-x-5 gap-y-4 sm:gap-x-8">
+                {STACK.map(({ Icon, label, color, href }) => (
+                  <a
+                    key={label}
+                    href={href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={`${label} documentation`}
+                    style={{ "--brand": color } as React.CSSProperties}
+                    className="group flex w-14 flex-col items-center gap-2 rounded-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background sm:w-16"
+                  >
+                    <Icon
+                      size={24}
+                      className="text-muted-foreground ui-transition group-hover:text-[var(--brand)]"
+                      aria-hidden
+                    />
+                    <span className="whitespace-nowrap font-mono text-xs text-muted-foreground ui-transition group-hover:text-[var(--brand)]">
+                      {label}
+                    </span>
+                  </a>
+                ))}
+              </div>
             </div>
           </div>
         </div>

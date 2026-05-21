@@ -1,5 +1,4 @@
 import type { Project } from "@/data/projects";
-import { slugify } from "@/lib/slugify";
 import ProjectEvidenceSection from "@/components/projects/ProjectEvidenceSection";
 import TechBadge from "@/components/ui/TechBadge";
 
@@ -18,7 +17,7 @@ export default function ProjectCard({
   titleAs?: "h1" | "h2";
 }) {
   const delay = `stagger-${Math.min(index + 2, 4) as 2 | 3 | 4}`;
-  const evidenceHeadingId = `project-evidence-${slugify(project.title)}`;
+  const evidenceHeadingId = `project-evidence-${project.slug}`;
   const TitleTag = titleAs;
 
   return (
@@ -80,6 +79,7 @@ export default function ProjectCard({
           headingId={evidenceHeadingId}
           title={project.evidenceTitle}
           subtitle={project.evidenceSubtitle}
+          headingLevel={titleAs === "h1" ? "h2" : "h3"}
         />
       )}
 

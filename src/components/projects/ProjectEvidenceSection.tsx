@@ -8,13 +8,16 @@ export default function ProjectEvidenceSection({
   headingId,
   title = "Architecture & Engineering Evidence",
   subtitle = "Real pipeline execution, orchestration, validation, and infrastructure artifacts from the Retail Ops Platform.",
+  headingLevel = "h3",
 }: {
   media: ProjectMediaItem[];
   headingId: string;
   title?: string;
   subtitle?: string;
+  headingLevel?: "h2" | "h3";
 }) {
   if (media.length === 0) return null;
+  const Heading = headingLevel;
 
   return (
     <section
@@ -24,12 +27,12 @@ export default function ProjectEvidenceSection({
       <Divider label="evidence" />
 
       <div className="mt-2">
-        <h3
+        <Heading
           id={headingId}
           className="font-mono text-sm font-medium tracking-tight text-foreground sm:text-base"
         >
           {title}
-        </h3>
+        </Heading>
         <p className="mt-2 max-w-3xl text-sm leading-relaxed text-muted-foreground">
           {subtitle}
         </p>

@@ -18,7 +18,7 @@ const nav: NavLink[] = [
 export const SITE = {
   name: "Mansoor Ali",
   handle: "ali",
-  url: "https://aliskeps.com",
+  url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://aliskeps.com",
   description:
     "Projects, systems, experiments, and engineering work by Mansoor Ali.",
   email: "aliskepss@gmail.com",

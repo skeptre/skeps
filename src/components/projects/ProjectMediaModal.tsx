@@ -41,9 +41,26 @@ export default function ProjectMediaModal({
     if (!mounted) return;
 
     const onKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "Escape") onClose();
-      if (e.key === "ArrowLeft" && index > 0) onNavigate(index - 1);
-      if (e.key === "ArrowRight" && index < itemCount - 1) onNavigate(index + 1);
+      if (e.key === "Escape") { onClose(); return; }
+      if (e.key === "ArrowLeft" && index > 0) { onNavigate(index - 1); return; }
+      if (e.key === "ArrowRight" && index < itemCount - 1) { onNavigate(index + 1); return; }
+      if (e.key === "Tab") {
+        const overlay = overlayRef.current;
+        if (!overlay) return;
+        const focusable = Array.from(
+          overlay.querySelectorAll<HTMLElement>(
+            "button:not([disabled]), [href], [tabindex]:not([tabindex=\"-1\"])"
+          )
+        );
+        if (!focusable.length) return;
+        const first = focusable[0];
+        const last = focusable[focusable.length - 1];
+        if (e.shiftKey) {
+          if (document.activeElement === first) { e.preventDefault(); last.focus(); }
+        } else {
+          if (document.activeElement === last) { e.preventDefault(); first.focus(); }
+        }
+      }
     };
 
     window.addEventListener("keydown", onKeyDown);

@@ -1,5 +1,3 @@
-"use client";
-
 import { TECH_ICON_MAP } from "@/lib/tech-icons";
 
 export default function TechBadge({ name }: { name: string }) {

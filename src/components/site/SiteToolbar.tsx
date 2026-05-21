@@ -29,6 +29,7 @@ export default function SiteToolbar() {
                 <a
                   key={link.href}
                   href={link.href}
+                  aria-label={link.ariaLabel}
                   {...(link.external && !isFileHref(link.href)
                     ? { target: "_blank", rel: "noopener noreferrer" }
                     : {})}
@@ -39,7 +40,7 @@ export default function SiteToolbar() {
               );
             }
             return (
-              <Link key={link.href} href={link.href} className={navLinkClass}>
+              <Link key={link.href} href={link.href} aria-label={link.ariaLabel} className={navLinkClass}>
                 {label}
               </Link>
             );

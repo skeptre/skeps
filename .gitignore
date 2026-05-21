@@ -54,3 +54,7 @@ yarn-error.log*
 # tooling caches
 .eslintcache
 .turbo
+
+# local reports and tooling config
+lighthouse-home.json
+.claude/settings.local.json

@@ -1,6 +1,7 @@
 import type { ProjectMediaItem } from "@/types/project-media";
 
 export type Project = {
+  slug: string;
   title: string;
   description: string;
   type: string;
@@ -19,6 +20,7 @@ const LLM_MEDIA_BASE = "/projects/llm-benchmarking-framework";
 
 export const PROJECTS: Project[] = [
   {
+    slug: "retail-operations-intelligence-platform",
     title: "Retail & Operations Intelligence Platform",
     description: "Python ELT platform with PostgreSQL, Prefect orchestration, medallion architecture, and a FastAPI analytics REST API. Containerised with Docker Compose.",
     type: "data engineering / backend",
@@ -97,6 +99,7 @@ export const PROJECTS: Project[] = [
     ],
   },
   {
+    slug: "llm-benchmarking-framework-for-financial-sentiment-analysis",
     title: "LLM Benchmarking Framework for Financial Sentiment Analysis",
     description: "Final year project benchmarking GPT-4o vs Gemini 2.0 Flash on financial sentiment datasets with F1, latency, and McNemar significance testing.",
     type: "final year project / data analysis",
@@ -146,6 +149,7 @@ export const PROJECTS: Project[] = [
     ],
   },
   {
+    slug: "support-ticket-management-api",
     title: "Support Ticket Management API",
     description: "FastAPI backend with JWT auth, SQLAlchemy ORM, Alembic migrations, Pydantic validation, pytest coverage, and Docker deployment.",
     type: "backend / api",
@@ -164,6 +168,7 @@ export const PROJECTS: Project[] = [
     github: "https://github.com/skeptre/ticket-api",
   },
   {
+    slug: "activity-tracker-mobile",
     title: "Activity Tracker — Mobile",
     description: "Cross-platform React Native fitness app with pedometer sensors, MobX state management, real-time step tracking, and Expo integration.",
     type: "mobile / frontend",
@@ -186,6 +191,7 @@ export const PROJECTS: Project[] = [
     github: "https://github.com/skeptre/activity-tracker-frontend",
   },
   {
+    slug: "activity-tracker-api",
     title: "Activity Tracker — API",
     description: "Node.js REST API for fitness and activity tracking with SQLite, Joi validation, Swagger UI documentation, and MVC-style architecture.",
     type: "backend / api",

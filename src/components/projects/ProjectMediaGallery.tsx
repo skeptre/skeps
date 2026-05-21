@@ -13,28 +13,33 @@ export default function ProjectMediaGallery({
   items: ProjectMediaItem[];
 }) {
   const scrollRestoreRef = useRef(0);
+  const openerRef = useRef<HTMLButtonElement | null>(null);
   const ordered = useMemo(
     () =>
       [...items].sort((a, b) => {
         if (a.featured && !b.featured) return -1;
         if (!a.featured && b.featured) return 1;
+        if (a.primary && !b.primary) return -1;
+        if (!a.primary && b.primary) return 1;
         return 0;
       }),
     [items],
   );
 
   const featured = ordered.find((i) => i.featured);
-  const gridItems = ordered.filter((i) => !i.featured);
+  const primaryItems = ordered.filter((i) => i.primary && !i.featured);
+  const gridItems = ordered.filter((i) => !i.featured && !i.primary);
 
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
 
   const closeModal = useCallback(() => {
     const scrollY = scrollRestoreRef.current;
+    const opener = openerRef.current;
     setActiveIndex(null);
     requestAnimationFrame(() => {
       requestAnimationFrame(() => {
         window.scrollTo({ top: scrollY, left: 0, behavior: "instant" });
-        (document.activeElement as HTMLElement | null)?.blur();
+        opener?.focus({ preventScroll: true });
       });
     });
   }, []);
@@ -42,6 +47,7 @@ export default function ProjectMediaGallery({
 
   const openAt = (item: ProjectMediaItem) => (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
+    openerRef.current = e.currentTarget;
     scrollRestoreRef.current = window.scrollY;
     const idx = ordered.findIndex((i) => i.image === item.image);
     if (idx >= 0) setActiveIndex(idx);
@@ -61,6 +67,19 @@ export default function ProjectMediaGallery({
             onOpen={openAt(featured)}
             priority
           />
+        )}
+
+        {primaryItems.length > 0 && (
+          <div className="grid gap-4 sm:grid-cols-2">
+            {primaryItems.map((item) => (
+              <ProjectMediaCard
+                key={item.image}
+                item={item}
+                variant="grid"
+                onOpen={openAt(item)}
+              />
+            ))}
+          </div>
         )}
 
         {gridItems.length > 0 && (
