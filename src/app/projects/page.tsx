@@ -5,6 +5,7 @@ import { SITE } from "@/config/site";
 import { PROJECTS, type Project } from "@/data/projects";
 import ProjectsTOC from "@/components/projects/ProjectsTOC";
 import { slugify } from "@/lib/slugify";
+import BackLink from "@/components/ui/BackLink";
 import PageShell from "@/components/ui/PageShell";
 import SectionLabel from "@/components/ui/SectionLabel";
 import TechBadge from "@/components/ui/TechBadge";
@@ -83,31 +84,23 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
 export default function ProjectsPage() {
   return (
     <>
-    <ProjectsTOC />
-    <PageShell>
-      <p className="fade-in-up stagger-1">
-        <Link
-          href="/"
-          className="font-mono text-xs text-muted-foreground transition-colors hover:text-primary"
-        >
-          ← /home
-        </Link>
-      </p>
+      <ProjectsTOC />
+      <PageShell>
+        <BackLink />
 
-      <section className="mt-12">
-        <SectionLabel>work</SectionLabel>
+        <section className="mt-12">
+          <SectionLabel>work</SectionLabel>
 
-        <h1 className="fade-in-up stagger-2 text-4xl font-bold leading-tight tracking-tight md:text-5xl">
-          Projects.
-        </h1>
+          <h1 className="fade-in-up stagger-2 text-4xl font-bold leading-tight tracking-tight md:text-5xl">
+            Projects.
+          </h1>
 
-        <p className="fade-in-up stagger-3 mt-6 max-w-lg text-base leading-relaxed text-muted-foreground">
-          University projects and beyond coursework projects.
-        </p>
+          <p className="fade-in-up stagger-3 mt-6 max-w-lg text-base leading-relaxed text-muted-foreground">
+            University projects and beyond coursework projects.
+          </p>
+        </section>
 
-      </section>
-
-      <div className="mt-16 space-y-16">
+        <div className="mt-16 space-y-16">
         {PROJECTS.map((project, index) => (
           <div key={project.title} id={slugify(project.title)}>
             <ProjectCard project={project} index={index} />
