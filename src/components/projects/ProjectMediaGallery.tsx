@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useRef, useState } from "react";
+import { useCallback, useMemo, useRef, useState } from "react";
 
 import type { ProjectMediaItem } from "@/types/project-media";
 
@@ -13,6 +13,7 @@ export default function ProjectMediaGallery({
   items: ProjectMediaItem[];
 }) {
   const scrollRef = useRef<HTMLDivElement>(null);
+  const scrollRestoreRef = useRef(0);
   const ordered = useMemo(
     () =>
       [...items].sort((a, b) => {
@@ -24,6 +25,18 @@ export default function ProjectMediaGallery({
   );
 
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
+
+  const closeModal = useCallback(() => {
+    const scrollY = scrollRestoreRef.current;
+    setActiveIndex(null);
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        window.scrollTo({ top: scrollY, left: 0, behavior: "instant" });
+        (document.activeElement as HTMLElement | null)?.blur();
+      });
+    });
+  }, []);
+  const navigateModal = useCallback((index: number) => setActiveIndex(index), []);
 
   const scrollBy = (direction: -1 | 1) => {
     const el = scrollRef.current;
@@ -70,7 +83,11 @@ export default function ProjectMediaGallery({
               <ProjectMediaCard
                 item={item}
                 featured={item.featured}
-                onOpen={() => setActiveIndex(index)}
+                onOpen={(e) => {
+                  e.preventDefault();
+                  scrollRestoreRef.current = window.scrollY;
+                  setActiveIndex(index);
+                }}
               />
             </div>
           ))}
@@ -81,8 +98,8 @@ export default function ProjectMediaGallery({
         <ProjectMediaModal
           items={ordered}
           index={activeIndex}
-          onClose={() => setActiveIndex(null)}
-          onNavigate={setActiveIndex}
+          onClose={closeModal}
+          onNavigate={navigateModal}
         />
       )}
     </>

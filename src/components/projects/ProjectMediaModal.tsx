@@ -1,8 +1,10 @@
 "use client";
 
 import Image from "next/image";
-import { useCallback, useEffect, useRef } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 
+import { lockBodyScroll } from "@/lib/lock-body-scroll";
 import type { ProjectMediaItem } from "@/types/project-media";
 
 export default function ProjectMediaModal({
@@ -18,47 +20,64 @@ export default function ProjectMediaModal({
 }) {
   const overlayRef = useRef<HTMLDivElement>(null);
   const closeRef = useRef<HTMLButtonElement>(null);
+  const onCloseRef = useRef(onClose);
+  const onNavigateRef = useRef(onNavigate);
+  const indexRef = useRef(index);
+  const [mounted, setMounted] = useState(false);
   const item = items[index];
+  const itemCount = items.length;
   const hasPrev = index > 0;
-  const hasNext = index < items.length - 1;
+  const hasNext = index < itemCount - 1;
+
+  onCloseRef.current = onClose;
+  onNavigateRef.current = onNavigate;
+  indexRef.current = index;
 
   const goPrev = useCallback(() => {
-    if (hasPrev) onNavigate(index - 1);
-  }, [hasPrev, index, onNavigate]);
+    if (indexRef.current > 0) onNavigateRef.current(indexRef.current - 1);
+  }, []);
 
   const goNext = useCallback(() => {
-    if (hasNext) onNavigate(index + 1);
-  }, [hasNext, index, onNavigate]);
+    if (indexRef.current < itemCount - 1) {
+      onNavigateRef.current(indexRef.current + 1);
+    }
+  }, [itemCount]);
 
   useEffect(() => {
-    const prevOverflow = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
-    closeRef.current?.focus();
+    setMounted(true);
+  }, []);
+
+  useEffect(() => {
+    if (!mounted) return;
+    const unlock = lockBodyScroll();
+    closeRef.current?.focus({ preventScroll: true });
+    return unlock;
+  }, [mounted]);
+
+  useEffect(() => {
+    if (!mounted) return;
 
     const onKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "Escape") onClose();
+      if (e.key === "Escape") onCloseRef.current();
       if (e.key === "ArrowLeft") goPrev();
       if (e.key === "ArrowRight") goNext();
     };
 
     window.addEventListener("keydown", onKeyDown);
-    return () => {
-      document.body.style.overflow = prevOverflow;
-      window.removeEventListener("keydown", onKeyDown);
-    };
-  }, [onClose, goPrev, goNext]);
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, [mounted, goPrev, goNext]);
 
-  if (!item) return null;
+  if (!item || !mounted) return null;
 
-  return (
+  return createPortal(
     <div
       ref={overlayRef}
-      className="fixed inset-0 z-50 flex items-center justify-center bg-background/95 p-4 sm:p-6"
+      className="fixed inset-0 z-[100] flex items-center justify-center bg-background/95 p-4 sm:p-6"
       role="dialog"
       aria-modal="true"
       aria-labelledby="project-media-modal-title"
       onMouseDown={(e) => {
-        if (e.target === overlayRef.current) onClose();
+        if (e.target === overlayRef.current) onCloseRef.current();
       }}
     >
       <div className="relative flex max-h-full w-full max-w-6xl flex-col gap-4">
@@ -82,7 +101,7 @@ export default function ProjectMediaModal({
           <button
             ref={closeRef}
             type="button"
-            onClick={onClose}
+            onClick={() => onCloseRef.current()}
             className="shrink-0 rounded-sm border border-border bg-card px-3 py-1.5 font-mono text-xs text-muted-foreground ui-transition hover:border-primary/40 hover:text-foreground focus:outline-none focus-visible:ring-2 focus-visible:ring-ring"
             aria-label="Close image viewer"
           >
@@ -129,6 +148,7 @@ export default function ProjectMediaModal({
           </div>
         </div>
       </div>
-    </div>
+    </div>,
+    document.body,
   );
 }

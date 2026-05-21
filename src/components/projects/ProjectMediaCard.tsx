@@ -8,7 +8,7 @@ export default function ProjectMediaCard({
   featured = false,
 }: {
   item: ProjectMediaItem;
-  onOpen: () => void;
+  onOpen: (e: React.MouseEvent<HTMLButtonElement>) => void;
   /** Slightly wider thumb for the architecture hero in the strip. */
   featured?: boolean;
 }) {
