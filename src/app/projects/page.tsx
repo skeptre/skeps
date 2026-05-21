@@ -24,7 +24,7 @@ export default function ProjectsPage() {
 
         <PageHeader
           label="work"
-          title="Projects."
+          title="Projects"
           description="University projects and beyond coursework projects."
           constrained
         />
