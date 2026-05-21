@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useSyncExternalStore } from "react";
 import { createPortal } from "react-dom";
 
 import { lockBodyScroll } from "@/lib/lock-body-scroll";
@@ -20,32 +20,15 @@ export default function ProjectMediaModal({
 }) {
   const overlayRef = useRef<HTMLDivElement>(null);
   const closeRef = useRef<HTMLButtonElement>(null);
-  const onCloseRef = useRef(onClose);
-  const onNavigateRef = useRef(onNavigate);
-  const indexRef = useRef(index);
-  const [mounted, setMounted] = useState(false);
+  const mounted = useSyncExternalStore(
+    () => () => {},
+    () => true,
+    () => false,
+  );
   const item = items[index];
   const itemCount = items.length;
   const hasPrev = index > 0;
   const hasNext = index < itemCount - 1;
-
-  onCloseRef.current = onClose;
-  onNavigateRef.current = onNavigate;
-  indexRef.current = index;
-
-  const goPrev = useCallback(() => {
-    if (indexRef.current > 0) onNavigateRef.current(indexRef.current - 1);
-  }, []);
-
-  const goNext = useCallback(() => {
-    if (indexRef.current < itemCount - 1) {
-      onNavigateRef.current(indexRef.current + 1);
-    }
-  }, [itemCount]);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
 
   useEffect(() => {
     if (!mounted) return;
@@ -58,14 +41,14 @@ export default function ProjectMediaModal({
     if (!mounted) return;
 
     const onKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "Escape") onCloseRef.current();
-      if (e.key === "ArrowLeft") goPrev();
-      if (e.key === "ArrowRight") goNext();
+      if (e.key === "Escape") onClose();
+      if (e.key === "ArrowLeft" && index > 0) onNavigate(index - 1);
+      if (e.key === "ArrowRight" && index < itemCount - 1) onNavigate(index + 1);
     };
 
     window.addEventListener("keydown", onKeyDown);
     return () => window.removeEventListener("keydown", onKeyDown);
-  }, [mounted, goPrev, goNext]);
+  }, [mounted, onClose, onNavigate, index, itemCount]);
 
   if (!item || !mounted) return null;
 
@@ -77,7 +60,7 @@ export default function ProjectMediaModal({
       aria-modal="true"
       aria-labelledby="project-media-modal-title"
       onMouseDown={(e) => {
-        if (e.target === overlayRef.current) onCloseRef.current();
+        if (e.target === overlayRef.current) onClose();
       }}
     >
       <div className="relative flex max-h-full w-full max-w-6xl flex-col gap-4">
@@ -101,7 +84,7 @@ export default function ProjectMediaModal({
           <button
             ref={closeRef}
             type="button"
-            onClick={() => onCloseRef.current()}
+            onClick={onClose}
             className="shrink-0 rounded-sm border border-border bg-card px-3 py-1.5 font-mono text-xs text-muted-foreground ui-transition hover:border-primary/40 hover:text-foreground focus:outline-none focus-visible:ring-2 focus-visible:ring-ring"
             aria-label="Close image viewer"
           >
@@ -129,7 +112,7 @@ export default function ProjectMediaModal({
           <div className="flex gap-2">
             <button
               type="button"
-              onClick={goPrev}
+              onClick={() => onNavigate(index - 1)}
               disabled={!hasPrev}
               className="rounded-sm border border-border bg-card px-3 py-1.5 ui-transition enabled:hover:border-primary/40 enabled:hover:text-foreground disabled:opacity-40 focus:outline-none focus-visible:ring-2 focus-visible:ring-ring"
               aria-label="Previous image"
@@ -138,7 +121,7 @@ export default function ProjectMediaModal({
             </button>
             <button
               type="button"
-              onClick={goNext}
+              onClick={() => onNavigate(index + 1)}
               disabled={!hasNext}
               className="rounded-sm border border-border bg-card px-3 py-1.5 ui-transition enabled:hover:border-primary/40 enabled:hover:text-foreground disabled:opacity-40 focus:outline-none focus-visible:ring-2 focus-visible:ring-ring"
               aria-label="Next image"

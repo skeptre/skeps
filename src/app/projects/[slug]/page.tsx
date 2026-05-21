@@ -82,7 +82,7 @@ export default async function ProjectPage({ params }: Props) {
         </section>
 
         <div className="page-block">
-          <ProjectCard project={project} index={0} />
+          <ProjectCard project={project} index={0} titleAs="h1" />
         </div>
       </PageShell>
     </>
