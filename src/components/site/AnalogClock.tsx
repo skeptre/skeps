@@ -17,7 +17,8 @@ const MONTHS = [
 
 function handXY(angleDeg: number, length: number) {
   const rad = (angleDeg - 90) * (Math.PI / 180);
-  return { x: CX + length * Math.cos(rad), y: CY + length * Math.sin(rad) };
+  const round = (n: number) => Math.round(n * 10000) / 10000;
+  return { x: round(CX + length * Math.cos(rad)), y: round(CY + length * Math.sin(rad)) };
 }
 
 function getTime() {
@@ -262,11 +263,9 @@ export default function AnalogClock() {
         <p className="font-mono text-xs text-muted-foreground">
           {time.dateStr}
         </p>
-        {tz && (
-          <p className="mt-0.5 font-mono text-xs text-muted-foreground opacity-60">
-            {tz}
-          </p>
-        )}
+        <p className="mt-0.5 font-mono text-xs text-muted-foreground opacity-60" suppressHydrationWarning>
+          {tz}
+        </p>
       </div>
     </div>
   );

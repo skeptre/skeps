@@ -3,6 +3,8 @@ import Link from "next/link";
 
 import { SITE } from "@/config/site";
 import { PROJECTS, type Project } from "@/data/projects";
+import ProjectsTOC from "@/components/projects/ProjectsTOC";
+import { slugify } from "@/lib/slugify";
 import PageShell from "@/components/ui/PageShell";
 import SectionLabel from "@/components/ui/SectionLabel";
 import TechBadge from "@/components/ui/TechBadge";
@@ -80,6 +82,8 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
 
 export default function ProjectsPage() {
   return (
+    <>
+    <ProjectsTOC />
     <PageShell>
       <p className="fade-in-up stagger-1">
         <Link
@@ -105,7 +109,7 @@ export default function ProjectsPage() {
 
       <div className="mt-16 space-y-16">
         {PROJECTS.map((project, index) => (
-          <div key={project.title}>
+          <div key={project.title} id={slugify(project.title)}>
             <ProjectCard project={project} index={index} />
             {index < PROJECTS.length - 1 && (
               <div className="mt-16 h-px bg-border" />
@@ -114,5 +118,6 @@ export default function ProjectsPage() {
         ))}
       </div>
     </PageShell>
+    </>
   );
 }
