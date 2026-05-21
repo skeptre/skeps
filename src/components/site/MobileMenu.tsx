@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 import { isFileHref } from "@/components/home/home-links";
 import { lockBodyScroll } from "@/lib/lock-body-scroll";
@@ -13,6 +14,7 @@ export default function MobileMenu() {
   const closeRef = useRef<HTMLButtonElement>(null);
   const drawerRef = useRef<HTMLDivElement>(null);
   const hasOpenedRef = useRef(false);
+  const pathname = usePathname();
 
   const close = useCallback(() => setOpen(false), []);
 
@@ -58,17 +60,23 @@ export default function MobileMenu() {
 
   return (
     <>
-      {/* Hamburger — visible below md */}
+      {/* Hamburger toggle — visible below md, animates to × when open */}
       <button
         ref={hamburgerRef}
         className="flex flex-col gap-[5px] p-2 -mr-2 md:hidden"
-        onClick={() => setOpen(true)}
-        aria-label="Open navigation menu"
+        onClick={() => setOpen((o) => !o)}
+        aria-label={open ? "Close navigation menu" : "Open navigation menu"}
         aria-expanded={open}
       >
-        <span className="block h-px w-5 bg-foreground transition-colors" />
-        <span className="block h-px w-5 bg-foreground transition-colors" />
-        <span className="block h-px w-5 bg-foreground transition-colors" />
+        <span
+          className={`block h-px w-5 bg-foreground transition-all duration-200 ${open ? "translate-y-[6px] rotate-45" : ""}`}
+        />
+        <span
+          className={`block h-px w-5 bg-foreground transition-all duration-200 ${open ? "opacity-0 scale-x-0" : ""}`}
+        />
+        <span
+          className={`block h-px w-5 bg-foreground transition-all duration-200 ${open ? "-translate-y-[6px] -rotate-45" : ""}`}
+        />
       </button>
 
       {/* Backdrop */}
@@ -112,8 +120,16 @@ export default function MobileMenu() {
         <nav className="flex flex-col px-6 py-6" aria-label="Mobile navigation">
           {SITE.nav.filter((l) => !l.mobileHidden).map((link) => {
             const label = link.label.toLowerCase();
-            const className =
-              "border-b border-border py-4 font-mono text-sm text-muted-foreground transition-colors last:border-0 hover:text-primary";
+            const isActive =
+              !link.external &&
+              !isFileHref(link.href) &&
+              (link.href === "/" ? pathname === "/" : pathname.startsWith(link.href));
+            const baseClass =
+              "border-b border-border py-4 font-mono text-sm transition-colors last:border-0";
+            const stateClass = isActive
+              ? "text-primary"
+              : "text-muted-foreground hover:text-primary";
+
             if (link.external || isFileHref(link.href)) {
               return (
                 <a
@@ -124,14 +140,21 @@ export default function MobileMenu() {
                     ? { target: "_blank", rel: "noopener noreferrer" }
                     : {})}
                   onClick={close}
-                  className={className}
+                  className={`${baseClass} ${stateClass}`}
                 >
                   {label}
                 </a>
               );
             }
             return (
-              <Link key={link.href} href={link.href} aria-label={link.ariaLabel} onClick={close} className={className}>
+              <Link
+                key={link.href}
+                href={link.href}
+                aria-label={link.ariaLabel}
+                aria-current={isActive ? "page" : undefined}
+                onClick={close}
+                className={`${baseClass} ${stateClass}`}
+              >
                 {label}
               </Link>
             );

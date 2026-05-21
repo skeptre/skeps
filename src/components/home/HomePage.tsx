@@ -103,7 +103,7 @@ export default function HomePage() {
                   >
                     <Icon
                       size={24}
-                      className="text-muted-foreground ui-transition group-hover:text-[var(--brand)]"
+                      className="text-muted-foreground ui-transition transition-transform group-hover:scale-110 group-hover:text-[var(--brand)]"
                       aria-hidden
                     />
                     <span className="whitespace-nowrap font-mono text-xs text-muted-foreground ui-transition group-hover:text-[var(--brand)]">

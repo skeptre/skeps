@@ -26,7 +26,7 @@ export default function NavClock() {
     return () => clearInterval(id);
   }, []);
 
-  if (!display) return null;
+  if (!display) return <div className="w-[7.5rem] h-8" aria-hidden />;
 
   return (
     <div className="flex flex-col items-end">

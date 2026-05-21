@@ -127,7 +127,13 @@ body {
     display: flex;
     align-items: center;
     gap: 1rem;
-    padding-block: 2rem;
+    padding-block: 1.25rem;
+  }
+
+  @media (min-width: 640px) {
+    .divider {
+      padding-block: 2rem;
+    }
   }
 
   .card-surface {
@@ -140,7 +146,7 @@ body {
   }
 
   .ui-transition {
-    transition-property: color, background-color, border-color, width, max-width;
+    transition-property: color, background-color, border-color, width, max-width, opacity;
     transition-duration: var(--duration-ui);
     transition-timing-function: ease-in-out;
   }

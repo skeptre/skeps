@@ -16,7 +16,7 @@ const variantConfig: Record<
 > = {
   hero: {
     shell: "border-border/80",
-    aspect: "aspect-[21/9] sm:aspect-[2/1]",
+    aspect: "aspect-video sm:aspect-[2/1]",
     title: "text-sm sm:text-base",
     imageSizes:
       "(max-width: 768px) 100vw, (max-width: 1280px) 90vw, 1200px",
@@ -49,7 +49,7 @@ export default function ProjectMediaCard({
       type="button"
       onClick={onOpen}
       title={item.title}
-      className={`group flex w-full flex-col overflow-hidden rounded-sm border bg-card text-left ui-transition hover:border-primary/40 focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background ${styles.shell}`}
+      className={`group flex w-full flex-col overflow-hidden rounded-sm border bg-card text-left ui-transition hover:border-primary/60 focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-card ${styles.shell}`}
     >
       <div className={`relative w-full shrink-0 bg-secondary ${styles.aspect}`}>
         <Image
@@ -64,7 +64,7 @@ export default function ProjectMediaCard({
       </div>
       <div className="flex flex-col gap-2 border-t border-border p-4 sm:p-5">
         {item.category && (
-          <span className="w-fit rounded-sm border border-border bg-background px-2 py-0.5 font-mono text-[10px] uppercase tracking-wide text-muted-foreground">
+          <span className="w-fit rounded-sm border border-border bg-background px-2 py-0.5 font-mono text-[11px] uppercase tracking-wide text-muted-foreground ui-transition group-hover:border-primary/40 group-hover:text-primary/80 sm:text-[10px]">
             {item.category}
           </span>
         )}

@@ -62,11 +62,11 @@ export default function ProjectsTOC({ projects }: { projects: TocProject[] }) {
             {/* Label — clipped to zero width when collapsed */}
             <div
               className={`overflow-hidden whitespace-nowrap ui-transition ${
-                expanded ? "max-w-[220px]" : "max-w-0"
+                expanded ? "max-w-[200px]" : "max-w-0"
               }`}
             >
               <span
-                className={`block pr-1 font-mono text-xs transition-colors ${
+                className={`block truncate pr-1 font-mono text-xs transition-colors ${
                   isActive
                     ? "text-foreground"
                     : "text-muted-foreground group-hover:text-foreground"
