@@ -6,8 +6,8 @@ import ProjectsTOC from "@/components/projects/ProjectsTOC";
 import ProjectCard from "@/components/projects/ProjectCard";
 import { slugify } from "@/lib/slugify";
 import BackLink from "@/components/ui/BackLink";
+import PageHeader from "@/components/ui/PageHeader";
 import PageShell from "@/components/ui/PageShell";
-import SectionLabel from "@/components/ui/SectionLabel";
 
 export const metadata: Metadata = {
   title: "Projects",
@@ -22,25 +22,18 @@ export default function ProjectsPage() {
       <PageShell>
         <BackLink />
 
-        <section className="mt-12">
-          <SectionLabel>work</SectionLabel>
+        <PageHeader
+          label="work"
+          title="Projects."
+          description="University projects and beyond coursework projects."
+          constrained
+        />
 
-          <h1 className="fade-in-up stagger-2 text-4xl font-bold leading-tight tracking-tight md:text-5xl">
-            Projects.
-          </h1>
-
-          <p className="fade-in-up stagger-3 mt-6 max-w-lg text-base leading-relaxed text-muted-foreground">
-            University projects and beyond coursework projects.
-          </p>
-        </section>
-
-        <div className="mt-16 space-y-16">
+        <div className="page-block space-y-16">
         {PROJECTS.map((project, index) => (
           <div key={project.title} id={slugify(project.title)}>
             <ProjectCard project={project} index={index} />
-            {index < PROJECTS.length - 1 && (
-              <div className="mt-16 h-px bg-border" />
-            )}
+            {index < PROJECTS.length - 1 && <div className="section-rule" />}
           </div>
         ))}
       </div>

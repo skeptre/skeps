@@ -47,11 +47,11 @@ export default function MobileMenu() {
       {/* Drawer */}
       <div
         role="dialog"
-        aria-modal="true"
+        aria-modal={open}
         aria-label="Navigation"
-        aria-hidden={!open}
-        className={`fixed inset-y-0 right-0 z-50 flex w-64 flex-col border-l border-border bg-card transition-transform duration-200 ease-in-out md:hidden ${
-          open ? "translate-x-0" : "translate-x-full"
+        inert={!open ? true : undefined}
+        className={`fixed inset-y-0 right-0 z-50 flex w-64 flex-col border-l border-border bg-card ui-transition md:hidden ${
+          open ? "translate-x-0" : "pointer-events-none translate-x-full"
         }`}
       >
         {/* Header */}

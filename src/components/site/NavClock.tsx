@@ -33,7 +33,7 @@ export default function NavClock() {
       <span className="font-mono text-xs tabular-nums text-muted-foreground">
         {display.time}
       </span>
-      <span className="font-mono text-[10px] tabular-nums text-muted-foreground/60">
+      <span className="font-mono text-xs tabular-nums text-muted-foreground">
         {display.date}
       </span>
     </div>

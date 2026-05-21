@@ -1,10 +1,10 @@
 import { SITE } from "@/config/site";
+import { cardSurfaceClassName } from "@/lib/ui";
 
 export const mailtoLinkClassName =
-  "font-mono text-sm text-foreground underline decoration-border underline-offset-4 transition-colors hover:text-primary hover:decoration-primary focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2";
+  "font-mono text-sm text-foreground underline decoration-border underline-offset-4 transition-colors hover:text-primary hover:decoration-primary focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background";
 
-export const profileLinkClassName =
-  "inline-flex min-w-[7rem] items-center justify-center rounded-sm border border-border bg-card px-4 py-2.5 font-mono text-sm text-muted-foreground transition-all hover:border-primary/50 hover:bg-card/80 hover:text-foreground focus:outline-none focus-visible:ring-2 focus-visible:ring-ring";
+export const profileLinkClassName = `${cardSurfaceClassName} min-w-[7rem] justify-center px-4 py-2.5 hover:bg-card/80`;
 
 export type HomeLinkItem = {
   label: string;

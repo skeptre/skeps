@@ -77,11 +77,11 @@ export default async function ProjectPage({ params }: Props) {
       <PageShell>
         <BackLink href="/projects" label="projects" />
 
-        <section className="mt-12">
+        <section className="page-section">
           <SectionLabel>work</SectionLabel>
         </section>
 
-        <div className="mt-16">
+        <div className="page-block">
           <ProjectCard project={project} index={0} />
         </div>
       </PageShell>

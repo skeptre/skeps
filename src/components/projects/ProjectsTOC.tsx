@@ -55,13 +55,14 @@ export default function ProjectsTOC() {
         return (
           <button
             key={id}
+            type="button"
             onClick={() => jump(id)}
             className="group flex items-center gap-3"
             aria-label={`Go to ${project.title}`}
           >
             {/* Label — clipped to zero width when collapsed */}
             <div
-              className={`overflow-hidden whitespace-nowrap transition-all duration-200 ease-in-out ${
+              className={`overflow-hidden whitespace-nowrap ui-transition ${
                 expanded ? "max-w-[220px]" : "max-w-0"
               }`}
             >
@@ -78,7 +79,7 @@ export default function ProjectsTOC() {
 
             {/* Indicator line */}
             <span
-              className={`block h-[2px] rounded-full transition-all duration-200 ${
+              className={`block h-[2px] rounded-full ui-transition ${
                 isActive
                   ? "w-6 bg-primary"
                   : "w-4 bg-border group-hover:w-5 group-hover:bg-muted-foreground"

@@ -15,7 +15,7 @@ import {
 
 import { SITE } from "@/config/site";
 import Divider from "@/components/ui/Divider";
-import SectionLabel from "@/components/ui/SectionLabel";
+import PageHeader from "@/components/ui/PageHeader";
 import {
   HOME_LINKS,
   isExternalHref,
@@ -50,7 +50,6 @@ function ProfileLinksNav() {
               href={link.href}
               target="_blank"
               rel="noopener noreferrer"
-              aria-label={link.ariaLabel ?? link.label}
               className={profileLinkClassName}
             >
               {link.label}
@@ -62,7 +61,6 @@ function ProfileLinksNav() {
           <Link
             key={link.href}
             href={link.href}
-            aria-label={link.ariaLabel ?? link.label}
             className={profileLinkClassName}
           >
             {link.label}
@@ -80,11 +78,12 @@ export default function HomePage() {
       <section className="relative flex min-h-[80vh] items-center bg-grid">
         <div className="mx-auto w-full max-w-[1400px] px-8 py-20">
           <div className="max-w-2xl">
-            <SectionLabel>about</SectionLabel>
-
-            <h1 className="fade-in-up stagger-2 text-4xl font-bold leading-tight tracking-tight md:text-5xl lg:text-6xl">
-              Graduate Software Engineer focused on backend systems, AI and data engineering.
-            </h1>
+            <PageHeader
+              layout="standalone"
+              variant="hero"
+              label="about"
+              title="Graduate Software Engineer focused on backend systems, AI and data engineering."
+            />
 
             <div className="fade-in-up stagger-3 mt-10">
               {[STACK.slice(0, 8), STACK.slice(8)].map((row, rowIdx) => (
@@ -101,14 +100,14 @@ export default function HomePage() {
                       rel="noopener noreferrer"
                       aria-label={`${label} documentation`}
                       style={{ "--brand": color } as React.CSSProperties}
-                      className="group flex w-16 shrink-0 flex-col items-center gap-2"
+                      className="group flex w-16 shrink-0 flex-col items-center gap-2 rounded-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
                     >
                       <Icon
                         size={24}
-                        className="text-muted-foreground/50 transition-colors duration-200 group-hover:text-[var(--brand)]"
+                        className="text-muted-foreground ui-transition group-hover:text-[var(--brand)]"
                         aria-hidden
                       />
-                      <span className="whitespace-nowrap font-mono text-[10px] text-muted-foreground/50 transition-colors duration-200 group-hover:text-[var(--brand)]">
+                      <span className="whitespace-nowrap font-mono text-xs text-muted-foreground ui-transition group-hover:text-[var(--brand)]">
                         {label}
                       </span>
                     </a>
@@ -128,7 +127,7 @@ export default function HomePage() {
       <section id="links" className="mx-auto max-w-[1400px] px-8 pb-20">
         <ProfileLinksNav />
 
-        <div className="mt-16 border-t border-border pt-8">
+        <div className="section-footer">
           <p className="max-w-lg text-sm leading-relaxed text-muted-foreground">
             If you&apos;re hiring for graduate or junior backend roles, feel
             free to reach out at{" "}

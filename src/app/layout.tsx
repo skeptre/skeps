@@ -60,7 +60,7 @@ export default function RootLayout({
         </a>
         <SiteToolbar />
         <div className="pt-16">{children}</div>
-        <Analytics />
+        {process.env.VERCEL === "1" ? <Analytics /> : null}
       </body>
     </html>
   );

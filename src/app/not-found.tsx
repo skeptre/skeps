@@ -1,23 +1,18 @@
-import PageShell from "@/components/ui/PageShell";
-import SectionLabel from "@/components/ui/SectionLabel";
 import BackLink from "@/components/ui/BackLink";
+import PageHeader from "@/components/ui/PageHeader";
+import PageShell from "@/components/ui/PageShell";
 
 export default function NotFound() {
   return (
     <PageShell>
       <BackLink />
 
-      <section className="mt-12">
-        <SectionLabel>404</SectionLabel>
-
-        <h1 className="fade-in-up stagger-2 text-4xl font-bold leading-tight tracking-tight md:text-5xl">
-          Page not found.
-        </h1>
-
-        <p className="fade-in-up stagger-3 mt-6 max-w-sm text-base leading-relaxed text-muted-foreground">
-          This route doesn&apos;t exist. Head back home.
-        </p>
-      </section>
+      <PageHeader
+        label="404"
+        title="Page not found."
+        description="This route doesn't exist. Head back home."
+        constrained
+      />
     </PageShell>
   );
 }

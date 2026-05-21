@@ -1,5 +1,11 @@
+import type { Metadata } from "next";
+
 import { SITE } from "@/config/site";
 import HomePage from "@/components/home/HomePage";
+
+export const metadata: Metadata = {
+  alternates: { canonical: SITE.url },
+};
 
 const jsonLd = {
   "@context": "https://schema.org",

@@ -5,7 +5,7 @@ import MobileMenu from "@/components/site/MobileMenu";
 import NavClock from "@/components/site/NavClock";
 
 const navLinkClass =
-  "font-mono text-sm text-muted-foreground transition-colors hover:text-primary";
+  "font-mono text-sm text-muted-foreground ui-transition hover:text-primary focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background rounded-sm";
 
 export default function SiteToolbar() {
   return (
@@ -14,7 +14,6 @@ export default function SiteToolbar() {
         <Link
           href="/"
           className="font-mono text-sm font-medium text-primary"
-          aria-label="Home"
         >
           &lt;{SITE.handle} /&gt;
         </Link>
@@ -29,7 +28,6 @@ export default function SiteToolbar() {
                 href={link.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                aria-label={link.ariaLabel}
                 className={navLinkClass}
               >
                 {link.label.toLowerCase()}
@@ -38,7 +36,6 @@ export default function SiteToolbar() {
               <Link
                 key={link.href}
                 href={link.href}
-                aria-label={link.ariaLabel}
                 className={navLinkClass}
               >
                 {link.label.toLowerCase()}

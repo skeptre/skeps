@@ -10,6 +10,11 @@
 
 # testing
 /coverage
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/
+/.lighthouseci/
 
 # next.js
 /.next/
@@ -17,23 +22,35 @@
 
 # production
 /build
+/dist
 
 # misc
 .DS_Store
+Thumbs.db
 *.pem
 .idea
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
 
 # debug logs
+*.log
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 .pnpm-debug.log*
 
-# env files
-.env*
+# env (secrets only — .env.example is committed)
+.env
+.env.*
+!.env.example
 
 # vercel
 .vercel
 
 # typescript
 *.tsbuildinfo
+
+# tooling caches
+.eslintcache
+.turbo

@@ -57,7 +57,7 @@ export default function ProjectCard({
 
       {/* Stack */}
       <div className="mt-8">
-        <div className="mb-4 flex items-center gap-3">
+        <div className="divider py-0 mb-4">
           <span className="font-mono text-xs text-primary">{"//"}</span>
           <span className="font-mono text-xs text-muted-foreground">stack</span>
           <div className="h-px flex-1 bg-border" />
