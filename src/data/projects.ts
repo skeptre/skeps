@@ -40,6 +40,23 @@ export const PROJECTS: Project[] = [
     github: "https://github.com/skeptre/retail-ops-platform",
   },
   {
+    title: "Support Ticket Management API",
+    type: "backend / api",
+    paragraphs: [
+      "Developed a backend support ticket management API using Python and FastAPI with JWT authentication, user registration/login flows, and per-user ticket CRUD operations. Implemented SQLAlchemy models, Alembic database migrations, Pydantic validation schemas, and protected API routes with ownership-based access control. Added Docker support, automated pytest test coverage, and environment-based configuration management for local development and deployment workflows.",
+    ],
+    stack: [
+      "Python",
+      "FastAPI",
+      "SQLAlchemy",
+      "Pydantic",
+      "JWT",
+      "pytest",
+      "Docker",
+    ],
+    github: "https://github.com/skeptre/ticket-api",
+  },
+  {
     title: "Activity Tracker — Mobile",
     type: "mobile / frontend",
     paragraphs: [
