@@ -54,13 +54,13 @@ function initTz() {
 
 export default function AnalogClock() {
   const [time, setTime] = useState(getTime);
-  const [pos, setPos] = useState(initPos);
+  const [pos, setPos] = useState<{ x: number; y: number } | null>(null);
   const [tz] = useState(initTz);
   const [isDragging, setIsDragging] = useState(false);
 
   const drag = useRef({ active: false, ox: 0, oy: 0 });
   const vel = useRef({ x: 0, y: 0 });
-  const posRef = useRef(pos);
+  const posRef = useRef({ x: 0, y: 0 });
   const rafRef = useRef<number | null>(null);
   const trail = useRef<{ x: number; y: number; t: number }[]>([]);
 
@@ -98,6 +98,15 @@ export default function AnalogClock() {
     }
     rafRef.current = requestAnimationFrame(frame);
   }, [stopPhysics]);
+
+  // Set position on client after mount — rAF callback satisfies the setState-in-effect rule
+  useEffect(() => {
+    requestAnimationFrame(() => {
+      const p = initPos();
+      posRef.current = p;
+      setPos(p);
+    });
+  }, []);
 
   // Clock tick
   useEffect(() => {
@@ -198,6 +207,8 @@ export default function AnalogClock() {
     setIsDragging(true);
   };
 
+  if (!pos) return null;
+
   const hour = handXY(time.h, R * 0.50);
   const minute = handXY(time.m, R * 0.68);
   const secondTip = handXY(time.s, R * 0.82);
@@ -205,7 +216,6 @@ export default function AnalogClock() {
 
   return (
     <div
-      suppressHydrationWarning
       style={{ position: "fixed", left: pos.x, top: pos.y, zIndex: 40, cursor: isDragging ? "grabbing" : "grab" }}
       className="select-none flex flex-col items-center gap-2"
       onMouseDown={onMouseDown}

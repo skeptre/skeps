@@ -102,9 +102,9 @@ export default function ProjectsPage() {
         </h1>
 
         <p className="fade-in-up stagger-3 mt-6 max-w-lg text-base leading-relaxed text-muted-foreground">
-          Backend systems, tools, and experiments. Built to solve real problems
-          and understand how things break.
+          University projects and beyond coursework projects.
         </p>
+
       </section>
 
       <div className="mt-16 space-y-16">
