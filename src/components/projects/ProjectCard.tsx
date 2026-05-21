@@ -3,6 +3,11 @@ import { slugify } from "@/lib/slugify";
 import ProjectEvidenceSection from "@/components/projects/ProjectEvidenceSection";
 import TechBadge from "@/components/ui/TechBadge";
 
+const titleClassName = {
+  h1: "text-3xl font-bold tracking-tight text-primary md:text-4xl lg:text-[2.75rem] lg:leading-tight",
+  h2: "text-3xl font-bold tracking-tight text-primary md:text-4xl",
+} as const;
+
 export default function ProjectCard({
   project,
   index,
@@ -18,27 +23,34 @@ export default function ProjectCard({
 
   return (
     <article className={`fade-in-up ${delay}`}>
-      {/* Header */}
-      <div className="flex flex-col gap-2 sm:flex-row sm:items-baseline sm:justify-between sm:gap-6">
-        <div>
-          <TitleTag className="text-2xl font-bold tracking-tight md:text-3xl">
-            {project.title}
-          </TitleTag>
-          <p className="mt-1 font-mono text-xs text-primary">
-            {"//"} {project.type}
-          </p>
+      <header className="flex gap-4 sm:gap-5">
+        <div
+          className="w-0.5 shrink-0 self-stretch rounded-full bg-primary"
+          aria-hidden
+        />
+        <div className="min-w-0 flex-1">
+          <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between sm:gap-6">
+            <div className="min-w-0">
+              <TitleTag className={titleClassName[titleAs]}>
+                {project.title}
+              </TitleTag>
+              <p className="mt-2 font-mono text-xs text-primary">
+                {"//"} {project.type}
+              </p>
+            </div>
+            {project.github && (
+              <a
+                href={project.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="shrink-0 font-mono text-xs text-muted-foreground transition-colors hover:text-primary"
+              >
+                github →
+              </a>
+            )}
+          </div>
         </div>
-        {project.github && (
-          <a
-            href={project.github}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="shrink-0 font-mono text-xs text-muted-foreground transition-colors hover:text-primary"
-          >
-            github →
-          </a>
-        )}
-      </div>
+      </header>
 
       {/* Description */}
       <div className="mt-6 space-y-4 text-base leading-relaxed text-muted-foreground">

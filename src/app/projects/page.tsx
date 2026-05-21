@@ -29,9 +29,13 @@ export default function ProjectsPage() {
           constrained
         />
 
-        <div className="page-block space-y-16">
+        <div className="page-block">
         {PROJECTS.map((project, index) => (
-          <div key={project.title} id={slugify(project.title)}>
+          <div
+            key={project.title}
+            id={slugify(project.title)}
+            className={index > 0 ? "mt-20 pt-2" : undefined}
+          >
             <ProjectCard project={project} index={index} />
             {index < PROJECTS.length - 1 && <div className="section-rule" />}
           </div>
