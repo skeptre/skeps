@@ -20,8 +20,8 @@ const csp = [
   "img-src 'self' blob: data:",
   "font-src 'self'",
   "style-src 'self' 'unsafe-inline'",
-  "script-src 'self' 'unsafe-inline' https://va.vercel-scripts.com",
-  "connect-src 'self' https://vitals.vercel-insights.com",
+  "script-src 'self' 'unsafe-inline'",
+  "connect-src 'self'",
   "upgrade-insecure-requests",
 ].join("; ");
 
