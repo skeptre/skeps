@@ -26,11 +26,10 @@ The connected Cloudflare Workers Builds project should use:
 | Setting | Value |
 |---|---|
 | Production branch | `master` |
-| Build command | `npm run build` |
-| Deploy command | `npx wrangler deploy` |
-| Non-production deploy command | `npx wrangler versions upload` |
+| Build command | `npx @opennextjs/cloudflare build` |
+| Deploy command | `npx @opennextjs/cloudflare deploy` |
 
-`npm run build` is intentionally the Cloudflare/OpenNext production build. Use `npm run build:next` when you specifically want the native Next.js build used by `next start`.
+The standard `npm run build` command remains the native Next.js build because OpenNext invokes the package's `build` script internally. Use `npm run cf:build` when you want the Workers-compatible OpenNext artifact.
 
 The Worker configuration lives in `wrangler.jsonc`; its `name` must remain `skeps` to target the already-connected Worker. The OpenNext adapter configuration lives in `open-next.config.ts`.
 
@@ -73,17 +72,18 @@ Open [http://localhost:3000](http://localhost:3000).
 | Command | Description |
 |---|---|
 | `npm run dev` | Start the Next.js development server |
-| `npm run build` | Build the Cloudflare/OpenNext production artifact |
-| `npm run build:next` | Build the native Next.js production output |
+| `npm run build` | Build the native Next.js production output |
+| `npm run build:next` | Alias for the native Next.js production build |
 | `npm run start` | Start the native Next.js production server |
 | `npm run preview` | Build and preview in the Workers runtime |
 | `npm run deploy` | Build and deploy to Cloudflare Workers |
+| `npm run upload` | Build and upload a Worker version without immediately deploying it |
 | `npm run cf-typegen` | Generate Cloudflare environment binding types |
 | `npm run lint` | Run ESLint |
 | `npm run typecheck` | Run TypeScript without emitting files |
 | `npm run test:e2e` | Run Playwright smoke and axe accessibility tests |
 | `npm run lighthouse` | Run Lighthouse CI |
-| `npm run cf:build` | Alias for the Cloudflare production build |
+| `npm run cf:build` | Build the Cloudflare/OpenNext production artifact |
 | `npm run cf:preview` | Alias for the Workers preview |
 | `npm run cf:deploy` | Alias for the Workers deploy |
 | `npm run cf:typegen` | Alias for Cloudflare type generation |
@@ -127,9 +127,9 @@ Before merging a production change:
 npm ci
 npm run lint
 npm run typecheck
-npm run build:next
-npm run test:e2e
 npm run build
+npm run test:e2e
+npm run cf:build
 ```
 
 A successful native Next.js build is not sufficient on its own; the OpenNext/Cloudflare build must also pass.
