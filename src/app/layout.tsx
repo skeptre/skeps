@@ -1,4 +1,3 @@
-import { Analytics } from "@vercel/analytics/next";
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
 import { Inter, JetBrains_Mono } from "next/font/google";
@@ -60,7 +59,6 @@ export default function RootLayout({
         </a>
         <SiteToolbar />
         <div className="pt-16">{children}</div>
-        {process.env.VERCEL === "1" ? <Analytics /> : null}
       </body>
     </html>
   );
