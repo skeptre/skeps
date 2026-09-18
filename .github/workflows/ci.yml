@@ -22,6 +22,20 @@ jobs:
       - run: npm run typecheck
       - run: npm run build
 
+  cloudflare:
+    runs-on: ubuntu-latest
+    needs: check
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - run: npm ci
+      - run: npm run cf:build
+
   e2e:
     runs-on: ubuntu-latest
     needs: check
