@@ -28,6 +28,13 @@ const csp = [
 export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
+  if (request.nextUrl.hostname === "www.aliskeps.com") {
+    const url = request.nextUrl.clone();
+    url.hostname = "aliskeps.com";
+    url.protocol = "https:";
+    return NextResponse.redirect(url, 301);
+  }
+
   if (isPublicAsset(pathname)) {
     return NextResponse.next();
   }
