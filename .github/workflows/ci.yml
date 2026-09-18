@@ -52,8 +52,21 @@ jobs:
       - run: npm run test:e2e
 
   lighthouse:
+    name: lighthouse (${{ matrix.name }})
     runs-on: ubuntu-latest
     needs: check
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - name: home
+            path: /
+          - name: projects
+            path: /projects
+          - name: contact
+            path: /contact
+    env:
+      LIGHTHOUSE_PATH: ${{ matrix.path }}
     steps:
       - uses: actions/checkout@v4
 
