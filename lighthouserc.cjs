@@ -1,18 +1,16 @@
+const auditPath = process.env.LIGHTHOUSE_PATH ?? "/";
+const auditUrl = new URL(auditPath, "http://127.0.0.1:3001").toString();
+
 module.exports = {
   ci: {
     collect: {
-      url: [
-        "http://127.0.0.1:3001/",
-        "http://127.0.0.1:3001/projects",
-        "http://127.0.0.1:3001/contact",
-      ],
+      url: [auditUrl],
       startServerCommand: "npm run start -- -p 3001 -H 127.0.0.1",
       startServerReadyPattern: "127.0.0.1:3001",
       numberOfRuns: 1,
       settings: {
-        // GitHub Actions can background the headless renderer between
-        // sequential URL audits. That can pause the site's entry animation
-        // before first contentful paint and produce a spurious NO_FCP.
+        // Keep headless rendering active and deterministic on GitHub-hosted
+        // runners. Each route is also isolated into its own CI job.
         chromeFlags:
           "--no-sandbox --disable-dev-shm-usage --disable-backgrounding-occluded-windows --disable-renderer-backgrounding --disable-background-timer-throttling",
       },
