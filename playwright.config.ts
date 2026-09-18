@@ -13,6 +13,10 @@ export default defineConfig({
   use: {
     baseURL,
     trace: "on-first-retry",
+    // The UI supports prefers-reduced-motion. Disable entry animations in
+    // automated accessibility checks so axe audits the stable rendered state
+    // rather than a partially transparent animation frame.
+    reducedMotion: "reduce",
   },
   webServer: process.env.PLAYWRIGHT_BASE_URL
     ? undefined
