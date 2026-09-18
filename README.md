@@ -15,28 +15,30 @@ Personal software engineering portfolio for [aliskeps.com](https://aliskeps.com)
 
 ## Deployment
 
-Production is intended to run on Cloudflare Workers. The repository keeps the deployment configuration in source control so the production runtime can be reproduced locally and in CI.
+Production runs on the existing Cloudflare Worker named `skeps`. The repository keeps the Worker and OpenNext configuration in source control so the production artifact is reproducible locally and in CI.
 
-This project uses the OpenNext Cloudflare adapter rather than a framework migration. That keeps the existing Next.js App Router, middleware, metadata routes, and image handling intact while making the Worker build explicit.
+This project uses the OpenNext Cloudflare adapter. That preserves the existing Next.js App Router, middleware, metadata routes, and image handling while producing a Workers-compatible artifact.
 
 ### Cloudflare Workers Builds
 
-Use these settings when connecting the repository to Cloudflare Workers Builds:
+The connected Cloudflare Workers Builds project should use:
 
 | Setting | Value |
 |---|---|
 | Production branch | `master` |
-| Build command | `npm run cf:build` |
-| Deploy command | `npm run cf:deploy:only` |
+| Build command | `npm run build` |
+| Deploy command | `npx wrangler deploy` |
 | Non-production deploy command | `npx wrangler versions upload` |
 
-The Worker configuration lives in `wrangler.jsonc`. The OpenNext adapter configuration lives in `open-next.config.ts`.
+`npm run build` is intentionally the Cloudflare/OpenNext production build. Use `npm run build:next` when you specifically want the native Next.js build used by `next start`.
+
+The Worker configuration lives in `wrangler.jsonc`; its `name` must remain `skeps` to target the already-connected Worker. The OpenNext adapter configuration lives in `open-next.config.ts`.
 
 ### Local Cloudflare preview
 
 ```bash
 npm ci
-npm run cf:preview
+npm run preview
 ```
 
 ### Deploy from the CLI
@@ -44,13 +46,13 @@ npm run cf:preview
 Authenticate Wrangler first, then run:
 
 ```bash
-npm run cf:deploy
+npm run deploy
 ```
 
 ### Generate Cloudflare binding types
 
 ```bash
-npm run cf:typegen
+npm run cf-typegen
 ```
 
 No Cloudflare bindings are currently required by the application, but generated types are useful if bindings are added later.
@@ -71,17 +73,20 @@ Open [http://localhost:3000](http://localhost:3000).
 | Command | Description |
 |---|---|
 | `npm run dev` | Start the Next.js development server |
-| `npm run build` | Build the standard Next.js production output |
-| `npm run start` | Start the standard Next.js production server |
+| `npm run build` | Build the Cloudflare/OpenNext production artifact |
+| `npm run build:next` | Build the native Next.js production output |
+| `npm run start` | Start the native Next.js production server |
+| `npm run preview` | Build and preview in the Workers runtime |
+| `npm run deploy` | Build and deploy to Cloudflare Workers |
+| `npm run cf-typegen` | Generate Cloudflare environment binding types |
 | `npm run lint` | Run ESLint |
 | `npm run typecheck` | Run TypeScript without emitting files |
 | `npm run test:e2e` | Run Playwright smoke and axe accessibility tests |
 | `npm run lighthouse` | Run Lighthouse CI |
-| `npm run cf:build` | Build the Cloudflare Worker via OpenNext |
-| `npm run cf:preview` | Build and preview in the Workers runtime |
-| `npm run cf:deploy` | Build and deploy to Cloudflare Workers |
-| `npm run cf:deploy:only` | Deploy an already-built `.open-next` Worker |
-| `npm run cf:typegen` | Generate Cloudflare environment binding types |
+| `npm run cf:build` | Alias for the Cloudflare production build |
+| `npm run cf:preview` | Alias for the Workers preview |
+| `npm run cf:deploy` | Alias for the Workers deploy |
+| `npm run cf:typegen` | Alias for Cloudflare type generation |
 
 ## Quality assurance
 
@@ -90,13 +95,13 @@ GitHub Actions validates:
 1. dependency installation
 2. ESLint
 3. TypeScript
-4. the standard Next.js production build
+4. the native Next.js production build
 5. the Cloudflare/OpenNext production build
 6. Playwright smoke tests
 7. axe accessibility checks
-8. Lighthouse accessibility, best-practices, and SEO thresholds
+8. Lighthouse Accessibility, Best Practices, and SEO thresholds for the home, projects, and contact routes
 
-Lighthouse CI currently gates Accessibility, Best Practices, and SEO at **0.90 or higher**. Performance is observed separately and is not currently a hard CI gate.
+The Lighthouse routes run as separate CI jobs so a headless Chromium failure on one audit cannot contaminate a later route. Lighthouse currently gates Accessibility, Best Practices, and SEO at **0.90 or higher**. Performance is observed separately and is not currently a hard CI gate.
 
 ## Updating the CV
 
@@ -122,9 +127,9 @@ Before merging a production change:
 npm ci
 npm run lint
 npm run typecheck
-npm run build
+npm run build:next
 npm run test:e2e
-npm run cf:build
+npm run build
 ```
 
-Do not treat a successful `next build` alone as proof that the Cloudflare Worker build is valid.
+A successful native Next.js build is not sufficient on its own; the OpenNext/Cloudflare build must also pass.
