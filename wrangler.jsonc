@@ -8,10 +8,6 @@
     {
       "pattern": "aliskeps.com",
       "custom_domain": true
-    },
-    {
-      "pattern": "www.aliskeps.com",
-      "custom_domain": true
     }
   ],
   "assets": {
