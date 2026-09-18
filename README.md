@@ -19,6 +19,12 @@ Production runs on the existing Cloudflare Worker named `skeps`. The repository 
 
 This project uses the OpenNext Cloudflare adapter. That preserves the existing Next.js App Router, middleware, metadata routes, and image handling while producing a Workers-compatible artifact.
 
+### Domains
+
+The canonical production hostname is `aliskeps.com`, attached directly to the `skeps` Worker as a Cloudflare Custom Domain.
+
+`www.aliskeps.com` should not be attached as a second Worker Custom Domain. Instead, keep a proxied DNS record for `www` and use a Cloudflare 301 redirect from `www.aliskeps.com` to `https://aliskeps.com`, preserving the path and query string.
+
 ### Cloudflare Workers Builds
 
 The connected Cloudflare Workers Builds project should use:
