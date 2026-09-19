@@ -9,7 +9,7 @@ import { cardSurfaceClassName } from "@/lib/ui";
 
 export const metadata: Metadata = {
   title: "Contact",
-  description: `Get in touch with ${SITE.name} by email.`,
+  description: `Get in touch with ${SITE.name} about software engineering work and technical collaboration.`,
   alternates: { canonical: `${SITE.url}/contact` },
 };
 
@@ -21,6 +21,7 @@ const jsonLd = {
   mainEntity: {
     "@type": "Person",
     name: SITE.name,
+    jobTitle: SITE.role,
     email: SITE.email,
     url: SITE.url,
   },
@@ -39,7 +40,7 @@ export default function ContactPage() {
         <PageHeader
           label="contact"
           title="Get in touch."
-          description="For opportunities, collaborations, or questions, email is the best way to reach me."
+          description="For software engineering opportunities, technical collaboration, or questions about my projects, email is the best way to reach me."
         />
 
         <div className="fade-in-up stagger-4">
