@@ -4,7 +4,6 @@ import { SITE } from "@/config/site";
 import HomePage from "@/components/home/HomePage";
 
 export const metadata: Metadata = {
-  title: `${SITE.name} | ${SITE.role}`,
   description: SITE.description,
   alternates: { canonical: SITE.url },
 };
