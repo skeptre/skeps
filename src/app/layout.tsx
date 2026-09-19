@@ -22,21 +22,23 @@ export const metadata: Metadata = {
     process.env.NEXT_PUBLIC_SITE_URL ?? SITE.url,
   ),
   title: {
-    default: SITE.name,
+    default: `${SITE.name} | ${SITE.role}`,
     template: `%s | ${SITE.name}`,
   },
   description: SITE.description,
+  authors: [{ name: SITE.name, url: SITE.url }],
+  creator: SITE.name,
   openGraph: {
     type: "website",
     locale: "en_GB",
     url: SITE.url,
     siteName: SITE.name,
-    title: SITE.name,
+    title: `${SITE.name} | ${SITE.role}`,
     description: SITE.description,
   },
   twitter: {
-    card: "summary",
-    title: SITE.name,
+    card: "summary_large_image",
+    title: `${SITE.name} | ${SITE.role}`,
     description: SITE.description,
   },
 };
