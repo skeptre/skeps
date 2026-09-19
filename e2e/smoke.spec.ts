@@ -31,6 +31,45 @@ test.describe("route smoke", () => {
     expect(response.headers()["content-type"] ?? "").toMatch(/pdf/i);
   });
 
+  test("homepage presents work, writing and contact paths", async ({ page }) => {
+    await page.goto("/");
+
+    await expect(
+      page.getByRole("heading", {
+        level: 1,
+        name: /building backend, data and ai systems/i,
+      }),
+    ).toBeVisible();
+
+    await expect(
+      page.getByRole("link", { name: "Explore selected work" }),
+    ).toHaveAttribute("href", "/projects");
+
+    await expect(
+      page.getByRole("link", { name: /Read case study:/ }).first(),
+    ).toBeVisible();
+
+    await expect(
+      page.getByRole("heading", { name: /Writing down what I learn/i }),
+    ).toBeVisible();
+
+    await expect(
+      page.getByRole("navigation", { name: "Social and contact links" }),
+    ).toBeVisible();
+  });
+
+  test("homepage does not overflow a phone viewport", async ({ page }) => {
+    await page.setViewportSize({ width: 390, height: 844 });
+    await page.goto("/");
+
+    const dimensions = await page.evaluate(() => ({
+      viewport: window.innerWidth,
+      document: document.documentElement.scrollWidth,
+    }));
+
+    expect(dimensions.document).toBeLessThanOrEqual(dimensions.viewport + 1);
+  });
+
   test("home #links anchor navigation", async ({ page }) => {
     await page.goto("/#links");
     const links = page.locator("#links");
