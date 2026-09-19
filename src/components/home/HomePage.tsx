@@ -72,15 +72,13 @@ function ProfileLinksNav() {
         const isAnchor = isExternalHref(link.href) || isFileHref(link.href);
 
         if (isAnchor) {
-          const isPdf = isFileHref(link.href);
           return (
             <a
               key={link.href}
               href={link.href}
               aria-label={link.ariaLabel}
-              {...(isPdf
-                ? {}
-                : { target: "_blank", rel: "noopener noreferrer" })}
+              target="_blank"
+              rel="noopener noreferrer"
               className={`${profileLinkClassName} home-pressable`}
             >
               {link.label}
