@@ -17,7 +17,7 @@ Personal software engineering portfolio for [aliskeps.com](https://aliskeps.com)
 
 Production runs on the existing Cloudflare Worker named `skeps`. The repository keeps the Worker and OpenNext configuration in source control so the production artifact is reproducible locally and in CI.
 
-This project uses the OpenNext Cloudflare adapter. That preserves the existing Next.js App Router, middleware, metadata routes, and image handling while producing a Workers-compatible artifact.
+This project uses the OpenNext Cloudflare adapter. That preserves the existing Next.js App Router, Proxy, metadata routes, and image handling while producing a Workers-compatible artifact.
 
 ### Domains
 
@@ -27,17 +27,20 @@ The canonical production hostname is `aliskeps.com`, attached directly to the `s
 
 ### Cloudflare Workers Builds
 
-The connected Cloudflare Workers Builds project should use:
+The connected Worker currently invokes `npm run build`. This repository intentionally maps that command to the OpenNext Cloudflare build so the Git-integrated Worker receives a deployable `.open-next` artifact.
+
+`open-next.config.ts` overrides OpenNext's internal Next.js build command to `npm run build:next`. This avoids recursive builds while keeping the existing Workers Builds configuration compatible.
+
+Recommended Workers Builds settings are:
 
 | Setting | Value |
 |---|---|
 | Production branch | `master` |
-| Build command | `npx @opennextjs/cloudflare build` |
+| Build command | `npm run build` |
 | Deploy command | `npx @opennextjs/cloudflare deploy` |
+| Non-production deploy command | `npx @opennextjs/cloudflare upload` |
 
-The standard `npm run build` command remains the native Next.js build because OpenNext invokes the package's `build` script internally. Use `npm run cf:build` when you want the Workers-compatible OpenNext artifact.
-
-The Worker configuration lives in `wrangler.jsonc`; its `name` must remain `skeps` to target the already-connected Worker. The OpenNext adapter configuration lives in `open-next.config.ts`.
+The Worker configuration lives in `wrangler.jsonc`; its `name` must remain `skeps` to target the already-connected Worker.
 
 ### Local Cloudflare preview
 
@@ -78,8 +81,8 @@ Open [http://localhost:3000](http://localhost:3000).
 | Command | Description |
 |---|---|
 | `npm run dev` | Start the Next.js development server |
-| `npm run build` | Build the native Next.js production output |
-| `npm run build:next` | Alias for the native Next.js production build |
+| `npm run build` | Build the Cloudflare/OpenNext Worker artifact |
+| `npm run build:next` | Build the native Next.js production output |
 | `npm run start` | Start the native Next.js production server |
 | `npm run preview` | Build and preview in the Workers runtime |
 | `npm run deploy` | Build and deploy to Cloudflare Workers |
@@ -89,7 +92,7 @@ Open [http://localhost:3000](http://localhost:3000).
 | `npm run typecheck` | Run TypeScript without emitting files |
 | `npm run test:e2e` | Run Playwright smoke and axe accessibility tests |
 | `npm run lighthouse` | Run Lighthouse CI |
-| `npm run cf:build` | Build the Cloudflare/OpenNext production artifact |
+| `npm run cf:build` | Alias for the Cloudflare/OpenNext build |
 | `npm run cf:preview` | Alias for the Workers preview |
 | `npm run cf:deploy` | Alias for the Workers deploy |
 | `npm run cf:typegen` | Alias for Cloudflare type generation |
@@ -143,9 +146,9 @@ Before merging a production change:
 npm ci
 npm run lint
 npm run typecheck
-npm run build
+npm run build:next
 npm run test:e2e
-npm run cf:build
+npm run build
 ```
 
 A successful native Next.js build is not sufficient on its own; the OpenNext/Cloudflare build must also pass.
