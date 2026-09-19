@@ -4,7 +4,7 @@ export const mailtoLinkClassName =
   "font-mono text-sm text-foreground underline decoration-border underline-offset-4 transition-colors hover:text-primary hover:decoration-primary focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background";
 
 export const profileLinkClassName =
-  "inline-flex items-center justify-center rounded-md border border-border/80 bg-card/60 px-3.5 py-2 font-mono text-xs text-muted-foreground transition-[transform,color,background-color,border-color] duration-150 [transition-timing-function:var(--ease-out)] hover:border-primary/30 hover:bg-card hover:text-foreground focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background";
+  "home-profile-link inline-flex items-center justify-center rounded-md border border-border/80 bg-card/60 px-3.5 py-2 font-mono text-xs text-muted-foreground focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background";
 
 export type HomeLinkItem = {
   label: string;
