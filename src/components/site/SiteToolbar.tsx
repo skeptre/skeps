@@ -57,9 +57,8 @@ export default function SiteToolbar() {
                     key={link.href}
                     href={link.href}
                     aria-label={link.ariaLabel}
-                    {...(link.external && !isFileHref(link.href)
-                      ? { target: "_blank", rel: "noopener noreferrer" }
-                      : {})}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className={`${navLinkBase} ${stateClass}`}
                   >
                     {label}
