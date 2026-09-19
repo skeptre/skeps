@@ -70,6 +70,27 @@ test.describe("route smoke", () => {
     expect(dimensions.document).toBeLessThanOrEqual(dimensions.viewport + 1);
   });
 
+  test("CV and LinkedIn open in clean new tabs", async ({ page }) => {
+    await page.goto("/");
+
+    const cvLinks = page.getByRole("link", {
+      name: "Open CV as PDF in a new tab",
+    });
+    await expect(cvLinks.first()).toHaveAttribute("href", "/M_Ali_2.pdf");
+    await expect(cvLinks.first()).toHaveAttribute("target", "_blank");
+    await expect(cvLinks.first()).toHaveAttribute("rel", "noopener noreferrer");
+
+    const linkedin = page.getByRole("link", {
+      name: "Open LinkedIn profile in a new tab",
+    });
+    await expect(linkedin).toHaveAttribute(
+      "href",
+      "https://www.linkedin.com/in/skeps/",
+    );
+    await expect(linkedin).toHaveAttribute("target", "_blank");
+    await expect(linkedin).toHaveAttribute("rel", "noopener noreferrer");
+  });
+
   test("home #links anchor navigation", async ({ page }) => {
     await page.goto("/#links");
     const links = page.locator("#links");

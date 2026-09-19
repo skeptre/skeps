@@ -155,9 +155,8 @@ export default function MobileMenu() {
                   key={link.href}
                   href={link.href}
                   aria-label={link.ariaLabel}
-                  {...(link.external && !isFileHref(link.href)
-                    ? { target: "_blank", rel: "noopener noreferrer" }
-                    : {})}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   onClick={close}
                   className={`${baseClass} ${stateClass}`}
                 >
