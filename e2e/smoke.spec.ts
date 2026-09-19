@@ -1,9 +1,20 @@
 import { test, expect } from "@playwright/test";
 import AxeBuilder from "@axe-core/playwright";
 
+import { BLOG_POSTS } from "../src/data/posts";
 import { PROJECTS } from "../src/data/projects";
 
-const PAGES = ["/", "/projects", "/contact"] as const;
+const firstProject = PROJECTS[0];
+const firstPost = BLOG_POSTS[0];
+
+const PAGES = [
+  "/",
+  "/projects",
+  `/projects/${firstProject.slug}`,
+  "/blog",
+  `/blog/${firstPost.slug}`,
+  "/contact",
+] as const;
 
 test.describe("route smoke", () => {
   for (const path of PAGES) {
@@ -29,28 +40,25 @@ test.describe("route smoke", () => {
     ).toBeVisible();
   });
 
-  test("projects TOC scrolls to a project section", async ({ page }) => {
-    await page.setViewportSize({ width: 1280, height: 900 });
+  test("projects index links to a project case study", async ({ page }) => {
     await page.goto("/projects");
+    const caseStudy = page.getByRole("link", { name: "view case study →" }).first();
+    await expect(caseStudy).toHaveAttribute(
+      "href",
+      `/projects/${firstProject.slug}`,
+    );
+  });
 
-    const target = PROJECTS[1] ?? PROJECTS[0];
-    const jump = page.getByRole("button", {
-      name: `Go to ${target.title}`,
-    });
-    await expect(jump).toBeVisible();
-
-    await jump.click();
-    await expect(page.locator(`#${target.slug}`)).toBeInViewport();
+  test("blog index links to a technical note", async ({ page }) => {
+    await page.goto("/blog");
+    const note = page.getByRole("link", { name: "read note →" }).first();
+    await expect(note).toHaveAttribute("href", `/blog/${firstPost.slug}`);
   });
 });
 
 test.describe("axe accessibility", () => {
   for (const path of PAGES) {
     test(`${path} has no axe violations`, async ({ page }) => {
-      // The UI deliberately fades content in. Axe can otherwise sample a
-      // partially transparent animation frame and report false contrast
-      // failures. The site already supports prefers-reduced-motion, so audit
-      // that stable rendered state.
       await page.emulateMedia({ reducedMotion: "reduce" });
       await page.goto(path);
       const results = await new AxeBuilder({ page }).analyze();
