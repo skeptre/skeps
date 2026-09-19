@@ -270,13 +270,18 @@ body {
 
   .home-pressable {
     touch-action: manipulation;
-    transition-property: transform, color, background-color, border-color, opacity;
-    transition-duration: 140ms;
-    transition-timing-function: var(--ease-out);
   }
 
   .home-pressable:active {
     transform: scale(0.97);
+  }
+
+  .card-surface.home-pressable {
+    transition:
+      transform 140ms var(--ease-out),
+      color 160ms ease,
+      background-color 160ms ease,
+      border-color 160ms ease;
   }
 
   .home-text-link {
@@ -288,6 +293,9 @@ body {
     font-size: 0.75rem;
     color: var(--color-muted-foreground);
     outline: none;
+    transition:
+      transform 140ms var(--ease-out),
+      color 160ms ease;
   }
 
   .home-text-link:focus-visible,
