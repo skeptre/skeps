@@ -198,26 +198,26 @@ body {
   }
 
   .home-enter {
-    animation: home-enter 420ms var(--ease-out) both;
+    animation: home-enter 360ms var(--ease-out) both;
   }
 
-  .home-stagger-1 { animation-delay: 40ms; }
-  .home-stagger-2 { animation-delay: 100ms; }
-  .home-stagger-3 { animation-delay: 160ms; }
-  .home-stagger-4 { animation-delay: 220ms; }
-  .home-stagger-5 { animation-delay: 280ms; }
+  .home-stagger-1 { animation-delay: 30ms; }
+  .home-stagger-2 { animation-delay: 80ms; }
+  .home-stagger-3 { animation-delay: 130ms; }
+  .home-stagger-4 { animation-delay: 180ms; }
+  .home-stagger-5 { animation-delay: 230ms; }
 
   .home-profile,
   .home-card,
   .home-note {
-    border: 1px solid hsl(0 0% 100% / 0.09);
-    border-radius: 0.5rem;
+    border: 1px solid hsl(0 0% 100% / 0.085);
+    border-radius: 0.75rem;
     background:
-      linear-gradient(180deg, hsl(0 0% 100% / 0.035), transparent 65%),
-      hsl(0 0% 7% / 0.78);
+      linear-gradient(180deg, hsl(0 0% 100% / 0.03), transparent 58%),
+      hsl(0 0% 7% / 0.76);
     box-shadow:
-      0 1px 0 hsl(0 0% 100% / 0.035) inset,
-      0 18px 60px hsl(0 0% 0% / 0.22);
+      0 1px 0 hsl(0 0% 100% / 0.03) inset,
+      0 12px 44px hsl(0 0% 0% / 0.2);
   }
 
   .home-card,
@@ -232,6 +232,21 @@ body {
   .home-note {
     display: block;
     padding: 1.5rem;
+  }
+
+  .home-project-image {
+    transition: transform 220ms var(--ease-out);
+  }
+
+  .home-profile-link {
+    touch-action: manipulation;
+    user-select: none;
+    -webkit-user-select: none;
+    transition:
+      transform 140ms var(--ease-out),
+      color 160ms ease,
+      background-color 160ms ease,
+      border-color 160ms ease;
   }
 
   .home-button {
@@ -276,6 +291,11 @@ body {
     transform: scale(0.97);
   }
 
+  .home-card.home-pressable:active,
+  .home-note.home-pressable:active {
+    transform: scale(0.995);
+  }
+
   .card-surface.home-pressable {
     transition:
       transform 140ms var(--ease-out),
@@ -316,10 +336,14 @@ body {
     .home-card:hover,
     .home-note:hover {
       transform: translateY(-2px);
-      border-color: hsl(130 100% 50% / 0.28);
+      border-color: hsl(130 100% 50% / 0.24);
       box-shadow:
-        0 1px 0 hsl(0 0% 100% / 0.04) inset,
-        0 22px 70px hsl(0 0% 0% / 0.28);
+        0 1px 0 hsl(0 0% 100% / 0.035) inset,
+        0 18px 56px hsl(0 0% 0% / 0.26);
+    }
+
+    .home-card:hover .home-project-image {
+      transform: scale(1.012);
     }
 
     .home-card:hover .home-arrow,
@@ -338,6 +362,12 @@ body {
 
     .home-text-link:hover {
       color: var(--color-primary);
+    }
+
+    .home-profile-link:hover {
+      border-color: hsl(130 100% 50% / 0.28);
+      background: var(--color-card);
+      color: var(--color-foreground);
     }
   }
 
