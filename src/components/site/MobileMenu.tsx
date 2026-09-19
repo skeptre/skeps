@@ -18,7 +18,6 @@ export default function MobileMenu() {
 
   const close = useCallback(() => setOpen(false), []);
 
-  // Escape closes; Tab is trapped inside the drawer when open
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       if (e.key === "Escape") { setOpen(false); return; }
@@ -41,14 +40,12 @@ export default function MobileMenu() {
     return () => document.removeEventListener("keydown", onKey);
   }, [open]);
 
-  // Scroll lock
   useEffect(() => {
     if (!open) return;
     const unlock = lockBodyScroll();
     return unlock;
   }, [open]);
 
-  // Focus management: into drawer on open, back to hamburger on close
   useEffect(() => {
     if (open) {
       hasOpenedRef.current = true;
@@ -60,10 +57,9 @@ export default function MobileMenu() {
 
   return (
     <>
-      {/* Hamburger toggle — visible below md, animates to × when open */}
       <button
         ref={hamburgerRef}
-        className="flex flex-col gap-[5px] p-2 -mr-2 md:hidden"
+        className="flex flex-col gap-[5px] p-2 -mr-2 lg:hidden"
         onClick={() => setOpen((o) => !o)}
         aria-label={open ? "Close navigation menu" : "Open navigation menu"}
         aria-expanded={open}
@@ -79,27 +75,24 @@ export default function MobileMenu() {
         />
       </button>
 
-      {/* Backdrop */}
       {open && (
         <div
-          className="fixed inset-0 z-40 bg-background/70 backdrop-blur-sm md:hidden"
+          className="fixed inset-0 z-40 bg-background/70 backdrop-blur-sm lg:hidden"
           onClick={close}
           aria-hidden="true"
         />
       )}
 
-      {/* Drawer */}
       <div
         ref={drawerRef}
         role="dialog"
         aria-modal={open}
         aria-label="Navigation"
         inert={!open ? true : undefined}
-        className={`fixed inset-y-0 right-0 z-50 flex w-64 flex-col border-l border-border bg-card ui-transition md:hidden ${
+        className={`fixed inset-y-0 right-0 z-50 flex w-64 flex-col border-l border-border bg-card ui-transition lg:hidden ${
           open ? "translate-x-0" : "pointer-events-none translate-x-full"
         }`}
       >
-        {/* Header */}
         <div className="flex h-16 items-center justify-between border-b border-border px-6">
           <span className="font-mono text-sm font-medium text-primary">
             &lt;{SITE.handle} /&gt;
@@ -116,7 +109,6 @@ export default function MobileMenu() {
           </button>
         </div>
 
-        {/* Links */}
         <nav className="flex flex-col px-6 py-6" aria-label="Mobile navigation">
           {SITE.nav.filter((l) => !l.mobileHidden).map((link) => {
             const label = link.label.toLowerCase();
@@ -146,6 +138,7 @@ export default function MobileMenu() {
                 </a>
               );
             }
+
             return (
               <Link
                 key={link.href}

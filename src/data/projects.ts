@@ -101,12 +101,12 @@ export const PROJECTS: Project[] = [
   {
     slug: "llm-benchmarking-framework-for-financial-sentiment-analysis",
     title: "LLM Benchmarking Framework for Financial Sentiment Analysis",
-    description: "Final year project benchmarking GPT-4o vs Gemini 2.0 Flash on financial sentiment datasets with F1, latency, and McNemar significance testing.",
-    type: "final year project / data analysis",
+    description: "BSc final-year project benchmarking GPT-4o vs Gemini 2.5 Flash on financial sentiment datasets with F1, latency, hallucination analysis, and McNemar significance testing.",
+    type: "machine learning / evaluation",
     paragraphs: [
-      "Built a financial sentiment analysis benchmarking framework comparing OpenAI GPT-4o and Google Gemini 2.0 Flash on real-world finance datasets. The project automates dataset processing, prompt standardisation, prediction validation, evaluation metrics, and result visualisation to analyse how different LLMs perform on sentiment classification tasks.",
+      "Built a financial sentiment analysis benchmarking framework comparing OpenAI GPT-4o and Google Gemini 2.5 Flash on real-world finance datasets. The project automates dataset processing, prompt standardisation, prediction validation, evaluation metrics, and result visualisation to analyse how different LLMs perform on sentiment classification tasks.",
       "Implemented a full evaluation pipeline using Python and Jupyter across the Financial PhraseBank and FiQA datasets, covering standardised 3-class sentiment prediction (positive, negative, neutral), automated response validation, and label normalisation. Evaluation included accuracy, macro F1, per-class F1, latency, and hallucination analysis, with statistical significance testing via McNemar's Test and comparative confusion matrix visualisations.",
-      "The project demonstrated strong differences in model behaviour: GPT-4o achieved significantly higher classification performance while Gemini 2.0 Flash delivered lower latency. Focus was placed on reproducible benchmarking, clean evaluation methodology, and structured LLM comparison workflows.",
+      "The benchmark surfaced a substantial difference in classification behaviour while Gemini 2.5 Flash returned lower average latency in the measured sample. The project focused on reproducible benchmarking, clean evaluation methodology, and structured LLM comparison workflows rather than relying on anecdotal model outputs.",
     ],
     bullets: [
       "Financial PhraseBank and FiQA dataset handling",
@@ -134,7 +134,7 @@ export const PROJECTS: Project[] = [
       {
         title: "GPT-4o vs Gemini Financial Sentiment Evaluation",
         description:
-          "Comparative LLM evaluation framework measuring GPT-4o and Gemini 2.0 Flash across financial sentiment classification accuracy, macro F1, per-class F1, latency, confusion matrices, and hallucination-aware Q&A performance.",
+          "Comparative LLM evaluation framework measuring GPT-4o and Gemini 2.5 Flash across financial sentiment classification accuracy, macro F1, per-class F1, latency, confusion matrices, and hallucination-aware Q&A performance.",
         image: `${LLM_MEDIA_BASE}/llm-benchmark-overview.png`,
         featured: true,
         category: "Evaluation",
@@ -142,7 +142,7 @@ export const PROJECTS: Project[] = [
       {
         title: "Per-Sample LLM Latency Analysis",
         description:
-          "Per-sample API latency analysis comparing GPT-4o and Gemini 2.0 Flash response times across 51 financial sentiment evaluation requests, including average latency baselines and execution variance.",
+          "Per-sample API latency analysis comparing GPT-4o and Gemini 2.5 Flash response times across 51 financial sentiment evaluation requests, including average latency baselines and execution variance.",
         image: `${LLM_MEDIA_BASE}/llm-latency-analysis.png`,
         category: "Performance",
       },

@@ -16,7 +16,7 @@ export default function SiteToolbar() {
 
   return (
     <header className="fixed inset-x-0 top-0 z-50 h-16 border-b border-border bg-background/80 backdrop-blur-md">
-      <div className="mx-auto flex h-full max-w-[1400px] items-center justify-between px-8">
+      <div className="mx-auto flex h-full max-w-[1400px] items-center justify-between px-6 sm:px-8">
         <Link
           href="/"
           aria-label="Home"
@@ -25,8 +25,7 @@ export default function SiteToolbar() {
           &lt;{SITE.handle} /&gt;
         </Link>
 
-        {/* Desktop nav + clock */}
-        <div className="hidden items-center gap-6 md:flex">
+        <div className="hidden items-center gap-6 lg:flex">
           <nav className="flex items-center gap-6" aria-label="Site navigation">
             {SITE.nav.map((link) => {
               const label = link.label.toLowerCase();
@@ -53,6 +52,7 @@ export default function SiteToolbar() {
                   </a>
                 );
               }
+
               return (
                 <Link
                   key={link.href}
@@ -69,7 +69,6 @@ export default function SiteToolbar() {
           <NavClock />
         </div>
 
-        {/* Mobile hamburger + drawer */}
         <MobileMenu />
       </div>
     </header>

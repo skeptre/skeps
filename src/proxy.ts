@@ -25,7 +25,7 @@ const csp = [
   "upgrade-insecure-requests",
 ].join("; ");
 
-export function middleware(request: NextRequest) {
+export function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
   if (request.nextUrl.hostname === "www.aliskeps.com") {

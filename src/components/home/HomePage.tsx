@@ -3,13 +3,11 @@ import type { IconType } from "react-icons";
 import {
   SiDocker,
   SiFastapi,
-  SiNodedotjs,
   SiOpenai,
   SiPandas,
   SiPostgresql,
   SiPrefect,
   SiPython,
-  SiReact,
   SiTypescript,
 } from "react-icons/si";
 
@@ -24,17 +22,15 @@ import {
   profileLinkClassName,
 } from "@/components/home/home-links";
 
-const STACK: { Icon: IconType; label: string; color: string; href: string }[] = [
-  { Icon: SiPython,     label: "Python",       color: "#3776AB", href: "https://www.python.org/" },
-  { Icon: SiFastapi,    label: "FastAPI",       color: "#009688", href: "https://fastapi.tiangolo.com/" },
-  { Icon: SiPostgresql, label: "PostgreSQL",    color: "#4169E1", href: "https://www.postgresql.org/" },
-  { Icon: SiDocker,     label: "Docker",        color: "#2496ED", href: "https://www.docker.com/" },
-  { Icon: SiPrefect,    label: "Prefect",       color: "#024DFD", href: "https://www.prefect.io/" },
-  { Icon: SiOpenai,     label: "OpenAI",        color: "#10A37F", href: "https://openai.com/api/" },
-  { Icon: SiPandas,     label: "Pandas",        color: "#E040FB", href: "https://pandas.pydata.org/" },
-  { Icon: SiNodedotjs,  label: "Node.js",       color: "#5FA04E", href: "https://nodejs.org/en" },
-  { Icon: SiTypescript, label: "TypeScript",    color: "#3178C6", href: "https://www.typescriptlang.org/" },
-  { Icon: SiReact,      label: "React Native",  color: "#61DAFB", href: "https://reactnative.dev/" },
+const STACK: { Icon: IconType; label: string }[] = [
+  { Icon: SiPython, label: "Python" },
+  { Icon: SiFastapi, label: "FastAPI" },
+  { Icon: SiPostgresql, label: "PostgreSQL" },
+  { Icon: SiDocker, label: "Docker" },
+  { Icon: SiPrefect, label: "Prefect" },
+  { Icon: SiPandas, label: "Pandas" },
+  { Icon: SiOpenai, label: "LLM APIs" },
+  { Icon: SiTypescript, label: "TypeScript" },
 ];
 
 function ProfileLinksNav() {
@@ -78,38 +74,45 @@ function ProfileLinksNav() {
 export default function HomePage() {
   return (
     <main id="main" className="min-h-screen bg-background text-foreground">
-      {/* Hero */}
       <section className="relative flex min-h-[80vh] items-center bg-grid">
-        <div className="mx-auto w-full max-w-[1400px] px-8 py-20">
-          <div className="max-w-2xl">
+        <div className="mx-auto w-full max-w-[1400px] px-6 py-20 sm:px-8">
+          <div className="max-w-3xl">
             <PageHeader
               layout="standalone"
               variant="hero"
               label="about"
-              title="Graduate Software Engineer focused on backend systems, AI and data engineering."
+              title="Software Engineer building backend, data and AI systems."
+              description="I build APIs, data pipelines, and evaluation tooling primarily with Python, PostgreSQL, and cloud-native infrastructure. I use TypeScript when a product needs a frontend."
             />
 
-            <div className="fade-in-up stagger-3 mt-10">
-              <div className="flex flex-wrap gap-x-5 gap-y-4 sm:gap-x-8">
-                {STACK.map(({ Icon, label, color, href }) => (
-                  <a
+            <div className="fade-in-up stagger-3 mt-8 flex flex-wrap gap-3">
+              <Link
+                href="/projects"
+                className="rounded-sm bg-primary px-4 py-2.5 font-mono text-sm font-medium text-background transition-opacity hover:opacity-90 focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+              >
+                view projects →
+              </Link>
+              <Link
+                href="/contact"
+                className="rounded-sm border border-border bg-card px-4 py-2.5 font-mono text-sm text-foreground transition-colors hover:border-primary/60 hover:text-primary focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+              >
+                contact
+              </Link>
+            </div>
+
+            <div className="fade-in-up stagger-4 mt-10">
+              <p className="mb-4 font-mono text-xs text-muted-foreground">
+                {"//"} core stack
+              </p>
+              <div className="flex flex-wrap gap-x-6 gap-y-4">
+                {STACK.map(({ Icon, label }) => (
+                  <div
                     key={label}
-                    href={href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label={`${label} documentation`}
-                    style={{ "--brand": color } as React.CSSProperties}
-                    className="group flex w-14 flex-col items-center gap-2 rounded-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background sm:w-16"
+                    className="flex items-center gap-2 text-muted-foreground"
                   >
-                    <Icon
-                      size={24}
-                      className="text-muted-foreground ui-transition transition-transform group-hover:scale-110 group-hover:text-[var(--brand)]"
-                      aria-hidden
-                    />
-                    <span className="whitespace-nowrap font-mono text-xs text-muted-foreground ui-transition group-hover:text-[var(--brand)]">
-                      {label}
-                    </span>
-                  </a>
+                    <Icon size={20} className="text-primary" aria-hidden />
+                    <span className="font-mono text-xs">{label}</span>
+                  </div>
                 ))}
               </div>
             </div>
@@ -117,18 +120,17 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Links */}
-      <div className="mx-auto max-w-[1400px] px-8">
+      <div className="mx-auto max-w-[1400px] px-6 sm:px-8">
         <Divider label="connect" />
       </div>
 
-      <section id="links" className="mx-auto max-w-[1400px] px-8 pb-20">
+      <section id="links" className="mx-auto max-w-[1400px] px-6 pb-20 sm:px-8">
         <ProfileLinksNav />
 
         <div className="section-footer">
-          <p className="max-w-lg text-sm leading-relaxed text-muted-foreground">
-            If you&apos;re hiring for graduate or junior backend roles, feel
-            free to reach out at{" "}
+          <p className="max-w-xl text-sm leading-relaxed text-muted-foreground">
+            For software engineering opportunities, technical collaboration, or
+            questions about my work, reach me at{" "}
             <a
               href={`mailto:${SITE.email}`}
               className={mailtoLinkClassName}

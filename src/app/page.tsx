@@ -4,8 +4,7 @@ import { SITE } from "@/config/site";
 import HomePage from "@/components/home/HomePage";
 
 export const metadata: Metadata = {
-  description:
-    "Graduate Software Engineer focused on backend systems, data engineering, and AI. View projects and get in touch.",
+  description: SITE.description,
   alternates: { canonical: SITE.url },
 };
 
@@ -13,8 +12,19 @@ const jsonLd = {
   "@context": "https://schema.org",
   "@type": "Person",
   name: SITE.name,
+  jobTitle: SITE.role,
   url: SITE.url,
+  email: `mailto:${SITE.email}`,
   sameAs: [SITE.github, SITE.linkedin, SITE.leetcode],
+  knowsAbout: [
+    "Backend engineering",
+    "Python",
+    "FastAPI",
+    "PostgreSQL",
+    "Data engineering",
+    "Machine learning",
+    "Large language model evaluation",
+  ],
 };
 
 export default function Page() {
