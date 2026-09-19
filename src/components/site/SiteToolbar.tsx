@@ -25,7 +25,7 @@ export default function SiteToolbar() {
           &lt;{SITE.handle} /&gt;
         </Link>
 
-        <div className="hidden items-center gap-6 md:flex">
+        <div className="hidden items-center gap-6 lg:flex">
           <nav className="flex items-center gap-6" aria-label="Site navigation">
             {SITE.nav.map((link) => {
               const label = link.label.toLowerCase();
