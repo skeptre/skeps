@@ -15,7 +15,7 @@ export default function SiteToolbar() {
   const pathname = usePathname();
 
   return (
-    <header className="fade-in-up stagger-1 fixed inset-x-0 top-0 z-50 h-16 border-b border-border bg-background/80 backdrop-blur-md">
+    <header className="fixed inset-x-0 top-0 z-50 h-16 border-b border-border bg-background/80 backdrop-blur-md">
       <div className="mx-auto flex h-full max-w-[1400px] items-center justify-between px-8">
         <Link
           href="/"

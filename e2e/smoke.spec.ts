@@ -47,6 +47,11 @@ test.describe("route smoke", () => {
 test.describe("axe accessibility", () => {
   for (const path of PAGES) {
     test(`${path} has no axe violations`, async ({ page }) => {
+      // The UI deliberately fades content in. Axe can otherwise sample a
+      // partially transparent animation frame and report false contrast
+      // failures. The site already supports prefers-reduced-motion, so audit
+      // that stable rendered state.
+      await page.emulateMedia({ reducedMotion: "reduce" });
       await page.goto(path);
       const results = await new AxeBuilder({ page }).analyze();
       expect(results.violations).toEqual([]);
