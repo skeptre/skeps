@@ -105,7 +105,7 @@ GitHub Actions validates:
 5. the Cloudflare/OpenNext production build
 6. Playwright smoke tests
 7. axe accessibility checks
-8. Lighthouse Accessibility, Best Practices, and SEO thresholds for the home, projects, and contact routes
+8. Lighthouse Accessibility, Best Practices, and SEO thresholds for the home, projects, blog, and contact routes
 
 The Lighthouse routes run as separate CI jobs so a headless Chromium failure on one audit cannot contaminate a later route. Lighthouse currently gates Accessibility, Best Practices, and SEO at **0.90 or higher**. Performance is observed separately and is not currently a hard CI gate.
 
@@ -115,7 +115,17 @@ Replace `public/M_Ali_2.pdf` with the new file while the current route remains i
 
 ## Adding projects
 
-Edit `src/data/projects.ts`. Each entry is included in the project index and its statically generated project route.
+Edit `src/data/projects.ts`. Each entry is included in the project index, sitemap, and its statically generated project route.
+
+## Adding blog posts
+
+Add one object to `BLOG_POSTS` in `src/data/posts.ts`. The blog index, post route, metadata, structured data, and sitemap are generated from that single source. You do not need to add or edit route files for each post.
+
+Each post contains:
+
+- `slug`, `title`, `description`, and `published`
+- `readingTime` and `tags`
+- one or more sections containing paragraphs and/or bullet points
 
 ## Environment variables
 
