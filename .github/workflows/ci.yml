@@ -63,6 +63,8 @@ jobs:
             path: /
           - name: projects
             path: /projects
+          - name: blog
+            path: /blog
           - name: contact
             path: /contact
     env:
