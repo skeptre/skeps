@@ -6,7 +6,6 @@ import { PROJECTS } from "@/data/projects";
 import ProjectCard from "@/components/projects/ProjectCard";
 import BackLink from "@/components/ui/BackLink";
 import PageShell from "@/components/ui/PageShell";
-import SectionLabel from "@/components/ui/SectionLabel";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -80,14 +79,10 @@ export default async function ProjectPage({ params }: Props) {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
       <PageShell>
-        <BackLink href="/projects" label="projects" />
+        <BackLink href="/projects" label="Work" />
 
-        <section className="page-section">
-          <SectionLabel>work</SectionLabel>
-        </section>
-
-        <div className="page-block">
-          <ProjectCard project={project} index={0} titleAs="h1" />
+        <div className="mt-10">
+          <ProjectCard project={project} titleAs="h1" />
         </div>
       </PageShell>
     </>

@@ -24,18 +24,26 @@ export default function PageHeader({
 }: Props) {
   const titleClass =
     variant === "hero"
-      ? "page-title page-title-hero fade-in-up stagger-2"
-      : "page-title fade-in-up stagger-2";
-
-  const leadClass = constrained
-    ? "page-lead page-lead-constrained fade-in-up stagger-3"
-    : "page-lead fade-in-up stagger-3";
+      ? "text-[clamp(3rem,7.4vw,7rem)] leading-[0.98]"
+      : "text-[clamp(2.5rem,5vw,4.5rem)] leading-[1.02]";
 
   return (
     <section className={layout === "section" ? "page-section" : undefined}>
       <SectionLabel>{label}</SectionLabel>
-      <h1 className={titleClass}>{title}</h1>
-      {description ? <p className={leadClass}>{description}</p> : null}
+      <h1
+        className={`font-sans font-semibold tracking-[-0.05em] text-foreground ${titleClass}`}
+      >
+        {title}
+      </h1>
+      {description ? (
+        <p
+          className={`mt-6 text-[19px] font-light leading-relaxed text-muted-foreground${
+            constrained ? " max-w-[36rem]" : ""
+          }`}
+        >
+          {description}
+        </p>
+      ) : null}
     </section>
   );
 }

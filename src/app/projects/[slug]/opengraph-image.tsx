@@ -18,7 +18,7 @@ export default async function OGImage({
     (
       <div
         style={{
-          background: "hsl(0, 0%, 4%)",
+          background: "#050507",
           width: "100%",
           height: "100%",
           display: "flex",
@@ -30,19 +30,19 @@ export default async function OGImage({
       >
         <div
           style={{
-            color: "hsl(130, 100%, 50%)",
+            color: "#67E8F9",
             fontSize: 18,
             fontFamily: "monospace",
             marginBottom: 28,
             letterSpacing: "0.05em",
           }}
         >
-          {"/* " + (project?.type ?? "project") + " */"}
+          {project?.type ?? "project"}
         </div>
 
         <div
           style={{
-            color: "hsl(0, 0%, 98%)",
+            color: "#F4F4F5",
             fontSize: 60,
             fontWeight: 700,
             lineHeight: 1.1,
@@ -55,7 +55,7 @@ export default async function OGImage({
 
         <div
           style={{
-            color: "hsl(0, 0%, 60%)",
+            color: "#A1A1AA",
             fontSize: 24,
             marginTop: 24,
             lineHeight: 1.4,
@@ -67,7 +67,7 @@ export default async function OGImage({
 
         <div
           style={{
-            color: "hsl(130, 100%, 50%)",
+            color: "#67E8F9",
             fontSize: 18,
             fontFamily: "monospace",
             marginTop: 52,

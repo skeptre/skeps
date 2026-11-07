@@ -21,19 +21,19 @@ export default function ProjectEvidenceSection({
 
   return (
     <section
-      className="mt-10 border-t border-border pt-10"
+      className="mt-14 border-t border-border pt-10"
       aria-labelledby={headingId}
     >
-      <Divider label="evidence" />
+      <Divider label="Evidence" />
 
       <div className="mt-2">
         <Heading
           id={headingId}
-          className="font-mono text-sm font-medium tracking-tight text-foreground sm:text-base"
+          className="text-2xl font-semibold tracking-[-0.03em] text-foreground"
         >
           {title}
         </Heading>
-        <p className="mt-2 max-w-3xl text-sm leading-relaxed text-muted-foreground">
+        <p className="mt-3 max-w-[42rem] text-[15px] leading-relaxed text-muted-foreground">
           {subtitle}
         </p>
       </div>

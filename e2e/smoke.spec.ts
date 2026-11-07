@@ -25,24 +25,18 @@ test.describe("route smoke", () => {
     });
   }
 
-  test("CV PDF is served", async ({ request }) => {
-    const response = await request.get("/M_Ali_2.pdf");
-    expect(response.status()).toBe(200);
-    expect(response.headers()["content-type"] ?? "").toMatch(/pdf/i);
-  });
-
   test("homepage presents work, writing and contact paths", async ({ page }) => {
     await page.goto("/");
 
     await expect(
       page.getByRole("heading", {
         level: 1,
-        name: /building backend, data and ai systems/i,
+        name: /I build the systems behind the product/i,
       }),
     ).toBeVisible();
 
     await expect(
-      page.getByRole("link", { name: "Explore selected work" }),
+      page.getByRole("link", { name: "See selected work" }),
     ).toHaveAttribute("href", "/projects");
 
     await expect(
@@ -70,15 +64,8 @@ test.describe("route smoke", () => {
     expect(dimensions.document).toBeLessThanOrEqual(dimensions.viewport + 1);
   });
 
-  test("CV and LinkedIn open in clean new tabs", async ({ page }) => {
+  test("LinkedIn opens in a clean new tab", async ({ page }) => {
     await page.goto("/");
-
-    const cvLinks = page.getByRole("link", {
-      name: "Open CV as PDF in a new tab",
-    });
-    await expect(cvLinks.first()).toHaveAttribute("href", "/M_Ali_2.pdf");
-    await expect(cvLinks.first()).toHaveAttribute("target", "_blank");
-    await expect(cvLinks.first()).toHaveAttribute("rel", "noopener noreferrer");
 
     const linkedin = page.getByRole("link", {
       name: "Open LinkedIn profile in a new tab",

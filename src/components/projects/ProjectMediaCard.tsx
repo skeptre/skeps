@@ -17,7 +17,7 @@ const variantConfig: Record<
   hero: {
     shell: "border-border/80",
     aspect: "aspect-video sm:aspect-[2/1]",
-    title: "text-sm sm:text-base",
+    title: "text-base",
     imageSizes:
       "(max-width: 768px) 100vw, (max-width: 1280px) 90vw, 1200px",
     showDescription: true,
@@ -49,9 +49,9 @@ export default function ProjectMediaCard({
       type="button"
       onClick={onOpen}
       title={item.title}
-      className={`group flex w-full flex-col overflow-hidden rounded-sm border bg-card text-left ui-transition hover:border-primary/60 focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-card ${styles.shell}`}
+      className={`group flex w-full flex-col overflow-hidden rounded-[20px] border bg-card text-left transition-colors duration-300 hover:border-primary/50 focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background ${styles.shell}`}
     >
-      <div className={`relative w-full shrink-0 bg-secondary ${styles.aspect}`}>
+      <div className={`relative m-2 w-[calc(100%-1rem)] shrink-0 overflow-hidden rounded-xl bg-secondary ${styles.aspect}`}>
         <Image
           src={item.image}
           alt={item.description}
@@ -64,21 +64,21 @@ export default function ProjectMediaCard({
       </div>
       <div className="flex flex-col gap-2 border-t border-border p-4 sm:p-5">
         {item.category && (
-          <span className="w-fit rounded-sm border border-border bg-background px-2 py-0.5 font-mono text-[11px] uppercase tracking-wide text-muted-foreground ui-transition group-hover:border-primary/40 group-hover:text-primary/80 sm:text-[10px]">
+          <span className="w-fit rounded-full border border-border bg-secondary px-2.5 py-0.5 font-mono text-xs text-muted-foreground transition-colors group-hover:border-primary/40">
             {item.category}
           </span>
         )}
         <span
-          className={`font-mono font-medium leading-snug text-foreground ${styles.title}`}
+          className={`font-semibold leading-snug tracking-[-0.01em] text-foreground ${styles.title}`}
         >
           {item.title}
         </span>
         {styles.showDescription && (
-          <p className="text-xs leading-relaxed text-muted-foreground sm:text-sm">
+          <p className="text-sm font-light leading-relaxed text-muted-foreground">
             {item.description}
           </p>
         )}
-        <span className="font-mono text-[10px] text-primary/80">
+        <span className="font-mono text-xs text-primary">
           view artifact →
         </span>
       </div>
