@@ -11,7 +11,7 @@ export default function OGImage() {
     (
       <div
         style={{
-          background: "hsl(0, 0%, 4%)",
+          background: "#050507",
           width: "100%",
           height: "100%",
           display: "flex",
@@ -23,19 +23,19 @@ export default function OGImage() {
       >
         <div
           style={{
-            color: "hsl(130, 100%, 50%)",
+            color: "#67E8F9",
             fontSize: 18,
             fontFamily: "monospace",
             marginBottom: 28,
             letterSpacing: "0.05em",
           }}
         >
-          {"/* about */"}
+          Software engineer · backend, data, AI evaluation
         </div>
 
         <div
           style={{
-            color: "hsl(0, 0%, 98%)",
+            color: "#F4F4F5",
             fontSize: 72,
             fontWeight: 700,
             lineHeight: 1.05,
@@ -47,7 +47,7 @@ export default function OGImage() {
 
         <div
           style={{
-            color: "hsl(0, 0%, 60%)",
+            color: "#A1A1AA",
             fontSize: 28,
             marginTop: 20,
             lineHeight: 1.4,
@@ -59,7 +59,7 @@ export default function OGImage() {
 
         <div
           style={{
-            color: "hsl(130, 100%, 50%)",
+            color: "#67E8F9",
             fontSize: 18,
             fontFamily: "monospace",
             marginTop: 52,

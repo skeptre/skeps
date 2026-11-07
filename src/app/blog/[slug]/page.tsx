@@ -5,7 +5,6 @@ import { SITE } from "@/config/site";
 import { BLOG_POSTS, getBlogPost } from "@/data/posts";
 import BackLink from "@/components/ui/BackLink";
 import PageShell from "@/components/ui/PageShell";
-import SectionLabel from "@/components/ui/SectionLabel";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -67,25 +66,29 @@ export default async function BlogPostPage({ params }: Props) {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
       <PageShell>
-        <BackLink href="/blog" label="blog" />
+        <BackLink href="/blog" label="Notes" />
 
         <article className="mx-auto max-w-3xl">
-          <section className="page-section">
-            <SectionLabel>note</SectionLabel>
-            <h1 className="page-title">{post.title}</h1>
-            <p className="page-lead">{post.description}</p>
-            <div className="mt-5 flex flex-wrap items-center gap-x-3 gap-y-2 font-mono text-xs text-muted-foreground">
+          <header className="pt-10">
+            <p className="font-mono text-[15px] text-primary">Note</p>
+            <h1 className="mt-3 text-[clamp(2.25rem,4.4vw,3.75rem)] font-semibold leading-[1.02] tracking-[-0.045em] text-foreground">
+              {post.title}
+            </h1>
+            <p className="mt-5 text-[19px] font-light leading-[1.5] text-muted-foreground">
+              {post.description}
+            </p>
+            <div className="mt-5 flex flex-wrap items-center gap-x-3 gap-y-2 font-mono text-sm text-muted-foreground">
               <time dateTime={post.published}>{post.published}</time>
               <span aria-hidden>·</span>
               <span>{post.readingTime}</span>
             </div>
-          </section>
+          </header>
 
-          <div className="page-block space-y-10">
+          <div className="mt-16 space-y-12">
             {post.sections.map((section, index) => (
               <section key={section.heading ?? index}>
                 {section.heading ? (
-                  <h2 className="text-xl font-semibold tracking-tight text-foreground">
+                  <h2 className="text-2xl font-semibold tracking-[-0.03em] text-foreground">
                     {section.heading}
                   </h2>
                 ) : null}
@@ -95,7 +98,7 @@ export default async function BlogPostPage({ params }: Props) {
                     {section.paragraphs.map((paragraph) => (
                       <p
                         key={paragraph}
-                        className="text-base leading-7 text-muted-foreground"
+                        className="text-[17px] leading-[1.75] text-muted-foreground"
                       >
                         {paragraph}
                       </p>
@@ -108,9 +111,9 @@ export default async function BlogPostPage({ params }: Props) {
                     {section.bullets.map((bullet) => (
                       <li
                         key={bullet}
-                        className="flex gap-3 text-sm leading-relaxed text-muted-foreground"
+                        className="flex gap-3 text-[17px] leading-[1.75] text-muted-foreground"
                       >
-                        <span className="shrink-0 font-mono text-primary">→</span>
+                        <span aria-hidden className="shrink-0 font-mono text-primary">→</span>
                         <span>{bullet}</span>
                       </li>
                     ))}

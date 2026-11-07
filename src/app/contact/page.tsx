@@ -1,11 +1,10 @@
 import type { Metadata } from "next";
 
-import { SITE } from "@/config/site";
-import Divider from "@/components/ui/Divider";
-import PageHeader from "@/components/ui/PageHeader";
-import PageShell from "@/components/ui/PageShell";
+import { LampContainer } from "@/components/aceternity/lamp";
+import SocialLinksNav from "@/components/site/SocialLinksNav";
 import BackLink from "@/components/ui/BackLink";
-import { cardSurfaceClassName } from "@/lib/ui";
+import CopyEmailButton from "@/components/ui/CopyEmailButton";
+import { SITE } from "@/config/site";
 
 export const metadata: Metadata = {
   title: "Contact",
@@ -34,27 +33,33 @@ export default function ContactPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <PageShell>
-        <BackLink />
-
-        <PageHeader
-          label="contact"
-          title="Get in touch."
-          description="For software engineering opportunities, technical collaboration, or questions about my projects, email is the best way to reach me."
-        />
-
-        <div className="fade-in-up stagger-4">
-          <Divider label="email" />
+      <main id="main" className="min-h-screen bg-background text-foreground">
+        <div className="site-container pt-8">
+          <BackLink />
         </div>
 
-        <a
-          href={`mailto:${SITE.email}`}
-          aria-label={`Send email to ${SITE.email}`}
-          className={`fade-in-up stagger-4 ${cardSurfaceClassName}`}
-        >
-          {SITE.email}
-        </a>
-      </PageShell>
+        <LampContainer>
+          <p className="font-mono text-[15px] text-primary">Contact</p>
+          <h1 className="mt-4 text-center text-[clamp(2.5rem,5.6vw,5rem)] font-semibold leading-none tracking-[-0.05em] text-foreground">
+            Want to talk engineering?
+          </h1>
+          <p className="mt-6 max-w-[36rem] text-center text-[19px] font-light leading-relaxed text-muted-foreground">
+            For software engineering opportunities, technical collaboration, or questions about
+            my projects, email is the best way to reach me.
+          </p>
+          <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
+            <a
+              href={`mailto:${SITE.email}`}
+              aria-label={`Send email to ${SITE.email}`}
+              className="rounded-md font-mono text-base text-foreground underline underline-offset-4 transition-colors hover:text-primary focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background sm:text-lg"
+            >
+              {SITE.email}
+            </a>
+            <CopyEmailButton email={SITE.email} />
+          </div>
+          <SocialLinksNav className="mt-8 justify-center" exclude={["/contact"]} />
+        </LampContainer>
+      </main>
     </>
   );
 }
