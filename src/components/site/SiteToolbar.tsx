@@ -7,7 +7,7 @@ import { isFileHref } from "@/components/home/home-links";
 import { SITE } from "@/config/site";
 import MobileMenu from "@/components/site/MobileMenu";
 
-const PRIMARY_LABELS = new Set(["Projects", "Blog", "CV", "Contact"]);
+const PRIMARY_LABELS = new Set(["Work", "Notes", "CV", "Contact"]);
 
 const primaryNav = SITE.nav.filter((link) => PRIMARY_LABELS.has(link.label));
 
