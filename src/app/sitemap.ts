@@ -6,7 +6,7 @@ import { PROJECTS } from "@/data/projects";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const navRoutes = SITE.nav
-    .filter((link) => !link.external && link.href !== SITE.cvPath)
+    .filter((link) => !link.external)
     .map((link) => ({
       url: `${SITE.url}${link.href}`,
       changeFrequency: "monthly" as const,

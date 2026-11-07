@@ -112,23 +112,36 @@ GitHub Actions validates:
 
 The Lighthouse routes run as separate CI jobs so a headless Chromium failure on one audit cannot contaminate a later route. Lighthouse currently gates Accessibility, Best Practices, and SEO at **0.90 or higher**. Performance is observed separately and is not currently a hard CI gate.
 
-## Updating the CV
-
-Replace `public/M_Ali_2.pdf` with the new file while the current route remains in use.
-
 ## Adding projects
 
 Edit `src/data/projects.ts`. Each entry is included in the project index, sitemap, and its statically generated project route.
 
 ## Adding blog posts
 
-Add one object to `BLOG_POSTS` in `src/data/posts.ts`. The blog index, post route, metadata, structured data, and sitemap are generated from that single source. You do not need to add or edit route files for each post.
+Notes are MDX files. Create `src/content/notes/<slug>.mdx` — the filename is the URL slug (`/blog/<slug>`). Start with frontmatter, then write the body in Markdown:
 
-Each post contains:
+```mdx
+---
+title: "Post title"
+description: "One or two sentences used for the index, SEO and RSS."
+published: "2026-09-19"
+tags: ["Python", "NLP"]
+---
 
-- `slug`, `title`, `description`, and `published`
-- `readingTime` and `tags`
-- one or more sections containing paragraphs and/or bullet points
+Intro paragraph.
+
+## A heading
+
+- Bullets, **bold**, [links](https://example.com), tables (GFM) and images work.
+```
+
+- All four frontmatter fields are required; `published` is `YYYY-MM-DD`. A missing field fails the build with an error naming the file.
+- Reading time is computed from the word count.
+- Maths: inline `$\chi^2 = \frac{(b - c)^2}{b + c}$` or a block between `$$` lines (KaTeX).
+- Code: use fenced blocks with a language (```` ```python ````) for syntax highlighting.
+- Components: `<BenchmarkChart />` is available without an import. To add another, export it from `src/mdx-components.tsx`.
+
+Push and the blog index, post page, OG image, sitemap, home-page "latest note" and RSS feed (`/feed.xml`) all update automatically. Everything is prerendered at build time (there is no filesystem on Cloudflare Workers at runtime).
 
 ## Environment variables
 

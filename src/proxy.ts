@@ -1,7 +1,7 @@
 import type { NextRequest } from "next/server";
 import { NextResponse } from "next/server";
 
-/** Last path segment has a file extension (public/ assets, e.g. M_Ali_2.pdf). */
+/** Last path segment has a file extension (public/ assets, e.g. icon.png). */
 function isPublicAsset(pathname: string) {
   const segment = pathname.split("/").pop() ?? "";
   return /\.[a-z0-9]+$/i.test(segment);

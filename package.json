@@ -3,8 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "predev": "node scripts/build-notes-index.mjs",
     "dev": "next dev",
     "build": "opennextjs-cloudflare build",
+    "prebuild:next": "node scripts/build-notes-index.mjs",
     "build:next": "next build",
     "start": "next start",
     "preview": "opennextjs-cloudflare build && opennextjs-cloudflare preview",
@@ -18,7 +20,8 @@
     "cf:build": "npm run build",
     "cf:preview": "npm run preview",
     "cf:deploy": "npm run deploy",
-    "cf:typegen": "npm run cf-typegen"
+    "cf:typegen": "npm run cf-typegen",
+    "notes:index": "node scripts/build-notes-index.mjs"
   },
   "dependencies": {
     "@fontsource-variable/sora": "^5.2.6",

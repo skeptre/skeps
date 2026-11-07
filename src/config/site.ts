@@ -12,7 +12,6 @@ const nav: NavLink[] = [
   { label: "Notes",    href: "/blog",                                               ariaLabel: "Read technical notes" },
   { label: "LeetCode", href: "https://leetcode.com/u/skeps/",      external: true, mobileHidden: true, ariaLabel: "Open LeetCode profile in a new tab" },
   { label: "LinkedIn", href: "https://www.linkedin.com/in/skeps/", external: true, ariaLabel: "Open LinkedIn profile in a new tab" },
-  { label: "CV",       href: "/M_Ali_2.pdf",                                       ariaLabel: "Open CV as PDF in a new tab" },
   { label: "Contact",  href: "/contact",                                            ariaLabel: "Go to contact page" },
 ];
 
@@ -27,6 +26,5 @@ export const SITE = {
   github: "https://github.com/skeptre",
   linkedin: "https://www.linkedin.com/in/skeps/",
   leetcode: "https://leetcode.com/u/skeps/",
-  cvPath: "/M_Ali_2.pdf",
   nav,
 } as const;

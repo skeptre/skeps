@@ -10,7 +10,7 @@ function isFileHref(href: string) {
   return href.endsWith(".pdf");
 }
 
-const PRIMARY_LABELS = new Set(["Work", "Notes", "CV", "Contact"]);
+const PRIMARY_LABELS = new Set(["Work", "Notes", "Contact"]);
 
 const primaryNav = SITE.nav.filter((link) => PRIMARY_LABELS.has(link.label));
 

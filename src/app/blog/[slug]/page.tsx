@@ -6,11 +6,14 @@ import { BLOG_POSTS, getBlogPost } from "@/data/posts";
 import BackLink from "@/components/ui/BackLink";
 import PageShell from "@/components/ui/PageShell";
 
+import "katex/dist/katex.min.css";
+
 type Props = { params: Promise<{ slug: string }> };
 
 export function generateStaticParams() {
   return BLOG_POSTS.map((post) => ({ slug: post.slug }));
 }
+
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
@@ -43,6 +46,8 @@ export default async function BlogPostPage({ params }: Props) {
   const { slug } = await params;
   const post = getBlogPost(slug);
   if (!post) notFound();
+
+  const { default: Post } = await import(`@/content/notes/${slug}.mdx`);
 
   const url = `${SITE.url}/blog/${post.slug}`;
   const jsonLd = {
@@ -84,43 +89,8 @@ export default async function BlogPostPage({ params }: Props) {
             </div>
           </header>
 
-          <div className="mt-16 space-y-12">
-            {post.sections.map((section, index) => (
-              <section key={section.heading ?? index}>
-                {section.heading ? (
-                  <h2 className="text-2xl font-semibold tracking-[-0.03em] text-foreground">
-                    {section.heading}
-                  </h2>
-                ) : null}
-
-                {section.paragraphs ? (
-                  <div className={section.heading ? "mt-4 space-y-4" : "space-y-4"}>
-                    {section.paragraphs.map((paragraph) => (
-                      <p
-                        key={paragraph}
-                        className="text-[17px] leading-[1.75] text-muted-foreground"
-                      >
-                        {paragraph}
-                      </p>
-                    ))}
-                  </div>
-                ) : null}
-
-                {section.bullets ? (
-                  <ul className={`${section.heading ? "mt-4" : ""} space-y-3`}>
-                    {section.bullets.map((bullet) => (
-                      <li
-                        key={bullet}
-                        className="flex gap-3 text-[17px] leading-[1.75] text-muted-foreground"
-                      >
-                        <span aria-hidden className="shrink-0 font-mono text-primary">→</span>
-                        <span>{bullet}</span>
-                      </li>
-                    ))}
-                  </ul>
-                ) : null}
-              </section>
-            ))}
+          <div className="mt-12">
+            <Post />
           </div>
         </article>
       </PageShell>
