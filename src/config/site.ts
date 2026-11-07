@@ -28,5 +28,7 @@ export const SITE = {
   github: "https://github.com/skeptre",
   linkedin: "https://www.linkedin.com/in/skeps/",
   leetcode: "https://leetcode.com/u/skeps/",
+  // Bump this when page content changes (used for sitemap lastmod).
+  updated: "2026-11-07",
   nav,
 } as const;
