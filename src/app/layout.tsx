@@ -1,22 +1,37 @@
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
-import { Sora, IBM_Plex_Mono } from "next/font/google";
+import localFont from "next/font/local";
 
 import { SITE } from "@/config/site";
 import SiteToolbar from "@/components/site/SiteToolbar";
 
 import "./globals.css";
 
-const sora = Sora({
+// Self-hosted from npm (@fontsource) so builds never depend on a Google Fonts
+// fetch and the strict CSP (font-src 'self') keeps working.
+const sora = localFont({
   variable: "--font-sora",
-  subsets: ["latin"],
-  weight: ["300", "400", "600", "700"],
+  src: "../../node_modules/@fontsource-variable/sora/files/sora-latin-wght-normal.woff2",
+  weight: "100 800",
+  style: "normal",
+  display: "swap",
 });
 
-const plexMono = IBM_Plex_Mono({
+const plexMono = localFont({
   variable: "--font-ibm-plex-mono",
-  subsets: ["latin"],
-  weight: ["400", "500"],
+  src: [
+    {
+      path: "../../node_modules/@fontsource/ibm-plex-mono/files/ibm-plex-mono-latin-400-normal.woff2",
+      weight: "400",
+      style: "normal",
+    },
+    {
+      path: "../../node_modules/@fontsource/ibm-plex-mono/files/ibm-plex-mono-latin-500-normal.woff2",
+      weight: "500",
+      style: "normal",
+    },
+  ],
+  display: "swap",
 });
 
 export const metadata: Metadata = {

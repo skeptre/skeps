@@ -21,6 +21,8 @@
     "cf:typegen": "npm run cf-typegen"
   },
   "dependencies": {
+    "@fontsource-variable/sora": "^5.2.6",
+    "@fontsource/ibm-plex-mono": "^5.2.5",
     "clsx": "^2.1.1",
     "motion": "^12.23.24",
     "next": "16.3.5",
