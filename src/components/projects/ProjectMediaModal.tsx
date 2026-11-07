@@ -84,17 +84,17 @@ export default function ProjectMediaModal({
         <div className="flex items-start justify-between gap-4">
           <div className="min-w-0">
             {item.category && (
-              <p className="mb-1 font-mono text-[11px] uppercase tracking-wide text-primary sm:text-[10px]">
+              <p className="mb-1 font-mono text-xs text-primary">
                 {item.category}
               </p>
             )}
             <h2
               id="project-media-modal-title"
-              className="font-mono text-sm font-medium text-foreground sm:text-base"
+              className="text-lg font-semibold tracking-[-0.02em] text-foreground"
             >
               {item.title}
             </h2>
-            <p className="mt-1 max-w-2xl text-xs leading-relaxed text-muted-foreground sm:text-sm">
+            <p className="mt-1 max-w-2xl text-sm font-light leading-relaxed text-muted-foreground">
               {item.description}
             </p>
           </div>
@@ -102,14 +102,14 @@ export default function ProjectMediaModal({
             ref={closeRef}
             type="button"
             onClick={onClose}
-            className="shrink-0 rounded-sm border border-border bg-card px-2 py-1 font-mono text-[10px] text-muted-foreground ui-transition hover:border-primary/60 hover:text-foreground focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-card sm:px-3 sm:py-1.5 sm:text-xs"
+            className="shrink-0 min-h-10 px-4 rounded-full border border-border bg-secondary/60 font-mono text-sm text-muted-foreground transition-colors hover:border-primary/60 hover:text-foreground focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
             aria-label="Close image viewer"
           >
             esc ✕
           </button>
         </div>
 
-        <div className="relative min-h-0 flex-1 overflow-hidden rounded-sm border border-border bg-card">
+        <div className="relative min-h-0 flex-1 overflow-hidden rounded-[20px] border border-border bg-card">
           <div className="relative aspect-video max-h-[min(70vh,720px)] w-full sm:aspect-[16/10]">
             <Image
               src={item.image}
@@ -122,7 +122,7 @@ export default function ProjectMediaModal({
           </div>
         </div>
 
-        <div className="flex items-center justify-between gap-4 font-mono text-xs text-muted-foreground">
+        <div className="flex items-center justify-between gap-4 font-mono text-sm text-muted-foreground">
           <span>
             {index + 1} / {items.length}
           </span>
@@ -131,7 +131,7 @@ export default function ProjectMediaModal({
               type="button"
               onClick={() => onNavigate(index - 1)}
               disabled={!hasPrev}
-              className="rounded-sm border border-border bg-card px-3 py-1.5 ui-transition enabled:hover:border-primary/60 enabled:hover:text-foreground disabled:opacity-40 focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-card"
+              className="min-h-10 px-4 rounded-full border border-border bg-secondary/60 font-mono text-sm text-muted-foreground transition-colors enabled:hover:border-primary/60 enabled:hover:text-foreground disabled:opacity-40 focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
               aria-label="Previous image"
             >
               ← prev
@@ -140,7 +140,7 @@ export default function ProjectMediaModal({
               type="button"
               onClick={() => onNavigate(index + 1)}
               disabled={!hasNext}
-              className="rounded-sm border border-border bg-card px-3 py-1.5 ui-transition enabled:hover:border-primary/60 enabled:hover:text-foreground disabled:opacity-40 focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-card"
+              className="min-h-10 px-4 rounded-full border border-border bg-secondary/60 font-mono text-sm text-muted-foreground transition-colors enabled:hover:border-primary/60 enabled:hover:text-foreground disabled:opacity-40 focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
               aria-label="Next image"
             >
               next →

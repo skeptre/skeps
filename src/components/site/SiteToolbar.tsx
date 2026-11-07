@@ -3,44 +3,40 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-import { isFileHref } from "@/components/home/home-links";
 import { SITE } from "@/config/site";
 import MobileMenu from "@/components/site/MobileMenu";
+
+function isFileHref(href: string) {
+  return href.endsWith(".pdf");
+}
 
 const PRIMARY_LABELS = new Set(["Work", "Notes", "CV", "Contact"]);
 
 const primaryNav = SITE.nav.filter((link) => PRIMARY_LABELS.has(link.label));
 
 const navLinkBase =
-  "rounded-md px-3 py-1.5 font-mono text-xs transition-colors duration-150 focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-card";
+  "rounded-full px-4 py-2 font-mono text-sm transition-colors duration-150 focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background";
 
 export default function SiteToolbar() {
   const pathname = usePathname();
 
   return (
-    <header className="fixed inset-x-0 top-0 z-50 h-16 border-b border-border/70 bg-background/80 backdrop-blur-xl">
-      <div className="mx-auto flex h-full max-w-[1400px] items-center justify-between px-6 sm:px-8">
+    <header className="fixed inset-x-0 top-0 z-50 h-16 border-b border-border bg-background/80 backdrop-blur-xl">
+      <div className="site-container flex h-full items-center justify-between">
         <Link
           href="/"
-          aria-label="Home"
-          className="group flex items-center gap-3 rounded-md focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+          className="rounded-md font-sans text-[17px] font-semibold focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
         >
-          <span className="font-mono text-sm font-medium text-primary transition-opacity duration-150 group-hover:opacity-80">
-            &lt;{SITE.handle} /&gt;
-          </span>
-          <span className="hidden h-3 w-px bg-border sm:block" aria-hidden />
-          <span className="hidden font-mono text-[11px] text-muted-foreground sm:block">
-            software engineer
-          </span>
+          Mansoor Ali
         </Link>
 
         <div className="hidden items-center lg:flex">
           <nav
-            className="flex items-center gap-1 rounded-lg border border-border/70 bg-card/70 p-1 shadow-[0_1px_0_hsl(0_0%_100%/0.03)_inset]"
+            className="flex items-center gap-1 rounded-full border border-border bg-secondary/70 p-1.5"
             aria-label="Site navigation"
           >
             {primaryNav.map((link) => {
-              const label = link.label.toLowerCase();
+              const label = link.label;
               const isActive =
                 !link.external &&
                 !isFileHref(link.href) &&
@@ -48,8 +44,8 @@ export default function SiteToolbar() {
                   ? pathname === "/"
                   : pathname.startsWith(link.href));
               const stateClass = isActive
-                ? "bg-secondary text-primary"
-                : "text-muted-foreground hover:bg-secondary/70 hover:text-foreground";
+                ? "bg-secondary text-foreground"
+                : "text-muted-foreground hover:text-foreground";
 
               if (link.external || isFileHref(link.href)) {
                 return (

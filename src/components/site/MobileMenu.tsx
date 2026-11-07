@@ -5,9 +5,12 @@ import { createPortal } from "react-dom";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-import { isFileHref } from "@/components/home/home-links";
 import { lockBodyScroll } from "@/lib/lock-body-scroll";
 import { SITE } from "@/config/site";
+
+function isFileHref(href: string) {
+  return href.endsWith(".pdf");
+}
 
 export default function MobileMenu() {
   const [open, setOpen] = useState(false);
@@ -116,19 +119,15 @@ export default function MobileMenu() {
               aria-modal={open}
               aria-label="Navigation"
               inert={!open ? true : undefined}
-              className={`fixed inset-y-0 right-0 z-50 flex w-[min(20rem,86vw)] flex-col border-l border-border/80 bg-card shadow-[-24px_0_80px_hsl(0_0%_0%/0.35)] transition-transform duration-200 [transition-timing-function:var(--ease-out)] lg:hidden ${
+              className={`fixed inset-y-0 right-0 z-50 flex w-[min(20rem,86vw)] flex-col border-l border-border bg-card transition-transform duration-200 [transition-timing-function:var(--ease-out)] lg:hidden ${
                 open ? "translate-x-0" : "pointer-events-none translate-x-full"
               }`}
             >
-              <div className="flex h-16 items-center justify-between border-b border-border/80 px-6">
+              <div className="flex h-16 items-center justify-between border-b border-border px-6">
                 <div className="flex items-center gap-3">
-                  <span className="font-mono text-sm font-medium text-primary">
-                    &lt;{SITE.handle} /&gt;
-                  </span>
+                  <span className="font-sans text-[17px] font-semibold">Mansoor Ali</span>
                   <span className="h-3 w-px bg-border" aria-hidden />
-                  <span className="font-mono text-[10px] text-muted-foreground">
-                    menu
-                  </span>
+                  <span className="font-mono text-xs text-muted-foreground">menu</span>
                 </div>
                 <button
                   ref={closeRef}
@@ -149,7 +148,7 @@ export default function MobileMenu() {
 
               <nav className="flex flex-col gap-1 px-4 py-5" aria-label="Mobile navigation">
                 {SITE.nav.filter((l) => !l.mobileHidden).map((link) => {
-                  const label = link.label.toLowerCase();
+                  const label = link.label;
                   const isActive =
                     !link.external &&
                     !isFileHref(link.href) &&
@@ -157,9 +156,9 @@ export default function MobileMenu() {
                       ? pathname === "/"
                       : pathname.startsWith(link.href));
                   const baseClass =
-                    "rounded-md px-3 py-3.5 font-mono text-sm transition-[transform,color,background-color] duration-150 [transition-timing-function:var(--ease-out)] active:scale-[0.985]";
+                    "rounded-full px-4 py-3 font-mono text-sm transition-[transform,color,background-color] duration-150 [transition-timing-function:var(--ease-out)] active:scale-[0.985]";
                   const stateClass = isActive
-                    ? "bg-secondary text-primary"
+                    ? "bg-secondary text-foreground"
                     : "text-muted-foreground hover:bg-secondary/60 hover:text-foreground";
 
                   if (link.external || isFileHref(link.href)) {

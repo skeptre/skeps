@@ -56,7 +56,7 @@ export default function ProjectMediaGallery({
   return (
     <>
       <div className="space-y-4">
-        <p className="font-mono text-[10px] text-muted-foreground">
+        <p className="font-mono text-xs text-muted-foreground">
           select artifact to expand
         </p>
 
