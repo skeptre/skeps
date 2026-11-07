@@ -70,7 +70,7 @@ export default function NowPage() {
         title="What I'm working on and learning"
         description={
           <>
-            Updated by hand. <time dateTime={NOW_UPDATED}>{`Last updated ${NOW_UPDATED}`}</time>
+            Updated by hand. <time dateTime={NOW_UPDATED} className="whitespace-nowrap">{`Last updated ${NOW_UPDATED}`}</time>
           </>
         }
         constrained
