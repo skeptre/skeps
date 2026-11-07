@@ -76,7 +76,10 @@ export function CardContainer({ children, className, containerClassName, resting
           onMouseMove={handleMouseMove}
           onMouseLeave={handleMouseLeave}
           className={cn("relative flex items-center justify-center transition-all duration-200 ease-linear", className)}
-          style={{ transformStyle: "preserve-3d", transform: tiltEnabled ? rest : undefined }}
+          // The resting tilt is a static transform, so it is safe to keep on
+          // touch devices and under reduced motion; only the pointer-driven
+          // tilt is gated by `tiltEnabled`.
+          style={{ transformStyle: "preserve-3d", transform: rest }}
         >
           {children}
         </div>
