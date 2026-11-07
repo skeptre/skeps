@@ -14,6 +14,8 @@ const PAGES = [
   "/blog",
   `/blog/${firstPost.slug}`,
   "/contact",
+  "/about",
+  "/now",
 ] as const;
 
 test.describe("route smoke", () => {
@@ -94,6 +96,16 @@ test.describe("route smoke", () => {
       "href",
       `/projects/${firstProject.slug}`,
     );
+  });
+
+  test("about page shows its heading", async ({ page }) => {
+    await page.goto("/about");
+    await expect(page.getByRole("heading", { level: 1 })).toBeVisible();
+  });
+
+  test("now page shows when it was last updated", async ({ page }) => {
+    await page.goto("/now");
+    await expect(page.getByText("Last updated 2026-11-07")).toBeVisible();
   });
 
   test("blog index links to a technical note", async ({ page }) => {

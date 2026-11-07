@@ -143,6 +143,19 @@ Intro paragraph.
 
 Push and the blog index, post page, OG image, sitemap, home-page "latest note" and RSS feed (`/feed.xml`) all update automatically. Everything is prerendered at build time (there is no filesystem on Cloudflare Workers at runtime).
 
+## Writing a note
+
+1. Create `src/content/notes/<slug>.mdx`; the filename is the URL (`/blog/<slug>`).
+2. Add frontmatter with these fields:
+   - `title`
+   - `description` (alias: `summary`)
+   - `published` as `YYYY-MM-DD` (alias: `date`)
+   - `tags`, a non-empty list of strings
+   - `draft: true` (optional, boolean)
+3. Write the body in Markdown/MDX.
+
+No code change is needed: `scripts/build-notes-index.mjs` regenerates `src/content/notes-index.json` before every build and dev run. `draft: true` keeps a post out of the production build, sitemap, RSS feed and "latest note" slot, but `npm run dev` includes drafts (`npm run notes:index:drafts` does the same by hand). Set `NOTES_INCLUDE_DRAFTS=1` to include drafts in any other run. Commit the regenerated index without drafts.
+
 ## Environment variables
 
 Optional. Copy `.env.example` to `.env.local` only when overriding defaults.

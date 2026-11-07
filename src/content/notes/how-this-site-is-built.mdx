@@ -1,0 +1,68 @@
+---
+title: "How this site is built"
+description: "A tour of the stack, the build-time notes pipeline, the Cloudflare Workers deployment and the CI checks behind this site."
+published: "2026-11-07"
+tags: ["Next.js", "Cloudflare", "MDX"]
+draft: true
+---
+
+This is a walk through how the site in this repository is put together, written from the repository itself.
+
+## The stack
+
+The site is Next.js 16 with the App Router, React 19 and TypeScript, styled with Tailwind CSS v4. Animation comes from the `motion` package. Notes are MDX, compiled by `@next/mdx` with remark and rehype plugins for GFM, KaTeX maths, heading anchors and syntax highlighting through `rehype-pretty-code`. It runs on a Cloudflare Worker through the OpenNext Cloudflare adapter.
+
+## How pages are built
+
+Everything lives under `src/app` and uses the App Router. Pages are server components by default. A component only becomes a client component when it needs the browser, and those files start with `"use client"`.
+
+Fonts are self-hosted. `src/app/layout.tsx` loads Sora and IBM Plex Mono with `next/font/local`, pointing at the `.woff2` files shipped by the `@fontsource` packages in `node_modules`. A comment in that file gives the reason: builds never depend on a Google Fonts fetch, and a strict `font-src 'self'` policy keeps working.
+
+## The Spotlight and the other Aceternity components
+
+The repository keeps a set of animated components in `src/components/aceternity`: a spotlight, a lamp, background beams, a moving border, a 3D tilt card, flip words and a text-generate effect.
+
+Every one of them calls `useReducedMotion` from `motion/react`. What happens next depends on the component:
+
+- The spotlight renders its SVG at full opacity instead of applying the entrance animation class.
+- The text-generate effect renders plain spans instead of animated ones.
+- The lamp renders its expanded state directly, with no transition.
+- Background beams and the moving border skip their animated layers.
+- The 3D card turns off the pointer-driven tilt.
+
+The Playwright accessibility tests also emulate `reducedMotion: "reduce"` before running axe, so that path is exercised in CI.
+
+## The notes pipeline
+
+A note is an MDX file in `src/content/notes`. The frontmatter holds a title, a description, a published date and tags. Before every build and dev run, `scripts/build-notes-index.mjs` reads that frontmatter with `gray-matter` and writes `src/content/notes-index.json`. The `prebuild:next` and `predev` scripts call it, and it fails with a message naming the file when a field is missing.
+
+`src/data/posts.ts` imports that JSON. The blog index, the post route's `generateStaticParams`, the sitemap, the RSS feed and the home page's latest note all read from it. Nothing reads the filesystem at runtime, which matters because a Worker has no filesystem. Posts marked `draft: true` are left out of the index, so they get no route, sitemap entry or feed item.
+
+## Deployment
+
+`npm run build` runs `opennextjs-cloudflare build`, which produces the `.open-next` directory that `wrangler.jsonc` points at. The Worker is named `skeps`, and that name must stay the same to target the existing Worker. OpenNext's own build step is overridden in `open-next.config.ts` to call `npm run build:next`, which avoids a recursive build.
+
+`aliskeps.com` is attached to the Worker as a Cloudflare Custom Domain. According to the README, `www.aliskeps.com` is not a second Worker domain. It is a proxied DNS record with a 301 redirect to `https://aliskeps.com` that keeps the path and query string.
+
+## Quality gates
+
+The GitHub Actions workflow in `.github/workflows/ci.yml` runs on pushes and pull requests to `master`. Its jobs are:
+
+1. `check` runs ESLint, `tsc --noEmit` and `npm run build:next`.
+2. `cloudflare` runs the full `npm run build` for the Worker artifact.
+3. `e2e` installs Chromium and runs the Playwright smoke tests and the axe accessibility checks.
+4. `lighthouse` runs Lighthouse CI as a matrix of four jobs, one each for `/`, `/projects`, `/blog` and `/contact`.
+
+`lighthouserc.cjs` asserts a minimum score of 0.9 for Accessibility, Best Practices and SEO. Performance is not a gate.
+
+A note's frontmatter looks like this:
+
+```mdx
+---
+title: "Post title"
+description: "One sentence."
+published: "2026-11-07"
+tags: ["Next.js"]
+draft: true
+---
+```
