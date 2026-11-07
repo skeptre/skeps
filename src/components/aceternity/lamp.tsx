@@ -25,13 +25,13 @@ export function LampContainer({ children, className }: LampContainerProps) {
   return (
     <div
       className={cn(
-        "relative z-0 flex min-h-[32rem] w-full flex-col items-center justify-center overflow-hidden bg-background md:min-h-[36rem]",
+        "relative z-0 flex w-full flex-col items-center overflow-hidden bg-background pt-6 md:pt-10",
         className,
       )}
     >
       <div
         aria-hidden="true"
-        className="pointer-events-none relative isolate z-0 flex w-full flex-1 scale-y-125 items-center justify-center"
+        className="pointer-events-none relative isolate z-0 flex h-[20rem] w-full flex-none origin-center scale-x-[0.72] scale-y-125 items-center justify-center md:h-[24rem] md:scale-x-100"
       >
         <motion.div
           {...grow({ opacity: 0.5, width: "15rem" }, { opacity: 1, width: "30rem" })}
@@ -62,7 +62,10 @@ export function LampContainer({ children, className }: LampContainerProps) {
         />
         <div className="absolute inset-auto z-40 h-44 w-full -translate-y-[12.5rem] bg-background" />
       </div>
-      <div className="relative z-50 flex -translate-y-40 flex-col items-center px-5 md:-translate-y-56">
+      {/* The light layer has a fixed height, so the content can be pulled up by a
+          fixed amount to sit just under the line; the matching negative margin
+          keeps the container from reserving the vacated space below. */}
+      <div className="relative z-50 -mb-[13rem] flex -translate-y-[13rem] flex-col items-center px-5 pb-6 md:-mb-[17rem] md:-translate-y-[17rem]">
         {children}
       </div>
     </div>

@@ -39,7 +39,6 @@ export default function ContactPage() {
         </div>
 
         <LampContainer>
-          <p className="font-mono text-[15px] text-primary">Contact</p>
           <h1 className="mt-4 text-center text-[clamp(2.5rem,5.6vw,5rem)] font-semibold leading-none tracking-[-0.05em] text-foreground">
             Want to talk engineering?
           </h1>

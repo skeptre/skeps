@@ -89,7 +89,7 @@ export default function HomePage() {
           </p>
 
           <div className="mt-10 flex flex-wrap items-center gap-3">
-            <MovingBorderButton as={Link} href="/projects" borderRadius="14px">
+            <MovingBorderButton href="/projects" borderRadius="14px">
               See selected work
             </MovingBorderButton>
             <a

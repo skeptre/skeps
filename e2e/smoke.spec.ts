@@ -37,12 +37,12 @@ test.describe("route smoke", () => {
     await expect(
       page.getByRole("heading", {
         level: 1,
-        name: /building backend, data and ai systems/i,
+        name: /I build the systems behind the product/i,
       }),
     ).toBeVisible();
 
     await expect(
-      page.getByRole("link", { name: "Explore selected work" }),
+      page.getByRole("link", { name: "See selected work" }),
     ).toHaveAttribute("href", "/projects");
 
     await expect(

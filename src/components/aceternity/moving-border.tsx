@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef } from "react";
+import Link from "next/link";
 import {
   motion,
   useAnimationFrame,
@@ -25,7 +26,7 @@ type MovingBorderButtonProps = {
   };
 
 export function MovingBorderButton({
-  as: Component = "button",
+  as,
   borderRadius = "1rem",
   duration = 3000,
   containerClassName,
@@ -36,6 +37,10 @@ export function MovingBorderButton({
 }: MovingBorderButtonProps) {
   const reduce = useReducedMotion();
   const innerRadius = `calc(${borderRadius} * 0.96)`;
+  // Server components can't pass a component through `as`, so pick the
+  // element from `href`: internal paths get next/link, URLs get <a>.
+  const Component: React.ElementType =
+    as ?? (rest.href ? (rest.href.startsWith("/") ? Link : "a") : "button");
 
   return (
     <Component

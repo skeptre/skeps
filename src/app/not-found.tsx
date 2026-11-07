@@ -1,4 +1,3 @@
-import Link from "next/link";
 
 import { MovingBorderButton } from "@/components/aceternity/moving-border";
 import BackLink from "@/components/ui/BackLink";
@@ -18,7 +17,7 @@ export default function NotFound() {
       />
 
       <div className="mt-10">
-        <MovingBorderButton as={Link} href="/" borderRadius="14px">
+        <MovingBorderButton href="/" borderRadius="14px">
           Back home
         </MovingBorderButton>
       </div>

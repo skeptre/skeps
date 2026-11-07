@@ -193,7 +193,7 @@ export default function MobileMenu() {
               </nav>
             </div>
           </>,
-          document.body,
+          document.getElementById("mobile-menu-root") ?? document.body,
         )}
     </>
   );

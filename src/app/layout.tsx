@@ -78,6 +78,10 @@ export default function RootLayout({
         </a>
         <SiteToolbar />
         <div className="pt-16">{children}</div>
+        {/* Mount point for the mobile navigation drawer. Keeping it last in
+            <body> fixes its DOM order so the skip link stays the first link
+            on the page (axe's skip-link detection depends on that). */}
+        <div id="mobile-menu-root" />
       </body>
     </html>
   );
