@@ -11,6 +11,7 @@ export type BlogPost = {
   published: string;
   readingTime: string;
   tags: string[];
+  hasMath: boolean;
 };
 
 export const BLOG_POSTS: BlogPost[] = notesIndex;

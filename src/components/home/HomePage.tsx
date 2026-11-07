@@ -1,3 +1,4 @@
+import dynamic from "next/dynamic";
 import Link from "next/link";
 import type { IconType } from "react-icons";
 import {
@@ -13,18 +14,22 @@ import {
 import {
   BackgroundBeams,
   FlipWords,
-  LampContainer,
   MovingBorderButton,
   Spotlight,
   TextGenerateEffect,
 } from "@/components/aceternity";
-import ProjectTiltCard from "@/components/projects/ProjectTiltCard";
 import SocialLinksNav from "@/components/site/SocialLinksNav";
 import CopyEmailButton from "@/components/ui/CopyEmailButton";
 import { SITE } from "@/config/site";
 import { BLOG_POSTS } from "@/data/posts";
 import { PROJECTS } from "@/data/projects";
 import { RELAY } from "@/data/relay";
+
+// Below-the-fold client pieces: split out of the hero chunk (SSR stays on).
+const LampContainer = dynamic(() =>
+  import("@/components/aceternity/lamp").then((m) => m.LampContainer),
+);
+const ProjectTiltCard = dynamic(() => import("@/components/projects/ProjectTiltCard"));
 
 const STACK: { Icon: IconType; label: string }[] = [
   { Icon: SiPython, label: "Python" },

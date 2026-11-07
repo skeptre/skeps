@@ -1,7 +1,4 @@
-"use client";
-
 import { Fragment } from "react";
-import { motion, useReducedMotion } from "motion/react";
 import { cn } from "@/lib/utils";
 
 type Word = { text: string; className?: string };
@@ -13,31 +10,27 @@ type TextGenerateEffectProps = {
   duration?: number;
 };
 
+// CSS-driven reveal: the animation starts on first paint, no hydration needed.
 export function TextGenerateEffect({
   words,
   className,
   filter = true,
-  duration = 0.5,
+  duration = 0.45,
 }: TextGenerateEffectProps) {
-  const reduce = useReducedMotion();
-
   return (
     <span className={className}>
       {words.map((word, i) => (
         <Fragment key={`${word.text}-${i}`}>
-          {reduce ? (
-            <span className={cn("inline-block", word.className)}>{word.text}</span>
-          ) : (
-            <motion.span
-              className={cn("inline-block", word.className)}
-              initial={{ opacity: 0, filter: filter ? "blur(10px)" : "none" }}
-              animate={{ opacity: 1, filter: filter ? "blur(0px)" : "none" }}
-              transition={{ duration, delay: i * 0.2, ease: "easeOut" }}
-            >
-              {word.text}
-            </motion.span>
-          )}
-          {" "}
+          <span
+            className={cn(
+              "inline-block",
+              filter ? "animate-word-in" : "animate-word-in-plain",
+              word.className,
+            )}
+            style={{ animationDelay: `${i * 80}ms`, animationDuration: `${duration}s` }}
+          >
+            {word.text}
+          </span>{" "}
         </Fragment>
       ))}
     </span>

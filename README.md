@@ -137,7 +137,7 @@ Intro paragraph.
 
 - All four frontmatter fields are required; `published` is `YYYY-MM-DD`. A missing field fails the build with an error naming the file.
 - Reading time is computed from the word count.
-- Maths: inline `$\chi^2 = \frac{(b - c)^2}{b + c}$` or a block between `$$` lines (KaTeX).
+- Maths: inline `$\chi^2 = \frac{(b - c)^2}{b + c}$` or a block between `$$` lines (KaTeX). A note containing `$…$` or `$$` automatically loads the KaTeX stylesheet; notes without maths do not.
 - Code: use fenced blocks with a language (```` ```python ````) for syntax highlighting.
 - Components: `<BenchmarkChart />` is available without an import. To add another, export it from `src/mdx-components.tsx`.
 

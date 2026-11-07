@@ -47,9 +47,19 @@ const posts = fs
       published,
       readingTime: `${Math.max(1, Math.round(words / 200))} min read`,
       tags,
+      hasMath: /(^|[^\\])\$[^$\n]+\$|\$\$/.test(content),
     };
   })
   .sort((a, b) => (a.published < b.published ? 1 : a.published > b.published ? -1 : 0));
+
+// Serve KaTeX's stylesheet + fonts from /katex/ so only notes with maths load it.
+// katex.min.css references fonts/… relatively, so the layout is preserved.
+const katexDist = path.join(root, "node_modules/katex/dist");
+const katexOut = path.join(root, "public/katex");
+fs.mkdirSync(katexOut, { recursive: true });
+fs.cpSync(path.join(katexDist, "katex.min.css"), path.join(katexOut, "katex.min.css"));
+fs.cpSync(path.join(katexDist, "fonts"), path.join(katexOut, "fonts"), { recursive: true });
+console.log("[notes] copied KaTeX css + fonts → public/katex/");
 
 fs.writeFileSync(outFile, JSON.stringify(posts, null, 2) + "\n");
 console.log(`[notes] indexed ${posts.length} note(s) → src/content/notes-index.json`);

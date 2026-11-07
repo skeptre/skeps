@@ -6,8 +6,6 @@ import { BLOG_POSTS, getBlogPost } from "@/data/posts";
 import BackLink from "@/components/ui/BackLink";
 import PageShell from "@/components/ui/PageShell";
 
-import "katex/dist/katex.min.css";
-
 type Props = { params: Promise<{ slug: string }> };
 
 export function generateStaticParams() {
@@ -66,6 +64,8 @@ export default async function BlogPostPage({ params }: Props) {
 
   return (
     <>
+      {/* eslint-disable-next-line @next/next/no-css-tags -- React 19 hoists this into <head>; only notes with maths load KaTeX */}
+      {post.hasMath ? <link rel="stylesheet" href="/katex/katex.min.css" precedence="default" /> : null}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
