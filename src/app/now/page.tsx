@@ -5,6 +5,7 @@ import BackLink from "@/components/ui/BackLink";
 import PageHeader from "@/components/ui/PageHeader";
 import PageShell from "@/components/ui/PageShell";
 import { SITE } from "@/config/site";
+import { NOW_UPDATED } from "@/data/now";
 import { RELAY } from "@/data/relay";
 
 export const metadata: Metadata = {
@@ -13,7 +14,6 @@ export const metadata: Metadata = {
   alternates: { canonical: `${SITE.url}/now` },
 };
 
-const LAST_UPDATED = "2026-11-07";
 
 type Item = {
   eyebrow: string;
@@ -70,7 +70,7 @@ export default function NowPage() {
         title="What I'm working on and learning"
         description={
           <>
-            Updated by hand. <time dateTime={LAST_UPDATED}>{`Last updated ${LAST_UPDATED}`}</time>
+            Updated by hand. <time dateTime={NOW_UPDATED}>{`Last updated ${NOW_UPDATED}`}</time>
           </>
         }
         constrained

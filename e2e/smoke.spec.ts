@@ -1,6 +1,7 @@
 import { test, expect } from "@playwright/test";
 import AxeBuilder from "@axe-core/playwright";
 
+import { NOW_UPDATED } from "../src/data/now";
 import { BLOG_POSTS } from "../src/data/posts";
 import { PROJECTS } from "../src/data/projects";
 
@@ -105,7 +106,7 @@ test.describe("route smoke", () => {
 
   test("now page shows when it was last updated", async ({ page }) => {
     await page.goto("/now");
-    await expect(page.getByText("Last updated 2026-11-07")).toBeVisible();
+    await expect(page.getByText(`Last updated ${NOW_UPDATED}`)).toBeVisible();
   });
 
   test("blog index links to a technical note", async ({ page }) => {

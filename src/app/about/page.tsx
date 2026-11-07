@@ -81,7 +81,7 @@ export default function AboutPage() {
               {BENCHMARK ? (
                 <>
                   {" "}
-                  <Link href={`/projects/${BENCHMARK.slug}`} className="text-primary hover:underline">
+                  <Link href={`/projects/${BENCHMARK.slug}`} className="rounded text-primary underline decoration-border underline-offset-4 hover:decoration-primary focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background">
                     Read the case study
                   </Link>
                   .
