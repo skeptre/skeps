@@ -116,9 +116,9 @@ The Lighthouse routes run as separate CI jobs so a headless Chromium failure on 
 
 Edit `src/data/projects.ts`. Each entry is included in the project index, sitemap, and its statically generated project route.
 
-## Adding blog posts
+## Writing a note
 
-Notes are MDX files. Create `src/content/notes/<slug>.mdx` — the filename is the URL slug (`/blog/<slug>`). Start with frontmatter, then write the body in Markdown:
+Notes are MDX files. Create `src/content/notes/<slug>.mdx`; the filename is the URL slug (`/blog/<slug>`). Start with frontmatter, then write the body in Markdown:
 
 ```mdx
 ---
@@ -126,6 +126,7 @@ title: "Post title"
 description: "One or two sentences used for the index, SEO and RSS."
 published: "2026-09-19"
 tags: ["Python", "NLP"]
+draft: true
 ---
 
 Intro paragraph.
@@ -135,11 +136,14 @@ Intro paragraph.
 - Bullets, **bold**, [links](https://example.com), tables (GFM) and images work.
 ```
 
-- All four frontmatter fields are required; `published` is `YYYY-MM-DD`. A missing field fails the build with an error naming the file.
+- `title`, `description`, `published` (`YYYY-MM-DD`) and `tags` (a non-empty list of strings) are required. `summary` is accepted as an alias for `description` and `date` for `published`. A missing field fails the build with an error naming the file.
+- `draft: true` is optional. It keeps the note out of the production build, sitemap, RSS feed and "latest note" slot; remove the line to publish.
 - Reading time is computed from the word count.
 - Maths: inline `$\chi^2 = \frac{(b - c)^2}{b + c}$` or a block between `$$` lines (KaTeX). A note containing `$…$` or `$$` automatically loads the KaTeX stylesheet; notes without maths do not.
 - Code: use fenced blocks with a language (```` ```python ````) for syntax highlighting.
 - Components: `<BenchmarkChart />` is available without an import. To add another, export it from `src/mdx-components.tsx`.
+
+No code change is needed: `scripts/build-notes-index.mjs` regenerates `src/content/notes-index.json` before every build and dev run. `npm run dev` includes drafts (as does `npm run notes:index:drafts`, or `NOTES_INCLUDE_DRAFTS=1` in any other run), so it rewrites `src/content/notes-index.json` with the draft included. Run `npm run notes:index` before committing, or just don't commit the regenerated index.
 
 Push and the blog index, post page, OG image, sitemap, home-page "latest note" and RSS feed (`/feed.xml`) all update automatically. Everything is prerendered at build time (there is no filesystem on Cloudflare Workers at runtime).
 

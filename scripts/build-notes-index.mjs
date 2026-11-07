@@ -10,6 +10,14 @@ const root = process.cwd();
 const notesDir = path.join(root, "src/content/notes");
 const outFile = path.join(root, "src/content/notes-index.json");
 
+// Drafts (`draft: true`) are left out of the index, and therefore out of every
+// route, the sitemap, the RSS feed and the "latest note" slot, unless asked for.
+const includeDrafts =
+  process.argv.includes("--drafts") ||
+  process.env.NOTES_INCLUDE_DRAFTS === "1" ||
+  process.env.NODE_ENV === "development";
+let skippedDrafts = 0;
+
 function requireString(data, key, file) {
   const value = data[key];
   if (typeof value !== "string" || value.trim() === "") {
@@ -18,14 +26,27 @@ function requireString(data, key, file) {
   return value.trim();
 }
 
+// Canonical keys win over their aliases (`published` over `date`,
+// `description` over `summary`).
+function pick(data, canonical, alias) {
+  return data[canonical] !== undefined && data[canonical] !== null ? canonical : alias;
+}
+
 const posts = fs
   .readdirSync(notesDir)
   .filter((file) => file.endsWith(".mdx"))
   .map((file) => {
     const { data, content } = matter(fs.readFileSync(path.join(notesDir, file), "utf8"));
+    if (data.draft !== undefined && typeof data.draft !== "boolean") {
+      throw new Error(`[notes] ${file}: frontmatter "draft" must be a boolean (true or false)`);
+    }
+    if (data.draft === true && !includeDrafts) {
+      skippedDrafts += 1;
+      return null;
+    }
     const title = requireString(data, "title", file);
-    const description = requireString(data, "description", file);
-    const rawPublished = data.published;
+    const description = requireString(data, pick(data, "description", "summary"), file);
+    const rawPublished = data[pick(data, "published", "date")];
     const published =
       rawPublished instanceof Date
         ? rawPublished.toISOString().slice(0, 10)
@@ -33,7 +54,7 @@ const posts = fs
           ? rawPublished.trim()
           : "";
     if (!/^\d{4}-\d{2}-\d{2}$/.test(published)) {
-      throw new Error(`[notes] ${file}: frontmatter "published" must be YYYY-MM-DD`);
+      throw new Error(`[notes] ${file}: frontmatter "published" must be YYYY-MM-DD (or use "date")`);
     }
     const tags = data.tags;
     if (!Array.isArray(tags) || tags.length === 0 || !tags.every((t) => typeof t === "string")) {
@@ -50,6 +71,7 @@ const posts = fs
       hasMath: /(^|[^\\])\$[^$\n]+\$|\$\$/.test(content),
     };
   })
+  .filter(Boolean)
   .sort((a, b) => (a.published < b.published ? 1 : a.published > b.published ? -1 : 0));
 
 // Serve KaTeX's stylesheet + fonts from /katex/ so only notes with maths load it.
@@ -63,3 +85,6 @@ console.log("[notes] copied KaTeX css + fonts → public/katex/");
 
 fs.writeFileSync(outFile, JSON.stringify(posts, null, 2) + "\n");
 console.log(`[notes] indexed ${posts.length} note(s) → src/content/notes-index.json`);
+console.log(
+  `[notes] ${skippedDrafts} draft(s) skipped${includeDrafts ? " (drafts included)" : ""}`,
+);

@@ -1,6 +1,7 @@
 import { test, expect } from "@playwright/test";
 import AxeBuilder from "@axe-core/playwright";
 
+import { NOW_UPDATED } from "../src/data/now";
 import { BLOG_POSTS } from "../src/data/posts";
 import { PROJECTS } from "../src/data/projects";
 
@@ -14,6 +15,8 @@ const PAGES = [
   "/blog",
   `/blog/${firstPost.slug}`,
   "/contact",
+  "/about",
+  "/now",
 ] as const;
 
 test.describe("route smoke", () => {
@@ -94,6 +97,16 @@ test.describe("route smoke", () => {
       "href",
       `/projects/${firstProject.slug}`,
     );
+  });
+
+  test("about page shows its heading", async ({ page }) => {
+    await page.goto("/about");
+    await expect(page.getByRole("heading", { level: 1 })).toBeVisible();
+  });
+
+  test("now page shows when it was last updated", async ({ page }) => {
+    await page.goto("/now");
+    await expect(page.getByText(`Last updated ${NOW_UPDATED}`)).toBeVisible();
   });
 
   test("blog index links to a technical note", async ({ page }) => {
