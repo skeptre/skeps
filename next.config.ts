@@ -36,6 +36,12 @@ const nextConfig: NextConfig = {
           },
         ],
       },
+      {
+        // The CV is linked from the site but should not surface as a
+        // standalone search result.
+        source: "/M_Ali_2.pdf",
+        headers: [{ key: "X-Robots-Tag", value: "noindex" }],
+      },
     ];
   },
 };

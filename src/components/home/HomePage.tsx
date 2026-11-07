@@ -99,7 +99,7 @@ export default function HomePage() {
               aria-label="Open CV as PDF in a new tab"
               className="inline-flex h-[54px] items-center rounded-[14px] border border-border px-6 font-semibold transition-colors hover:border-primary/60 focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
             >
-              Download CV
+              View CV
             </a>
           </div>
 
