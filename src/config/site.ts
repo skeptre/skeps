@@ -12,6 +12,7 @@ const nav: NavLink[] = [
   { label: "About",    href: "/about",                                              ariaLabel: "About Mansoor Ali" },
   { label: "Notes",    href: "/blog",                                               ariaLabel: "Read technical notes" },
   { label: "Now",      href: "/now",                                                ariaLabel: "What I'm working on now" },
+  { label: "SkepsLabs", href: "https://skepslabs.com",             external: true, ariaLabel: "Open SkepsLabs, my side-project lab, in a new tab" },
   { label: "LeetCode", href: "https://leetcode.com/u/skeps/",      external: true, mobileHidden: true, ariaLabel: "Open LeetCode profile in a new tab" },
   { label: "LinkedIn", href: "https://www.linkedin.com/in/skeps/", external: true, ariaLabel: "Open LinkedIn profile in a new tab" },
   { label: "Contact",  href: "/contact",                                            ariaLabel: "Go to contact page" },
@@ -28,7 +29,9 @@ export const SITE = {
   github: "https://github.com/skeptre",
   linkedin: "https://www.linkedin.com/in/skeps/",
   leetcode: "https://leetcode.com/u/skeps/",
+  // Side-project lab: experiments and niche ideas, published as "Skeps".
+  skepslabs: "https://skepslabs.com",
   // Bump this when page content changes (used for sitemap lastmod).
-  updated: "2026-11-07",
+  updated: "2026-11-17",
   nav,
 } as const;
