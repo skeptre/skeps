@@ -97,6 +97,15 @@ export default function HomePage() {
             <MovingBorderButton href="/projects" borderRadius="14px">
               See selected work
             </MovingBorderButton>
+            <a
+              href={SITE.skepslabs}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Visit SkepsLabs, my side-project lab, in a new tab"
+              className="inline-flex h-[52px] items-center rounded-[14px] border border-border px-6 text-[15px] font-medium text-foreground transition-colors hover:border-primary/50 hover:text-primary focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+            >
+              Visit SkepsLabs <span aria-hidden className="ml-2">↗</span>
+            </a>
           </div>
 
           <ul className="mt-14 flex flex-wrap gap-x-6 gap-y-3 border-t border-border pt-6">
@@ -148,6 +157,36 @@ export default function HomePage() {
           >
             All projects →
           </Link>
+        </div>
+      </section>
+
+      <section className="border-t border-border">
+        <div className="site-container grid gap-10 py-20 lg:grid-cols-2 lg:items-center lg:gap-16">
+          <div>
+            <p className="font-mono text-[15px] text-primary">Side lab</p>
+            <h2 className="mt-4 max-w-xl text-[clamp(1.75rem,3.2vw,2.5rem)] font-semibold leading-[1.1] tracking-[-0.04em]">
+              SkepsLabs is where I build for fun.
+            </h2>
+          </div>
+
+          <a
+            href={SITE.skepslabs}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Open skepslabs.com in a new tab"
+            className="block rounded-[20px] border border-border bg-card p-7 transition-colors hover:border-primary/40 focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+          >
+            <span className="font-mono text-[13px] text-muted-foreground">skepslabs.com</span>
+            <span className="mt-4 block text-[1.375rem] font-semibold leading-tight tracking-[-0.03em]">
+              A lab for niche ideas
+            </span>
+            <span className="mt-3 block text-[15px] font-light leading-6 text-muted-foreground">
+              A 3D animal museum, a calisthenics guide that works offline, and deep dives into
+              topics I got curious about. Small experiments, built and shipped under the name
+              Skeps.
+            </span>
+            <span className="mt-5 block font-mono text-sm text-primary">Visit SkepsLabs ↗</span>
+          </a>
         </div>
       </section>
 
