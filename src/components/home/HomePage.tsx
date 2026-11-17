@@ -102,9 +102,12 @@ export default function HomePage() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Visit SkepsLabs, my side-project lab, in a new tab"
-              className="inline-flex h-[52px] items-center rounded-[14px] border border-border px-6 text-[15px] font-medium text-foreground transition-colors hover:border-primary/50 hover:text-primary focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+              className="group inline-flex h-[52px] items-center gap-3 rounded-[14px] border border-primary/50 bg-primary/10 pl-2.5 pr-6 text-[15px] font-medium text-primary shadow-[0_0_28px_rgba(103,232,249,0.25)] transition-[background-color,box-shadow,border-color] hover:border-primary hover:bg-primary/15 hover:shadow-[0_0_40px_rgba(103,232,249,0.4)] focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
             >
-              Visit SkepsLabs <span aria-hidden className="ml-2">↗</span>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src="/skepslabs/logo.svg" alt="" width={34} height={34} className="size-[34px]" />
+              Visit SkepsLabs
+              <span aria-hidden className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5">↗</span>
             </a>
           </div>
 
@@ -160,34 +163,50 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="border-t border-border">
-        <div className="site-container grid gap-10 py-20 lg:grid-cols-2 lg:items-center lg:gap-16">
-          <div>
-            <p className="font-mono text-[15px] text-primary">Side lab</p>
-            <h2 className="mt-4 max-w-xl text-[clamp(1.75rem,3.2vw,2.5rem)] font-semibold leading-[1.1] tracking-[-0.04em]">
-              SkepsLabs is where I build for fun.
-            </h2>
-          </div>
+      <section className="site-container pb-24 lg:pb-28">
+        <a
+          href={SITE.skepslabs}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="group relative isolate block overflow-hidden rounded-[28px] border border-primary/30 bg-[#050507] shadow-[0_0_60px_rgba(103,232,249,0.12)] transition-[border-color,box-shadow] duration-300 hover:border-primary/70 hover:shadow-[0_0_90px_rgba(103,232,249,0.25)] focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+        >
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/skepslabs/marble-god.webp"
+            alt=""
+            width={1100}
+            height={884}
+            loading="lazy"
+            decoding="async"
+            className="absolute inset-y-0 right-0 -z-10 h-full w-auto max-w-none object-cover opacity-45 transition-transform duration-700 group-hover:scale-[1.03] sm:opacity-90"
+          />
+          <span
+            aria-hidden
+            className="absolute inset-0 -z-10 bg-[linear-gradient(90deg,#050507_30%,rgba(5,5,7,0.75)_55%,transparent_85%)]"
+          />
 
-          <a
-            href={SITE.skepslabs}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Open skepslabs.com in a new tab"
-            className="block rounded-[20px] border border-border bg-card p-7 transition-colors hover:border-primary/40 focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
-          >
-            <span className="font-mono text-[13px] text-muted-foreground">skepslabs.com</span>
-            <span className="mt-4 block text-[1.375rem] font-semibold leading-tight tracking-[-0.03em]">
-              A lab for niche ideas
+          <span className="block px-7 py-12 sm:px-12 sm:py-16 lg:max-w-[60%] lg:py-20">
+            <span className="flex items-center gap-3">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src="/skepslabs/logo.svg" alt="" width={40} height={40} className="size-10" />
+              <span className="font-mono text-[13px] uppercase tracking-[0.28em] text-primary">
+                Side lab · SkepsLabs
+              </span>
             </span>
-            <span className="mt-3 block text-[15px] font-light leading-6 text-muted-foreground">
+            <span className="mt-7 block text-balance text-[clamp(2.25rem,4.6vw,4rem)] font-semibold leading-[1.02] tracking-[-0.045em]">
+              Where I build for fun.
+            </span>
+            <span className="mt-5 block max-w-[34rem] text-[17px] font-light leading-relaxed text-muted-foreground">
               A 3D animal museum, a calisthenics guide that works offline, and deep dives into
               topics I got curious about. Small experiments, built and shipped under the name
               Skeps.
             </span>
-            <span className="mt-5 block font-mono text-sm text-primary">Visit SkepsLabs ↗</span>
-          </a>
-        </div>
+            <span className="mt-9 inline-flex h-[52px] items-center gap-2 rounded-[14px] bg-primary px-6 text-[15px] font-semibold text-[#04222a]">
+              Visit skepslabs.com
+              <span aria-hidden className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5">↗</span>
+            </span>
+          </span>
+        </a>
       </section>
 
       {LATEST_POST ? (
