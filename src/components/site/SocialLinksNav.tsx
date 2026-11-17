@@ -38,7 +38,7 @@ export default function SocialLinksNav({
               aria-label={link.ariaLabel}
               target="_blank"
               rel="noopener noreferrer"
-              className={pill}
+              className={cn(pill, link.highlight && "border-primary/50 bg-primary/10 text-primary")}
             >
               {link.label}
             </a>

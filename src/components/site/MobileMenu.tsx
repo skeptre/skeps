@@ -157,9 +157,11 @@ export default function MobileMenu() {
                       : pathname.startsWith(link.href));
                   const baseClass =
                     "rounded-full px-4 py-3 font-mono text-sm transition-[transform,color,background-color] duration-150 [transition-timing-function:var(--ease-out)] active:scale-[0.985]";
-                  const stateClass = isActive
-                    ? "bg-secondary text-foreground"
-                    : "text-muted-foreground hover:bg-secondary/60 hover:text-foreground";
+                  const stateClass = link.highlight
+                    ? "border border-primary/40 bg-primary/10 text-primary"
+                    : isActive
+                      ? "bg-secondary text-foreground"
+                      : "text-muted-foreground hover:bg-secondary/60 hover:text-foreground";
 
                   if (link.external || isFileHref(link.href)) {
                     return (
@@ -173,6 +175,7 @@ export default function MobileMenu() {
                         className={`${baseClass} ${stateClass}`}
                       >
                         {label}
+                        {link.highlight ? <span aria-hidden> ↗</span> : null}
                       </a>
                     );
                   }

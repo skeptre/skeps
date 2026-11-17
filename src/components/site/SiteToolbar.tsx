@@ -43,9 +43,11 @@ export default function SiteToolbar() {
                 (link.href === "/"
                   ? pathname === "/"
                   : pathname.startsWith(link.href));
-              const stateClass = isActive
-                ? "bg-secondary text-foreground"
-                : "text-muted-foreground hover:text-foreground";
+              const stateClass = link.highlight
+                ? "inline-flex items-center gap-2 border border-primary/40 bg-primary/10 text-primary shadow-[0_0_18px_rgba(103,232,249,0.22)] hover:border-primary/70 hover:bg-primary/15"
+                : isActive
+                  ? "bg-secondary text-foreground"
+                  : "text-muted-foreground hover:text-foreground";
 
               if (link.external || isFileHref(link.href)) {
                 return (
@@ -57,6 +59,12 @@ export default function SiteToolbar() {
                     rel="noopener noreferrer"
                     className={`${navLinkBase} ${stateClass}`}
                   >
+                    {link.highlight ? (
+                      <span aria-hidden className="relative flex size-2">
+                        <span className="absolute inline-flex size-full rounded-full bg-primary opacity-60 motion-safe:animate-ping" />
+                        <span className="relative inline-flex size-2 rounded-full bg-primary" />
+                      </span>
+                    ) : null}
                     {label}
                     {link.external ? <span aria-hidden> ↗</span> : null}
                   </a>

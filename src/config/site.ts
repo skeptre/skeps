@@ -4,6 +4,8 @@ export type NavLink = {
   external?: boolean;
   mobileHidden?: boolean;
   ariaLabel?: string;
+  /** Draw this link in the accent colour so it stands out. */
+  highlight?: boolean;
 };
 
 const nav: NavLink[] = [
@@ -12,7 +14,7 @@ const nav: NavLink[] = [
   { label: "About",    href: "/about",                                              ariaLabel: "About Mansoor Ali" },
   { label: "Notes",    href: "/blog",                                               ariaLabel: "Read technical notes" },
   { label: "Now",      href: "/now",                                                ariaLabel: "What I'm working on now" },
-  { label: "SkepsLabs", href: "https://skepslabs.com",             external: true, ariaLabel: "Open SkepsLabs, my side-project lab, in a new tab" },
+  { label: "SkepsLabs", href: "https://skepslabs.com",             external: true, highlight: true, ariaLabel: "Open SkepsLabs, my side-project lab, in a new tab" },
   { label: "LeetCode", href: "https://leetcode.com/u/skeps/",      external: true, mobileHidden: true, ariaLabel: "Open LeetCode profile in a new tab" },
   { label: "LinkedIn", href: "https://www.linkedin.com/in/skeps/", external: true, ariaLabel: "Open LinkedIn profile in a new tab" },
   { label: "Contact",  href: "/contact",                                            ariaLabel: "Go to contact page" },
