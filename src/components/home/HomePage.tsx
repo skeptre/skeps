@@ -95,7 +95,7 @@ export default function HomePage() {
 
           <div className="mt-10 flex flex-wrap items-center gap-3">
             <MovingBorderButton href="/projects" borderRadius="14px">
-              See selected work
+              See projects
             </MovingBorderButton>
             <a
               href={SITE.skepslabs}
@@ -124,7 +124,7 @@ export default function HomePage() {
 
       <section className="site-container py-24 lg:py-28">
         <h2 className="text-[clamp(2.25rem,4.4vw,3.75rem)] font-semibold leading-none tracking-[-0.045em]">
-          Selected work
+          Selected projects
         </h2>
 
         <div className="mt-12 grid gap-5 sm:grid-cols-2 xl:grid-cols-4">

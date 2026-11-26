@@ -79,7 +79,7 @@ export default async function ProjectPage({ params }: Props) {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
       <PageShell>
-        <BackLink href="/projects" label="Work" />
+        <BackLink href="/projects" label="Projects" />
 
         <div className="mt-10">
           <ProjectCard project={project} titleAs="h1" />

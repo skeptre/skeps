@@ -52,7 +52,7 @@ export default function ProjectsPage() {
         <BackLink href="/" label="home" />
 
         <PageHeader
-          label="Work"
+          label="Projects"
           title="Things I've built"
           description="Data pipelines, AI evaluation, backend services, live client sites and the experiments I build for fun. Filter by what you care about, or scroll through all of it."
           constrained

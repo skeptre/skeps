@@ -10,7 +10,7 @@ export type NavLink = {
 
 const nav: NavLink[] = [
   { label: "GitHub",   href: "https://github.com/skeptre",         external: true, ariaLabel: "Open GitHub profile in a new tab" },
-  { label: "Work",     href: "/projects",                                           ariaLabel: "View projects" },
+  { label: "Projects", href: "/projects",                                           ariaLabel: "View projects" },
   { label: "About",    href: "/about",                                              ariaLabel: "About Mansoor Ali" },
   { label: "Notes",    href: "/blog",                                               ariaLabel: "Read technical notes" },
   { label: "Now",      href: "/now",                                                ariaLabel: "What I'm working on now" },

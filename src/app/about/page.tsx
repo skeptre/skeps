@@ -117,7 +117,7 @@ export default function AboutPage() {
         </div>
 
         <section className="border-t border-border pt-10">
-          <h2 className="font-mono text-[15px] font-normal text-primary">Selected work</h2>
+          <h2 className="font-mono text-[15px] font-normal text-primary">Selected projects</h2>
           <div className="mt-8 grid gap-5 sm:grid-cols-2">
             <ProjectTiltCard
               eyebrow={RELAY.eyebrow}
