@@ -17,11 +17,11 @@ export default function ProjectCard({
 }) {
   const evidenceHeadingId = `project-evidence-${project.slug}`;
   const TitleTag = titleAs;
-  const link = project.github
-    ? { href: project.github, label: "GitHub →" }
-    : project.demo
-      ? { href: project.demo, label: "Live site →" }
-      : null;
+  // Live site or demo first (it is what a visitor wants to see), then the code.
+  const links = [
+    project.demo ? { href: project.demo, label: project.demoLabel ?? "Live site →" } : null,
+    project.github ? { href: project.github, label: "GitHub →" } : null,
+  ].filter((l): l is { href: string; label: string } => l !== null);
 
   return (
     <article>
@@ -31,17 +31,32 @@ export default function ProjectCard({
         <p className="mt-5 max-w-[42rem] text-[19px] font-light leading-[1.5] text-muted-foreground">
           {project.description}
         </p>
-        {link && (
-          <div className="mt-8 flex flex-wrap gap-3">
-            <MovingBorderButton
-              as="a"
-              href={link.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              borderRadius="14px"
-            >
-              {link.label}
-            </MovingBorderButton>
+        {links.length > 0 && (
+          <div className="mt-8 flex flex-wrap items-center gap-3">
+            {links.map((link, i) =>
+              i === 0 ? (
+                <MovingBorderButton
+                  key={link.href}
+                  as="a"
+                  href={link.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  borderRadius="14px"
+                >
+                  {link.label}
+                </MovingBorderButton>
+              ) : (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex h-12 items-center rounded-[14px] border border-border px-5 text-sm font-semibold text-soft transition-colors duration-200 hover:border-primary/50 hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+                >
+                  {link.label}
+                </a>
+              ),
+            )}
           </div>
         )}
       </header>

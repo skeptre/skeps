@@ -97,7 +97,7 @@ function WorkGrid({ filter, onChoose: choose }: { filter: FilterId; onChoose: (i
                   )}
                   <span className="relative">
                     {f.label}
-                    <span className={cn("ml-2 font-mono text-[12px]", active ? "text-black/60" : "text-dim")}>
+                    <span className={cn("ml-2 font-mono text-[12px]", active ? "text-black/70" : "text-muted-foreground")}>
                       {counts[f.id] ?? 0}
                     </span>
                   </span>

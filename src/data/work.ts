@@ -77,7 +77,7 @@ export const WORK: WorkItem[] = [
   },
   {
     id: "llm-benchmark",
-    title: "LLM Benchmarking for Financial Sentiment",
+    title: "LLM Benchmarking Framework for Financial Sentiment Analysis",
     blurb:
       "My final-year project: a harness comparing GPT-4o and Gemini 2.5 Flash on financial sentiment with standardised prompts, response validation and McNemar significance testing.",
     categories: ["ai-data", "university"],
@@ -96,7 +96,7 @@ export const WORK: WorkItem[] = [
   },
   {
     id: "activity-tracker",
-    title: "Activity Tracker",
+    title: "Activity Tracker — Mobile",
     blurb:
       "Cross-platform step tracker redesigned in 2026: three animated activity rings, live workout timer, leaderboard podium and a one-tap demo that runs in the browser.",
     categories: ["web-mobile", "university"],
@@ -200,7 +200,7 @@ export const WORK: WorkItem[] = [
   },
   {
     id: "ticket-api",
-    title: "Support Ticket API",
+    title: "Support Ticket Management API",
     blurb:
       "Ten-endpoint FastAPI service with JWT login, owner-only ticket access, Alembic migrations and 18 pytest tests on an isolated database.",
     categories: ["backend"],
@@ -248,7 +248,7 @@ export const WORK: WorkItem[] = [
   },
   {
     id: "activity-api",
-    title: "Activity Tracker API",
+    title: "Activity Tracker — API",
     blurb: "The team's Express and SQLite backend for workouts, weight and goals, with Joi validation and Swagger docs.",
     categories: ["backend", "university"],
     kicker: "team project · api",

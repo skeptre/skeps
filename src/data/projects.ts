@@ -10,6 +10,8 @@ export type Project = {
   stack: string[];
   github?: string;
   demo?: string;
+  /** Button text for `demo`; defaults to "Live site →". */
+  demoLabel?: string;
   media?: ProjectMediaItem[];
   evidenceTitle?: string;
   evidenceSubtitle?: string;
@@ -176,7 +178,7 @@ export const PROJECTS: Project[] = [
       "Built a production-ready single-page photography portfolio website for Sana Wajid, a Manchester-based wedding and couple photographer. The site recreates the client's existing Pixieset visual identity using extracted design tokens, matched typography, warm editorial colours, cinematic image treatments, and responsive layouts.",
       "Implemented a polished frontend experience with a fullscreen hero, scroll-aware navigation, mobile overlay menu, pricing/package sections, animated FAQ accordion, and a validated contact form. Motion was added with Framer Motion while animation timing was tuned to avoid delaying key hero content and hurting Lighthouse performance.",
       "Integrated Resend for transactional email delivery from the contact form, including React Hook Form and Zod validation. Debugged and resolved production email delivery issues involving Resend workspace configuration, verified sending domain setup, and environment variable alignment.",
-      "Added production SEO and deployment polish including OpenGraph image generation, metadata, location-focused copy for Manchester photography search visibility, JSON-LD LocalBusiness structured data, sitemap.xml, robots.txt, custom favicon, and Vercel deployment with custom domain configuration.",
+      "Added production SEO and deployment polish including OpenGraph image generation, metadata, location-focused copy for Manchester photography search visibility, JSON-LD LocalBusiness structured data, sitemap.xml, robots.txt, custom favicon, and deployment to Cloudflare Workers (OpenNext) with a custom domain.",
     ],
     bullets: [
       "Client-facing production website delivered for a real photography business",
@@ -186,7 +188,7 @@ export const PROJECTS: Project[] = [
       "Resolved real production email delivery issues across Resend, DNS/domain verification, and environment variables",
       "SEO implementation with metadata, OpenGraph image, sitemap, robots.txt, and LocalBusiness JSON-LD",
       "Performance tuning for animated hero content and image-heavy photography layout",
-      "Deployed to Vercel with custom domain and verified sending domain",
+      "Deployed to Cloudflare Workers with a custom domain and verified sending domain",
     ],
     stack: [
       "Next.js",
@@ -196,7 +198,7 @@ export const PROJECTS: Project[] = [
       "Resend",
       "React Hook Form",
       "Zod",
-      "Vercel",
+      "Cloudflare Workers",
       "Sharp",
     ],
     demo: "https://sanawjd.com",
@@ -223,8 +225,9 @@ export const PROJECTS: Project[] = [
       "Expo Sensors",
       "React Hook Form",
     ],
-    github: "https://github.com/skeptre/activity-tracker-frontend",
+    github: "https://github.com/skeptre/activity-tracker-frontend/tree/redesign-2026",
     demo: "https://activity-tracker.aliskepss.workers.dev",
+    demoLabel: "Try the demo →",
     media: [
       {
         title: "2026 redesign",

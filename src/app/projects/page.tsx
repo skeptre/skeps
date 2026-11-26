@@ -59,23 +59,16 @@ export default function ProjectsPage() {
         />
 
         <dl className="mt-8 flex flex-wrap gap-x-10 gap-y-3 font-mono text-[13px] text-muted-foreground">
-          <div className="flex items-baseline gap-2">
-            <dt className="sr-only">Projects</dt>
-            <dd className="text-2xl font-semibold text-foreground">{WORK.length}</dd>
-            <span>projects</span>
-          </div>
-          <div className="flex items-baseline gap-2">
-            <dt className="sr-only">Live</dt>
-            <dd className="text-2xl font-semibold text-foreground">{live}</dd>
-            <span>live right now</span>
-          </div>
-          <div className="flex items-baseline gap-2">
-            <dt className="sr-only">Client sites</dt>
-            <dd className="text-2xl font-semibold text-foreground">
-              {WORK.filter((w) => w.categories.includes("client")).length}
-            </dd>
-            <span>for real clients</span>
-          </div>
+          {[
+            { value: WORK.length, label: "projects" },
+            { value: live, label: "live right now" },
+            { value: WORK.filter((w) => w.categories.includes("client")).length, label: "for real clients" },
+          ].map((stat) => (
+            <div key={stat.label} className="flex items-baseline gap-2">
+              <dt className="order-2">{stat.label}</dt>
+              <dd className="order-1 text-2xl font-semibold text-foreground">{stat.value}</dd>
+            </div>
+          ))}
         </dl>
 
         <Suspense fallback={<WorkGridStatic />}>

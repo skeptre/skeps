@@ -28,7 +28,7 @@ test.describe("route smoke", () => {
     });
   }
 
-  test("homepage presents work, writing and contact paths", async ({ page }) => {
+  test("homepage presents projects, writing and contact paths", async ({ page }) => {
     await page.goto("/");
 
     await expect(
@@ -39,7 +39,7 @@ test.describe("route smoke", () => {
     ).toBeVisible();
 
     await expect(
-      page.getByRole("link", { name: "See selected work" }),
+      page.getByRole("link", { name: "See projects" }),
     ).toHaveAttribute("href", "/projects");
 
     await expect(
@@ -92,7 +92,9 @@ test.describe("route smoke", () => {
 
   test("projects index links to a project case study", async ({ page }) => {
     await page.goto("/projects");
-    const caseStudy = page.getByRole("link", { name: "view case study →" }).first();
+    const caseStudy = page
+      .getByRole("link", { name: `Case study: ${firstProject.title}` })
+      .first();
     await expect(caseStudy).toHaveAttribute(
       "href",
       `/projects/${firstProject.slug}`,

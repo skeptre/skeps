@@ -63,7 +63,7 @@ export default function WorkCard({ item, index }: { item: WorkItem; index: numbe
       <div className={cn("flex flex-1 flex-col gap-3 p-6", hero && "sm:p-8")}>
         <div className="flex items-center justify-between gap-3 font-mono text-[12px]">
           <span style={{ color: item.accent }}>{item.kicker}</span>
-          <span className="text-dim">{item.year}</span>
+          <span className="text-muted-foreground">{item.year}</span>
         </div>
 
         <h2
@@ -99,7 +99,7 @@ export default function WorkCard({ item, index }: { item: WorkItem; index: numbe
 
         <div className="relative z-10 mt-auto flex flex-wrap items-center gap-2 pt-4">
           {item.links.length === 0 ? (
-            <span className="inline-flex items-center gap-1.5 font-mono text-[12px] text-dim">
+            <span className="inline-flex items-center gap-1.5 font-mono text-[12px] text-muted-foreground">
               <FiLock size={12} aria-hidden /> {item.note ?? "Code available on request"}
             </span>
           ) : (
