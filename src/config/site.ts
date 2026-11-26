@@ -34,6 +34,6 @@ export const SITE = {
   // Side-project lab: experiments and niche ideas, published as "Skeps".
   skepslabs: "https://skepslabs.com",
   // Bump this when page content changes (used for sitemap lastmod).
-  updated: "2026-11-17",
+  updated: "2026-11-26",
   nav,
 } as const;

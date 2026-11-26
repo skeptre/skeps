@@ -1,41 +1,47 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 
 import { SITE } from "@/config/site";
-import { PROJECTS } from "@/data/projects";
-import { RELAY } from "@/data/relay";
-import ProjectTiltCard from "@/components/projects/ProjectTiltCard";
+import { WORK } from "@/data/work";
+import { WorkGridStatic, WorkGridWithParams } from "@/components/work/WorkGrid";
 import BackLink from "@/components/ui/BackLink";
 import PageHeader from "@/components/ui/PageHeader";
 import PageShell from "@/components/ui/PageShell";
 
+const DESCRIPTION = `Data pipelines, AI evaluation, backend services, live client sites and experiments by ${SITE.name}.`;
+
 export const metadata: Metadata = {
   title: "Projects",
-  description: `Selected backend, data, AI, and production engineering work by ${SITE.name}.`,
+  description: DESCRIPTION,
   alternates: { canonical: `${SITE.url}/projects` },
 };
+
+const absolute = (href: string) => (href.startsWith("http") ? href : `${SITE.url}${href}`);
 
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "CollectionPage",
   name: "Projects",
-  description: `Selected backend, data, AI, and production engineering work by ${SITE.name}.`,
+  description: DESCRIPTION,
   url: `${SITE.url}/projects`,
   mainEntity: {
     "@type": "ItemList",
-    itemListElement: PROJECTS.map((p, i) => ({
+    itemListElement: WORK.map((w, i) => ({
       "@type": "ListItem",
       position: i + 1,
       item: {
-        "@type": "SoftwareSourceCode",
-        name: p.title,
-        description: p.description,
-        url: `${SITE.url}/projects/${p.slug}`,
+        "@type": "CreativeWork",
+        name: w.title,
+        description: w.blurb,
+        ...(w.links[0] ? { url: absolute(w.links[0].href) } : {}),
       },
     })),
   },
 };
 
 export default function ProjectsPage() {
+  const live = WORK.filter((w) => w.status === "live").length;
+
   return (
     <>
       <script
@@ -47,35 +53,34 @@ export default function ProjectsPage() {
 
         <PageHeader
           label="Work"
-          title="Selected work"
-          description="Selected backend, data, AI, and production work. Each project links to a focused case study with implementation details and evidence where available."
+          title="Things I've built"
+          description="Data pipelines, AI evaluation, backend services, live client sites and the experiments I build for fun. Filter by what you care about, or scroll through all of it."
           constrained
         />
 
-        <div className="mt-12 grid gap-5 md:grid-cols-2">
-          <ProjectTiltCard
-            eyebrow={RELAY.eyebrow}
-            eyebrowTone="accent"
-            title={RELAY.title}
-            description={RELAY.longDescription}
-            href={RELAY.github}
-            external
-            ariaLabel={RELAY.ariaLabel}
-            footer="View on GitHub →"
-            glow
-          />
-          {PROJECTS.map((project) => (
-            <ProjectTiltCard
-              key={project.slug}
-              eyebrow={project.type}
-              title={project.title}
-              description={project.description}
-              href={`/projects/${project.slug}`}
-              stack={project.stack.slice(0, 5)}
-              footer="View case study →"
-            />
-          ))}
-        </div>
+        <dl className="mt-8 flex flex-wrap gap-x-10 gap-y-3 font-mono text-[13px] text-muted-foreground">
+          <div className="flex items-baseline gap-2">
+            <dt className="sr-only">Projects</dt>
+            <dd className="text-2xl font-semibold text-foreground">{WORK.length}</dd>
+            <span>projects</span>
+          </div>
+          <div className="flex items-baseline gap-2">
+            <dt className="sr-only">Live</dt>
+            <dd className="text-2xl font-semibold text-foreground">{live}</dd>
+            <span>live right now</span>
+          </div>
+          <div className="flex items-baseline gap-2">
+            <dt className="sr-only">Client sites</dt>
+            <dd className="text-2xl font-semibold text-foreground">
+              {WORK.filter((w) => w.categories.includes("client")).length}
+            </dd>
+            <span>for real clients</span>
+          </div>
+        </dl>
+
+        <Suspense fallback={<WorkGridStatic />}>
+          <WorkGridWithParams />
+        </Suspense>
       </PageShell>
     </>
   );

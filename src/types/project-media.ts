@@ -6,7 +6,8 @@ export type ProjectMediaCategory =
   | "Database"
   | "Infrastructure"
   | "Evaluation"
-  | "Performance";
+  | "Performance"
+  | "Interface";
 
 export type ProjectMediaItem = {
   title: string;

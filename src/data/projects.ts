@@ -204,12 +204,13 @@ export const PROJECTS: Project[] = [
   {
     slug: "activity-tracker-mobile",
     title: "Activity Tracker — Mobile",
-    description: "Cross-platform React Native fitness app with pedometer sensors, MobX state management, real-time step tracking, and Expo integration.",
+    description: "Cross-platform React Native fitness app with pedometer sensors, MobX state management and real-time step tracking, redesigned in 2026 with a browser demo.",
     type: "mobile / frontend",
     paragraphs: [
       "Built a cross-platform mobile fitness tracking application using React Native and Expo focused on step monitoring, activity management, and real-time fitness analytics. The application integrates device pedometer sensors to track daily steps, estimate calories burned, distance travelled, and activity duration, while persisting user data locally using AsyncStorage.",
       "Implemented authentication flows with login, registration, and session handling connected to a backend API. Designed a modular frontend architecture using feature-based structure, reusable form components, context providers, MobX state management, and service-layer abstractions for API communication and activity tracking.",
       "Developed real-time step tracking with background-aware lifecycle handling, weekly activity summaries, average step calculations, and historical progress visualisation. The project also includes activity CRUD functionality, responsive mobile navigation, form validation, and TypeScript-based type safety throughout the application.",
+      "In 2026 I redesigned the frontend from scratch: a dark design system with its own tokens and UI kit, three animated SVG activity rings, a weekly goal chart, a live workout timer, a leaderboard podium and a floating tab bar. A one-tap demo account and a sensor check let the app run in any browser, deployed to Cloudflare Workers from its own branch.",
     ],
     stack: [
       "React Native",
@@ -223,6 +224,17 @@ export const PROJECTS: Project[] = [
       "React Hook Form",
     ],
     github: "https://github.com/skeptre/activity-tracker-frontend",
+    demo: "https://activity-tracker.aliskepss.workers.dev",
+    media: [
+      {
+        title: "2026 redesign",
+        description:
+          "Workouts with a live timer, the Today screen with three activity rings, and the leaderboard podium from the 2026 redesign.",
+        image: "/projects/activity-tracker/cover.jpg",
+        featured: true,
+        category: "Interface",
+      },
+    ],
   },
   {
     slug: "activity-tracker-api",
