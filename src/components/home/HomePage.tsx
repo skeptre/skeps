@@ -52,7 +52,7 @@ const CASE_STUDIES = [
   {
     slug: "llm-benchmarking-framework-for-financial-sentiment-analysis",
     eyebrow: "ML evaluation",
-    description: "GPT-4o 80.22% vs Gemini 2.5 Flash 17.24% macro F1, McNemar p < 0.001.",
+    description: "Evaluation harness comparing GPT-4o and Gemini 2.5 Flash on financial sentiment, with McNemar significance testing.",
   },
   {
     slug: "retail-operations-intelligence-platform",
@@ -220,7 +220,7 @@ export default function HomePage() {
             </div>
 
             <Link
-              href={`/blog/${LATEST_POST.slug}`}
+              href={`/notes/${LATEST_POST.slug}`}
               className="block rounded-[20px] border border-border bg-card p-7 transition-colors hover:border-primary/40 focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
             >
               <span className="flex flex-wrap items-center gap-x-3 font-mono text-[13px] text-muted-foreground">

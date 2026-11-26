@@ -12,8 +12,8 @@ const PAGES = [
   "/",
   "/projects",
   `/projects/${firstProject.slug}`,
-  "/blog",
-  `/blog/${firstPost.slug}`,
+  "/notes",
+  `/notes/${firstPost.slug}`,
   "/contact",
   "/about",
   "/now",
@@ -112,9 +112,9 @@ test.describe("route smoke", () => {
   });
 
   test("blog index links to a technical note", async ({ page }) => {
-    await page.goto("/blog");
+    await page.goto("/notes");
     const note = page.getByRole("link", { name: "read note →" }).first();
-    await expect(note).toHaveAttribute("href", `/blog/${firstPost.slug}`);
+    await expect(note).toHaveAttribute("href", `/notes/${firstPost.slug}`);
   });
 });
 

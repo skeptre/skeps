@@ -12,7 +12,7 @@ const nav: NavLink[] = [
   { label: "GitHub",   href: "https://github.com/skeptre",         external: true, ariaLabel: "Open GitHub profile in a new tab" },
   { label: "Projects", href: "/projects",                                           ariaLabel: "View projects" },
   { label: "About",    href: "/about",                                              ariaLabel: "About Mansoor Ali" },
-  { label: "Notes",    href: "/blog",                                               ariaLabel: "Read technical notes" },
+  { label: "Notes",    href: "/notes",                                               ariaLabel: "Read technical notes" },
   { label: "Now",      href: "/now",                                                ariaLabel: "What I'm working on now" },
   { label: "SkepsLabs", href: "https://skepslabs.com",             external: true, highlight: true, ariaLabel: "Open SkepsLabs, my side-project lab, in a new tab" },
   { label: "LeetCode", href: "https://leetcode.com/u/skeps/",      external: true, mobileHidden: true, ariaLabel: "Open LeetCode profile in a new tab" },

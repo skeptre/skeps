@@ -4,13 +4,13 @@
     "title": "Benchmarking GPT-4o and Gemini 2.5 Flash for Financial Sentiment",
     "description": "Notes from building a reproducible LLM evaluation pipeline across Financial PhraseBank and FiQA, including classification quality, latency, hallucination checks, and McNemar testing.",
     "published": "2026-09-19",
-    "readingTime": "2 min read",
+    "readingTime": "1 min read",
     "tags": [
       "LLM evaluation",
       "Python",
       "NLP",
       "statistics"
     ],
-    "hasMath": true
+    "hasMath": false
   }
 ]

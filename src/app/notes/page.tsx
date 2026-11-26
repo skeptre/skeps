@@ -10,7 +10,7 @@ import ProjectTiltCard from "@/components/projects/ProjectTiltCard";
 export const metadata: Metadata = {
   title: "Blog",
   description: `Technical notes on backend engineering, data, AI, and software projects by ${SITE.name}.`,
-  alternates: { canonical: `${SITE.url}/blog` },
+  alternates: { canonical: `${SITE.url}/notes` },
 };
 
 export default function BlogPage() {
@@ -32,7 +32,7 @@ export default function BlogPage() {
             eyebrow={`${post.published} · ${post.readingTime}`}
             title={post.title}
             description={post.description}
-            href={`/blog/${post.slug}`}
+            href={`/notes/${post.slug}`}
             stack={post.tags}
             footer="Read note →"
           />

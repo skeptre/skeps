@@ -14,7 +14,7 @@ function esc(value: string) {
 
 export function GET() {
   const items = BLOG_POSTS.map((post) => {
-    const link = `${SITE.url}/blog/${post.slug}`;
+    const link = `${SITE.url}/notes/${post.slug}`;
     return `    <item>
       <title>${esc(post.title)}</title>
       <link>${link}</link>
@@ -28,7 +28,7 @@ export function GET() {
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>${esc(`${SITE.name} — notes`)}</title>
-    <link>${SITE.url}/blog</link>
+    <link>${SITE.url}/notes</link>
     <description>${esc(`Technical notes by ${SITE.name}.`)}</description>
     <language>en-gb</language>
     <atom:link href="${SITE.url}/feed.xml" rel="self" type="application/rss+xml" />

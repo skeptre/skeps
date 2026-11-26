@@ -135,7 +135,7 @@ export default function AboutPage() {
               <ProjectTiltCard
                 eyebrow="ML evaluation"
                 title={BENCHMARK.title}
-                description="GPT-4o 80.22% vs Gemini 2.5 Flash 17.24% macro F1, McNemar p < 0.001."
+                description="Evaluation harness comparing GPT-4o and Gemini 2.5 Flash on financial sentiment, with McNemar significance testing."
                 href={`/projects/${BENCHMARK.slug}`}
                 ariaLabel={`Read case study: ${BENCHMARK.title}`}
                 footer="Case study →"

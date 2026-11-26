@@ -79,16 +79,14 @@ export const WORK: WorkItem[] = [
     id: "llm-benchmark",
     title: "LLM Benchmarking Framework for Financial Sentiment Analysis",
     blurb:
-      "My final-year project: a harness comparing GPT-4o and Gemini 2.5 Flash on financial sentiment with standardised prompts, response validation and McNemar significance testing.",
+      "My final-year project: a harness comparing GPT-4o and Gemini 2.5 Flash on financial sentiment with standardised prompts, response validation and McNemar significance testing. Results are being re-run.",
     categories: ["ai-data", "university"],
     kicker: "ml evaluation",
     year: "2026",
     stack: ["Python", "OpenAI API", "Gemini API", "Pandas", "Scikit-learn"],
     cover: {
-      kind: "image",
-      src: "/projects/llm-benchmarking-framework/llm-benchmark-overview.png",
-      alt: "Charts comparing GPT-4o and Gemini results",
-      position: "top",
+      kind: "terminal",
+      lines: ["eval gpt-4o            ✓ done", "eval gemini-2.5-flash  ✓ done", "mcnemar  paired outcomes", "# re-running: larger dataset, stricter parsing"],
     },
     size: "tall",
     accent: VIOLET,
@@ -114,7 +112,7 @@ export const WORK: WorkItem[] = [
     links: [
       { label: "Demo", href: "https://activity-tracker.aliskepss.workers.dev" },
       { label: "Case study", href: "/projects/activity-tracker-mobile" },
-      { label: "Code", href: "https://github.com/skeptre/activity-tracker-frontend/tree/redesign-2026" },
+      { label: "Code", href: "https://github.com/skeptre/activity-tracker-frontend" },
     ],
   },
   {

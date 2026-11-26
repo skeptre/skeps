@@ -18,7 +18,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const post = getBlogPost(slug);
   if (!post) return {};
 
-  const url = `${SITE.url}/blog/${post.slug}`;
+  const url = `${SITE.url}/notes/${post.slug}`;
 
   return {
     title: post.title,
@@ -47,7 +47,7 @@ export default async function BlogPostPage({ params }: Props) {
 
   const { default: Post } = await import(`@/content/notes/${slug}.mdx`);
 
-  const url = `${SITE.url}/blog/${post.slug}`;
+  const url = `${SITE.url}/notes/${post.slug}`;
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
@@ -71,7 +71,7 @@ export default async function BlogPostPage({ params }: Props) {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
       <PageShell>
-        <BackLink href="/blog" label="Notes" />
+        <BackLink href="/notes" label="Notes" />
 
         <article className="mx-auto max-w-3xl">
           <header className="pt-10">

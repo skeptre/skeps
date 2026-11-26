@@ -10,7 +10,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   const lastModifiedFor = (href: string) => {
     if (href === "/now") return NOW_UPDATED;
-    if (href === "/blog") return blogUpdated;
+    if (href === "/notes") return blogUpdated;
     return SITE.updated;
   };
 
@@ -31,7 +31,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   }));
 
   const blogRoutes = BLOG_POSTS.map((post) => ({
-    url: `${SITE.url}/blog/${post.slug}`,
+    url: `${SITE.url}/notes/${post.slug}`,
     lastModified: post.published,
     changeFrequency: "monthly" as const,
     priority: 0.7,

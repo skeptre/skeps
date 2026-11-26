@@ -18,7 +18,6 @@ export type Project = {
 };
 
 const RETAIL_OPS_MEDIA_BASE = "/projects/retail-ops-platform";
-const LLM_MEDIA_BASE = "/projects/llm-benchmarking-framework";
 
 export const PROJECTS: Project[] = [
   {
@@ -108,7 +107,7 @@ export const PROJECTS: Project[] = [
     paragraphs: [
       "Built a financial sentiment analysis benchmarking framework comparing OpenAI GPT-4o and Google Gemini 2.5 Flash on real-world finance datasets. The project automates dataset processing, prompt standardisation, prediction validation, evaluation metrics, and result visualisation to analyse how different LLMs perform on sentiment classification tasks.",
       "Implemented a full evaluation pipeline using Python and Jupyter across the Financial PhraseBank and FiQA datasets, covering standardised 3-class sentiment prediction (positive, negative, neutral), automated response validation, and label normalisation. Evaluation included accuracy, macro F1, per-class F1, latency, and hallucination analysis, with statistical significance testing via McNemar's Test and comparative confusion matrix visualisations.",
-      "The benchmark surfaced a substantial difference in classification behaviour while Gemini 2.5 Flash returned lower average latency in the measured sample. The project focused on reproducible benchmarking, clean evaluation methodology, and structured LLM comparison workflows rather than relying on anecdotal model outputs.",
+      "The project focused on reproducible benchmarking, clean evaluation methodology, and structured LLM comparison workflows rather than relying on anecdotal model outputs. I am re-running it with a larger, stratified dataset and stricter response parsing, and will publish the results once that is done.",
     ],
     bullets: [
       "Financial PhraseBank and FiQA dataset handling",
@@ -128,26 +127,6 @@ export const PROJECTS: Project[] = [
       "Scikit-learn",
       "Matplotlib",
       "Jupyter Notebook",
-    ],
-    evidenceTitle: "Model Evaluation Evidence",
-    evidenceSubtitle:
-      "Comparative benchmark outputs, classification metrics, and latency analysis artifacts from the financial sentiment LLM evaluation framework.",
-    media: [
-      {
-        title: "GPT-4o vs Gemini Financial Sentiment Evaluation",
-        description:
-          "Comparative LLM evaluation framework measuring GPT-4o and Gemini 2.5 Flash across financial sentiment classification accuracy, macro F1, per-class F1, latency, confusion matrices, and hallucination-aware Q&A performance.",
-        image: `${LLM_MEDIA_BASE}/llm-benchmark-overview.png`,
-        featured: true,
-        category: "Evaluation",
-      },
-      {
-        title: "Per-Sample LLM Latency Analysis",
-        description:
-          "Per-sample API latency analysis comparing GPT-4o and Gemini 2.5 Flash response times across 51 financial sentiment evaluation requests, including average latency baselines and execution variance.",
-        image: `${LLM_MEDIA_BASE}/llm-latency-analysis.png`,
-        category: "Performance",
-      },
     ],
   },
   {
@@ -225,7 +204,7 @@ export const PROJECTS: Project[] = [
       "Expo Sensors",
       "React Hook Form",
     ],
-    github: "https://github.com/skeptre/activity-tracker-frontend/tree/redesign-2026",
+    github: "https://github.com/skeptre/activity-tracker-frontend",
     demo: "https://activity-tracker.aliskepss.workers.dev",
     demoLabel: "Try the demo →",
     media: [

@@ -11,7 +11,7 @@ The evaluation pipeline standardised prompts, normalised model outputs into posi
 
 ## What I measured
 
-- Accuracy and macro F1 across a 51-sample sentiment benchmark
+- Accuracy and macro F1 on a sentiment benchmark
 - Per-class F1 and confusion matrices
 - Per-request latency and average latency
 - A separate 12-question financial Q&A evaluation
@@ -20,15 +20,7 @@ The evaluation pipeline standardised prompts, normalised model outputs into posi
 
 ## Results
 
-On the 51-sample sentiment benchmark, GPT-4o reached 80.39% accuracy and 80.22% macro F1. Gemini 2.5 Flash reached 9.80% accuracy and 17.24% macro F1 under the same evaluation setup.
-
-<BenchmarkChart />
-
-Gemini was faster in the measured sample, averaging 0.722 seconds per request compared with 0.865 seconds for GPT-4o. On the separate Q&A set, GPT-4o answered 11 of 12 correctly with one hallucination, while Gemini answered 7 of 12 correctly with five hallucinations.
-
-$\chi^2 = \frac{(b - c)^2}{b + c}$
-
-The paired classification results produced McNemar counts of b=1 and c=37, with the calculated p-value rounding to 0.0000 in the project output. The practical conclusion was that the observed classification difference was not explained by a handful of isolated samples.
+I am re-running the benchmark with a larger, stratified dataset and stricter response parsing, so I have taken the earlier figures down. I will publish the new results here once the re-run is done.
 
 ## What mattered more than the headline scores
 

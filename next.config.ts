@@ -25,6 +25,13 @@ const nextConfig: NextConfig = {
     };
     return config;
   },
+  // Notes used to live at /blog: keep old links and search results working.
+  async redirects() {
+    return [
+      { source: "/blog", destination: "/notes", permanent: true },
+      { source: "/blog/:slug*", destination: "/notes/:slug*", permanent: true },
+    ];
+  },
   async headers() {
     return [
       {

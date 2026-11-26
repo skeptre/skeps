@@ -24,6 +24,12 @@ type Item = {
 
 const ITEMS: Item[] = [
   {
+    eyebrow: "Looking for",
+    title: "My first engineering role",
+    body: "Junior software engineer, data, AI and application support roles, including graduate schemes, in Manchester, London or Paris. I work best in a team, so that matters to me as much as the stack.",
+    link: { href: "/contact", label: "Get in touch →" },
+  },
+  {
     eyebrow: "Building",
     title: RELAY.title,
     body: "An open-source webhook relay. It accepts the event once, delivers it reliably, and shows exactly what happened.",
@@ -33,6 +39,23 @@ const ITEMS: Item[] = [
       external: true,
       ariaLabel: RELAY.ariaLabel,
     },
+  },
+  {
+    eyebrow: "Just shipped",
+    title: "Activity Tracker, redesigned",
+    body: "Rebuilt the frontend of my team's React Native step tracker with a new design system, animated activity rings and a demo mode that runs in any browser.",
+    link: {
+      href: "https://activity-tracker.aliskepss.workers.dev",
+      label: "Try the demo →",
+      external: true,
+      ariaLabel: "Try the Activity Tracker demo in a new tab",
+    },
+  },
+  {
+    eyebrow: "Re-running",
+    title: "LLM sentiment benchmark",
+    body: "Running my final-year GPT-4o vs Gemini 2.5 Flash benchmark again with a larger, stratified dataset and stricter response parsing before I publish figures.",
+    link: { href: "/projects/llm-benchmarking-framework-for-financial-sentiment-analysis", label: "Read the case study →" },
   },
   {
     eyebrow: "Learning: transformers",
@@ -53,7 +76,7 @@ const ITEMS: Item[] = [
     eyebrow: "Writing",
     title: "Engineering notes",
     body: "Writing engineering notes on this site.",
-    link: { href: "/blog", label: "Read the notes →" },
+    link: { href: "/notes", label: "Read the notes →" },
   },
 ];
 

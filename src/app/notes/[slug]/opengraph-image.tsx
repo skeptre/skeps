@@ -78,7 +78,7 @@ export default async function OGImage({
             letterSpacing: "0.02em",
           }}
         >
-          {SITE.url.replace("https://", "") + "/blog/" + slug}
+          {SITE.url.replace("https://", "") + "/notes/" + slug}
         </div>
       </div>
     ),

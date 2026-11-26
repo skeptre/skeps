@@ -51,7 +51,7 @@ The GitHub Actions workflow in `.github/workflows/ci.yml` runs on pushes and pul
 1. `check` runs ESLint, `tsc --noEmit` and `npm run build:next`.
 2. `cloudflare` runs the full `npm run build` for the Worker artifact.
 3. `e2e` installs Chromium and runs the Playwright smoke tests and the axe accessibility checks.
-4. `lighthouse` runs Lighthouse CI as a matrix of four jobs, one each for `/`, `/projects`, `/blog` and `/contact`.
+4. `lighthouse` runs Lighthouse CI as a matrix of four jobs, one each for `/`, `/projects`, `/notes` and `/contact`.
 
 `lighthouserc.cjs` asserts a minimum score of 0.9 for Accessibility, Best Practices and SEO. Performance is not a gate.
 
